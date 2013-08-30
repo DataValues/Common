@@ -1,0 +1,48 @@
+{
+	"name": "data-values/common",
+	"type": "library",
+	"description": "Contains common implementations of the interfaces defined by DataValuesInterfaces",
+	"keywords": [
+		"datavalues",
+		"valueparsers",
+		"valueformatters",
+		"valuevalidators",
+		"wikidata"
+	],
+	"homepage": "https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "Jeroen De Dauw",
+			"email": "jeroendedauw@gmail.com",
+			"homepage": "http://jeroendedauw.com",
+			"role": "Developer"
+		},
+		{
+			"name": "Daniel Werner",
+			"email": "danweetz@web.de",
+			"homepage": "https://www.mediawiki.org/wiki/User:Danwe",
+			"role": "Developer"
+		},
+		{
+			"name": "H. Snater",
+			"email": "mediawiki@snater.com",
+			"homepage": "http://www.snater.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://bugzilla.wikimedia.org/",
+		"irc": "irc://irc.freenode.net/wikimedia-wikidata"
+	},
+	"require": {
+		"php": ">=5.3.0",
+		"data-values/data-values": "dev-master",
+		"data-values/interfaces": "dev-master"
+	},
+	"autoload": {
+		"files" : [
+			"DataValuesCommon.php"
+		]
+	}
+}
