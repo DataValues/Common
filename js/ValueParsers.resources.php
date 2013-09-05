@@ -17,7 +17,7 @@
 return call_user_func( function() {
 
 	$moduleTemplate = array(
-		'localBasePath' => __DIR__ . '/js/src/ValueParsers',
+		'localBasePath' => __DIR__ . '/src/ValueParsers',
 		'remoteExtPath' =>  'DataValues/DataValuesCommon/js/src/ValueParsers',
 	);
 
