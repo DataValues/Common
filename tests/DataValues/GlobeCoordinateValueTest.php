@@ -48,6 +48,7 @@ class GlobeCoordinateValueTest extends DataValueTest {
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), 1, 'terminus' );
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), 1, "Schar's World" );
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), 1, 'coruscant' );
+		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), null );
 
 		return $argLists;
 	}
@@ -55,7 +56,6 @@ class GlobeCoordinateValueTest extends DataValueTest {
 	public function invalidConstructorArgumentsProvider() {
 		$argLists = array();
 
-		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), null );
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), 'foo' );
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), true );
 		$argLists[] = array( new LatLongValue( 4.2, 4.2 ), array( 1 ) );
@@ -102,7 +102,7 @@ class GlobeCoordinateValueTest extends DataValueTest {
 	public function testGetPrecision( GlobeCoordinateValue $geoCoord, array $arguments ) {
 		$actual = $geoCoord->getPrecision();
 
-		$this->assertTrue( is_float( $actual ) || is_int( $actual ), 'Precision is int or float' );
+		$this->assertTrue( is_float( $actual ) || is_int( $actual ) || is_null( $actual ), 'Precision is int or float or null' );
 		$this->assertEquals( $arguments[1], $actual );
 	}
 
