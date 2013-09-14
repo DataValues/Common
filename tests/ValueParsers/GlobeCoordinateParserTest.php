@@ -5,6 +5,7 @@ namespace ValueParsers\Test;
 use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
 use ValueParsers\GeoCoordinateParser;
+use ValueParsers\ParserOptions;
 
 /**
  * @covers ValueParsers\GlobeCoordinateParser
@@ -110,6 +111,57 @@ class GlobeCoordinateParserTest extends StringValueParserTest {
 		}
 
 		return $argLists;
+	}
+
+	/**
+	 * @dataProvider withGlobeOptionProvider
+	 */
+	public function testWithGlobeOption( $expected, $value, $options = null ) {
+		$parser = $this->getInstance();
+
+		if ( $options ) {
+			$parserOptions = new ParserOptions( json_decode( $options, true ) );
+			$parser->setOptions( $parserOptions );
+		}
+
+		$value = $parser->parse( $value );
+
+		$this->assertEquals( $expected, $value );
+	}
+
+	public function withGlobeOptionProvider() {
+		$data = array();
+
+		$data[] = array(
+			new GlobeCoordinateValue(
+				new LatLongValue( 55.7557860, -37.6176330 ),
+				0.000001,
+				'http://www.wikidata.org/entity/Q2'
+			),
+			'55.7557860° N, 37.6176330° W',
+			'{"globe":"http://www.wikidata.org/entity/Q2"}'
+		);
+
+		$data[] = array(
+			new GlobeCoordinateValue(
+				new LatLongValue( 60.5, 260 ),
+				0.1,
+				'http://www.wikidata.org/entity/Q111'
+			),
+			'60.5, 260',
+			'{"globe":"http://www.wikidata.org/entity/Q111"}'
+		);
+
+		$data[] = array(
+			new GlobeCoordinateValue(
+				new LatLongValue( 40.2, 22.5 ),
+				0.1,
+				'http://www.wikidata.org/entity/Q2'
+			),
+			'40.2, 22.5',
+		);
+
+		return $data;
 	}
 
 	/**

@@ -21,6 +21,19 @@ use DataValues\LatLongValue;
  */
 class GlobeCoordinateParser extends StringValueParser {
 
+	const OPT_GLOBE = 'globe';
+
+    /**
+	 * @since 0.1
+	 *
+	 * @param ParserOptions|null $options
+	 */
+	public function __construct( ParserOptions $options = null ) {
+		parent::__construct( $options );
+
+		$this->defaultOption( self::OPT_GLOBE, 'http://www.wikidata.org/entity/Q2' );
+	}
+
 	/**
 	 * @see StringValueParser::stringParse
 	 *
@@ -41,10 +54,10 @@ class GlobeCoordinateParser extends StringValueParser {
 						$latLong->getLatitude(),
 						$latLong->getLongitude()
 					),
-					$this->detectPrecision( $latLong, $precisionDetector )
+					$this->detectPrecision( $latLong, $precisionDetector ),
+					$this->options->getOption( 'globe' )
 				);
-			}
-			catch ( ParseException $parseException ) {
+			} catch ( ParseException $parseException ) {
 				continue;
 			}
 		}
