@@ -140,6 +140,7 @@ $wgHooks['ResourceLoaderTestModules'][] = function ( array &$testModules, \Resou
 				'parsers/IntParser.tests.js',
 				'parsers/StringParser.tests.js',
 				'parsers/TimeParser.tests.js',
+				'parsers/QuantityParser.tests.js',
 				'parsers/NullParser.tests.js',
 			),
 			'dependencies' => array(

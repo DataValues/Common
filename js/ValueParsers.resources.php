@@ -56,6 +56,7 @@ return call_user_func( function() {
 				'parsers/IntParser.js',
 				'parsers/StringParser.js',
 				'parsers/TimeParser.js',
+				'parsers/QuantityParser.js',
 				'parsers/NullParser.js',
 			),
 			'dependencies' => array(
