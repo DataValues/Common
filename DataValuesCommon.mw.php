@@ -59,7 +59,8 @@ $wgExtensionCredits['datavalues'][] = array(
 		'[https://www.mediawiki.org/wiki/User:Danwe Daniel Werner]',
 		'[http://www.snater.com H. Snater]',
 	),
-	'url' => 'https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon'
+	'url' => 'https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon',
+	'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',
 );
 
 if ( defined( 'MW_PHPUNIT_TEST' ) ) {
