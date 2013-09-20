@@ -5,7 +5,7 @@ namespace DataValues\Tests;
 use DataValues\DataValueFactory;
 
 /**
- * Tests for the DataValues\DataValueFactory class.
+ * @covers DataValues\DataValueFactory
  *
  * @since 0.1
  *
@@ -19,19 +19,6 @@ use DataValues\DataValueFactory;
  * @author Daniel Kinzler
  */
 class DataValuesFactoryTest extends \PHPUnit_Framework_TestCase {
-
-	public function testSingleton() {
-		$instance = DataValueFactory::singleton();
-
-		$this->assertInstanceOf( 'DataValues\DataValueFactory', $instance );
-		$this->assertTrue( DataValueFactory::singleton() === $instance );
-
-		global $wgDataValues;
-
-		foreach ( $wgDataValues as $dataValueType => $dataValueClass ) {
-			$this->assertTrue( $instance->hasDataValue( $dataValueType ) );
-		}
-	}
 
 	/**
 	 * @return DataValueFactory
