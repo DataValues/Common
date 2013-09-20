@@ -52,6 +52,19 @@ spl_autoload_register( function ( $className ) {
 	}
 } );
 
+global $wgDataValues;
+/**
+ * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
+ */
+$wgDataValues = array();
+
+// Defined in DataValues core
+$wgDataValues['boolean'] = 'DataValues\BooleanValue';
+$wgDataValues['number'] = 'DataValues\NumberValue';
+$wgDataValues['string'] = 'DataValues\StringValue';
+$wgDataValues['unknown'] = 'DataValues\UnknownValue';
+
+// Defined in DataValuesCommon
 $wgDataValues['globecoordinate'] = 'DataValues\GlobeCoordinateValue';
 $wgDataValues['iri'] = 'DataValues\IriValue';
 $wgDataValues['monolingualtext'] = 'DataValues\MonolingualTextValue';
