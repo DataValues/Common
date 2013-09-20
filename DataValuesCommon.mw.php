@@ -53,7 +53,7 @@ global $wgExtensionCredits, $wgAPIModules, $wgHooks, $wgValueFormatters;
 $wgExtensionCredits['datavalues'][] = array(
 	'path' => __DIR__,
 	'name' => 'DataValuesCommon',
-	'version' => DataValuesCommon_VERSION,
+	'version' => DATAVALUES_COMMON_VERSION,
 	'author' => array(
 		'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]',
 		'[https://www.mediawiki.org/wiki/User:Danwe Daniel Werner]',
