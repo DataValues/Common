@@ -52,6 +52,13 @@ spl_autoload_register( function ( $className ) {
 	}
 } );
 
+$wgDataValues['globecoordinate'] = 'DataValues\GlobeCoordinateValue';
+$wgDataValues['iri'] = 'DataValues\IriValue';
+$wgDataValues['monolingualtext'] = 'DataValues\MonolingualTextValue';
+$wgDataValues['multilingualtext'] = 'DataValues\MultilingualTextValue';
+$wgDataValues['quantity'] = 'DataValues\QuantityValue';
+$wgDataValues['time'] = 'DataValues\TimeValue';
+
 if ( defined( 'MEDIAWIKI' ) ) {
 	call_user_func( function() {
 		require_once __DIR__ . '/DataValuesCommon.mw.php';
