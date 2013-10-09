@@ -45,8 +45,9 @@ class DecimalValueTest extends DataValueTest {
 		$argLists[] = array( '-0.42' );
 		$argLists[] = array( '-0.0' );
 		$argLists[] = array( '-0' );
-		$argLists[] = array( '+0.0' );
 		$argLists[] = array( '+0' );
+		$argLists[] = array( '+0.0' );
+		$argLists[] = array( '+0.000' );
 
 		return $argLists;
 	}
@@ -107,6 +108,8 @@ class DecimalValueTest extends DataValueTest {
 			'simple/greater' => array( new DecimalValue( '+2' ), new DecimalValue( '+1' ), +1 ),
 			'negative/greater' => array( new DecimalValue( '-1' ), new DecimalValue( '-2' ), +1 ),
 			'negative/smaller' => array( new DecimalValue( '-2' ), new DecimalValue( '-1' ), -1 ),
+			'negative-small/greater' => array( new DecimalValue( '-0.5' ), new DecimalValue( '-0.7' ), +1 ),
+			'negative-small/smaller' => array( new DecimalValue( '-0.7' ), new DecimalValue( '-0.5' ), -1 ),
 
 			'digits/greater' => array( new DecimalValue( '+11' ), new DecimalValue( '+8' ), +1 ),
 			'digits-sub/greater' => array( new DecimalValue( '+11' ), new DecimalValue( '+8.0' ), +1 ),
@@ -115,6 +118,8 @@ class DecimalValueTest extends DataValueTest {
 
 			'signs/greater' => array( new DecimalValue( '+1' ), new DecimalValue( '-8' ), +1 ),
 			'signs/less' => array( new DecimalValue( '-8' ), new DecimalValue( '+1' ), -1 ),
+
+            'with-and-without-point' => array( new DecimalValue( '+100' ), new DecimalValue( '+100.01' ), -1 ),
 		);
 	}
 
@@ -198,5 +203,48 @@ class DecimalValueTest extends DataValueTest {
 		$argLists[] = array( new DecimalValue( '+0' ), 0.0 );
 
 		return $argLists;
+	}
+
+	/**
+	 * @dataProvider getGetIntegerPartProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testGetIntegerPart( DecimalValue $value, $expected ) {
+		$actual = $value->getIntegerPart();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function getGetIntegerPartProvider() {
+		return array(
+			array( new DecimalValue(  '+0' ),      '0' ),
+			array( new DecimalValue(  '-0.0' ),    '0' ),
+			array( new DecimalValue( '+10' ),     '10' ),
+			array( new DecimalValue( '-10' ),     '10' ),
+			array( new DecimalValue( '+10.663' ), '10' ),
+			array( new DecimalValue( '-10.001' ), '10' ),
+			array( new DecimalValue(  '+0.01' ),   '0' ),
+		);
+	}
+
+	/**
+	 * @dataProvider getGetIntegerPartProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testGetFractionalPart( DecimalValue $value, $expected ) {
+		$actual = $value->getIntegerPart();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function getGetFractionalPartProvider() {
+		return array(
+			array( new DecimalValue(  '+0' ),     '' ),
+			array( new DecimalValue(  '-0.0' ),   '0' ),
+			array( new DecimalValue( '+10' ),     '' ),
+			array( new DecimalValue( '+10.663' ), '663' ),
+			array( new DecimalValue( '-10.001' ), '001' ),
+			array( new DecimalValue(  '+0.01' ),  '01' ),
+		);
 	}
 }

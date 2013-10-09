@@ -154,10 +154,8 @@ class DecimalValue extends DataValueObject {
 		}
 
 		// compare the integer parts
-		$aIntDigits =  strpos( $a, '.' );
-		$bIntDigits =  strpos( $b, '.' );
-		$aInt = ltrim( substr( $a, 1, ( $aIntDigits ? $aIntDigits : strlen( $a ) ) -1 ), '0' );
-		$bInt = ltrim( substr( $b, 1, ( $bIntDigits ? $bIntDigits : strlen( $b ) ) -1 ), '0' );
+		$aInt = ltrim( $this->getIntegerPart(), '0' );
+		$bInt = ltrim( $that->getIntegerPart(), '0' );
 
 		$sense = $a[0] === '+' ? 1 : -1;
 
@@ -171,21 +169,22 @@ class DecimalValue extends DataValueObject {
 		}
 
 		// if both have equal length, compare alphanumerically
-		if ( $aInt > $bInt ) {
+		$cmp = strcmp( $aInt, $bInt );
+		if ( $cmp > 0 ) {
 			return $sense;
 		}
 
-		if ( $aInt < $bInt ) {
+		if ( $cmp < 0 ) {
 			return -$sense;
 		}
 
 		// compare fractional parts
-		$aFract = rtrim( substr( $a, $aIntDigits +1 ), '0' );
-		$bFract = rtrim( substr( $b, $bIntDigits +1 ), '0' );
+		$aFract = rtrim( $this->getFractionalPart(), '0' );
+		$bFract = rtrim( $that->getFractionalPart(), '0' );
 
 		// the fractional part is left-aligned, so just check alphanumeric ordering
 		$cmp = strcmp( $aFract, $bFract );
-		return  ( $cmp > 0 ? 1 : ( $cmp < 0 ? -1 : 0 ) );
+		return  ( $cmp > 0 ? $sense : ( $cmp < 0 ? -$sense : 0 ) );
 	}
 
 	/**
@@ -261,6 +260,42 @@ class DecimalValue extends DataValueObject {
 	 */
 	public function getSign() {
 		return substr( $this->value, 0, 1 );
+	}
+
+	/**
+	 * Returns the integer part of the value, that is, the part before the decimal point,
+	 * without the sign.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getIntegerPart() {
+		$n = strpos( $this->value, '.' );
+
+		if ( $n === false ) {
+			$n = strlen( $this->value );
+		}
+
+		return substr( $this->value, 1, $n -1 );
+	}
+
+	/**
+	 * Returns the fractional part of the value, that is, the part after the decimal point,
+	 * if any.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	public function getFractionalPart() {
+		$n = strpos( $this->value, '.' );
+
+		if ( $n === false ) {
+			return '';
+		}
+
+		return substr( $this->value, $n + 1 );
 	}
 
 	/**

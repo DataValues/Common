@@ -2,6 +2,7 @@
 
 namespace DataValues\Tests;
 
+use DataValues\DecimalValue;
 use DataValues\QuantityValue;
 
 /**
@@ -16,7 +17,7 @@ use DataValues\QuantityValue;
  * @group DataValueExtensions
  *
  * @licence GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Daniel Kinzler
  */
 class QuantityValueTest extends DataValueTest {
 
@@ -34,25 +35,9 @@ class QuantityValueTest extends DataValueTest {
 	public function validConstructorArgumentsProvider() {
 		$argLists = array();
 
-		$argLists[] = array( 42 );
-		$argLists[] = array( -42 );
-		$argLists[] = array( 4.2 );
-		$argLists[] = array( -4.2 );
-		$argLists[] = array( 0 );
-
-		$argLists[] = array( 42, 'm' );
-		$argLists[] = array( -42, 'm' );
-		$argLists[] = array( 4.2, 'm' );
-		$argLists[] = array( -4.2, 'm' );
-		$argLists[] = array( 0, 'm' );
-
-		$argLists[] = array( 4.2, null );
-
-		$argLists[] = array( 42, 'm', 4.2 );
-		$argLists[] = array( -42, 'm', -4.2 );
-		$argLists[] = array( 4.2, 'm', -42 );
-		$argLists[] = array( -4.2, 'm', 42 );
-		$argLists[] = array( -42, 'm', null );
+		$argLists[] = array( new DecimalValue( '+42' ), '1', new DecimalValue( '+42' ), new DecimalValue( '+42' ) );
+		$argLists[] = array( new DecimalValue( '+0.01' ), '1', new DecimalValue( '+0.02' ), new DecimalValue( '+0.0001' ) );
+		$argLists[] = array( new DecimalValue( '-0.5' ), '1', new DecimalValue( '+0.02' ), new DecimalValue( '-0.7' ) );
 
 		return $argLists;
 	}
@@ -61,35 +46,11 @@ class QuantityValueTest extends DataValueTest {
 		$argLists = array();
 
 		$argLists[] = array();
+		$argLists[] = array( new DecimalValue( '+0' ), '', new DecimalValue( '+0' ), new DecimalValue( '+0' ) );
+		$argLists[] = array( new DecimalValue( '+0' ), 1, new DecimalValue( '+0' ), new DecimalValue( '+0' ) );
 
-
-		$argLists[] = array( 'foo' );
-		$argLists[] = array( '' );
-		$argLists[] = array( '0' );
-		$argLists[] = array( '42' );
-		$argLists[] = array( '-42' );
-		$argLists[] = array( '4.2' );
-		$argLists[] = array( '-4.2' );
-		$argLists[] = array( false );
-		$argLists[] = array( true );
-		$argLists[] = array( null );
-		$argLists[] = array( '0x20' );
-
-		$argLists[] = array( 'foo', 'm' );
-		$argLists[] = array( '', 'm' );
-		$argLists[] = array( '0', 'm' );
-		$argLists[] = array( 42, 0 );
-		$argLists[] = array( -42, 0 );
-
-		$argLists[] = array( -4.2, false );
-		$argLists[] = array( 0, true );
-		$argLists[] = array( 'foo', array() );
-		$argLists[] = array( '', 4.2 );
-		$argLists[] = array( '0', -1 );
-
-		$argLists[] = array( 42, 'm', false );
-		$argLists[] = array( 4.2, 'm', '0' );
-		$argLists[] = array( -4.2, 'm', '-4.2' );
+		$argLists[] = array( new DecimalValue( '+0' ), '1', new DecimalValue( '-0.001' ), new DecimalValue( '-1' ) );
+		$argLists[] = array( new DecimalValue( '+0' ), '1', new DecimalValue( '+1' ), new DecimalValue( '+0.001' ) );
 
 		return $argLists;
 	}
@@ -118,8 +79,7 @@ class QuantityValueTest extends DataValueTest {
 	 * @param array $arguments
 	 */
 	public function testGetUnit( QuantityValue $quantity, array $arguments ) {
-		$expected = count( $arguments ) > 1 ? $arguments[1] : null;
-		$this->assertEquals( $expected, $quantity->getUnit() );
+		$this->assertEquals( $arguments[1], $quantity->getUnit() );
 	}
 
 	/**
@@ -127,9 +87,166 @@ class QuantityValueTest extends DataValueTest {
 	 * @param QuantityValue $quantity
 	 * @param array $arguments
 	 */
-	public function testGetAccuracy( QuantityValue $quantity, array $arguments ) {
-		$expected = count( $arguments ) > 2 ? $arguments[2] : null;
-		$this->assertEquals( $expected, $quantity->getAccuracy() );
+	public function testGetUpperBound( QuantityValue $quantity, array $arguments ) {
+		$this->assertEquals( $arguments[2], $quantity->getUpperBound() );
 	}
 
+	/**
+	 * @dataProvider instanceProvider
+	 * @param QuantityValue $quantity
+	 * @param array $arguments
+	 */
+	public function testGetLowerBound( QuantityValue $quantity, array $arguments ) {
+		$this->assertEquals( $arguments[3], $quantity->getLowerBound() );
+	}
+
+	/**
+	 * @dataProvider newFromNumberProvider
+	 *
+	 * @param $amount
+	 * @param $unit
+	 * @param $upperBound
+	 * @param $lowerBound
+	 * @param QuantityValue $expected
+	 */
+	public function testNewFromNumber( $amount, $unit, $upperBound, $lowerBound, QuantityValue $expected ) {
+		$quantity = QuantityValue::newFromNumber( $amount, $unit, $upperBound, $lowerBound );
+
+		$this->assertEquals( $expected->getAmount()->getValue(), $quantity->getAmount()->getValue() );
+		$this->assertEquals( $expected->getUpperBound()->getValue(), $quantity->getUpperBound()->getValue() );
+		$this->assertEquals( $expected->getLowerBound()->getValue(), $quantity->getLowerBound()->getValue() );
+	}
+
+	public function newFromNumberProvider() {
+		return array(
+			array(
+				42, '1', null, null,
+				new QuantityValue( new DecimalValue( '+42' ), '1', new DecimalValue( '+42' ), new DecimalValue( '+42' ) )
+			),
+			array(
+				-0.05, '1', null, null,
+				new QuantityValue( new DecimalValue( '-0.05' ), '1', new DecimalValue( '-0.05' ), new DecimalValue( '-0.05' ) )
+			),
+			array(
+				0.0, 'm', 0.5, -0.5,
+				new QuantityValue( new DecimalValue( '+0' ), 'm', new DecimalValue( '+0.5' ), new DecimalValue( '-0.5' ) )
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider newFromDecimalProvider
+	 *
+	 * @param $amount
+	 * @param $unit
+	 * @param $upperBound
+	 * @param $lowerBound
+	 * @param QuantityValue $expected
+	 */
+	public function testNewFromDecimal( $amount, $unit, $upperBound, $lowerBound, QuantityValue $expected ) {
+		$quantity = QuantityValue::newFromDecimal( $amount, $unit, $upperBound, $lowerBound );
+
+		$this->assertEquals( $expected->getAmount()->getValue(), $quantity->getAmount()->getValue() );
+		$this->assertEquals( $expected->getUpperBound()->getValue(), $quantity->getUpperBound()->getValue() );
+		$this->assertEquals( $expected->getLowerBound()->getValue(), $quantity->getLowerBound()->getValue() );
+	}
+
+	public function newFromDecimalProvider() {
+		return array(
+			array(
+				'+23', '1', null, null,
+				new QuantityValue( new DecimalValue( '+23' ), '1', new DecimalValue( '+23' ), new DecimalValue( '+23' ) )
+			),
+			array(
+				'+42', '1', '+43', '+41',
+				new QuantityValue( new DecimalValue( '+42' ), '1', new DecimalValue( '+43' ), new DecimalValue( '+41' ) )
+			),
+			array(
+				'-0.05', 'm', '-0.04', '-0.06',
+				new QuantityValue( new DecimalValue( '-0.05' ), 'm', new DecimalValue( '-0.04' ), new DecimalValue( '-0.06' ) )
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider instanceProvider
+	 */
+	public function testGetSortKey( QuantityValue $quantity ) {
+		$this->assertEquals( $quantity->getAmount()->getValueFloat(), $quantity->getSortKey() );
+	}
+
+	/**
+	 * @dataProvider getUncertaintyProvider
+	 */
+	public function testGetUncertainty( QuantityValue $quantity, $expected ) {
+		$actual = $quantity->getUncertainty();
+
+		// floats are wonkey, accept small differences here
+		$this->assertTrue( abs( $actual - $expected ) < 0.000000001, "expected $expected, got $actual" );
+	}
+
+	public function getUncertaintyProvider() {
+		return array(
+			array( QuantityValue::newFromDecimal( '+0', '1', '+0', '+0' ), 0 ),
+
+			array( QuantityValue::newFromDecimal( '+0', '1', '+1', '-1' ), 2 ),
+			array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), 0.02 ),
+			array( QuantityValue::newFromDecimal( '+100', '1', '+101', '+99' ), 2 ),
+			array( QuantityValue::newFromDecimal( '+100.0', '1', '+100.1', '+99.9' ), 0.2 ),
+			array( QuantityValue::newFromDecimal( '+12.34', '1', '+12.35', '+12.33' ), 0.02 ),
+
+			array( QuantityValue::newFromDecimal( '+0', '1', '+0.2', '-0.6' ), 0.8 ),
+			array( QuantityValue::newFromDecimal( '+7.3', '1', '+7.7', '+5.2' ), 2.5 ),
+		);
+	}
+
+	/**
+	 * @dataProvider getUncertaintyMarginProvider
+	 */
+	public function testGetUncertaintyMargin( QuantityValue $quantity, $expected ) {
+		$actual = $quantity->getUncertaintyMargin();
+
+		$this->assertEquals( $expected, $actual->getValue() );
+	}
+
+	public function getUncertaintyMarginProvider() {
+		return array(
+			array( QuantityValue::newFromDecimal( '+0', '1', '+1', '-1' ), '+1' ),
+			array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), '+0.01' ),
+
+			array( QuantityValue::newFromDecimal( '+0', '1', '+0.2', '-0.6' ), '+0.6' ),
+			array( QuantityValue::newFromDecimal( '+7.5', '1', '+7.5', '+5.5' ), '+2' ),
+			array( QuantityValue::newFromDecimal( '+11.5', '1', '+15', '+10.5' ), '+3.5' ),
+		);
+	}
+
+
+	/**
+	 * @dataProvider getSignificantDigitsProvider
+	 */
+	public function testGetSignificantDigits( QuantityValue $quantity, $expected ) {
+		$actual = $quantity->getSignificantDigits();
+
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function getSignificantDigitsProvider() {
+		return array(
+			0 => array( QuantityValue::newFromDecimal( '+0' ), 1 ),
+			1 => array( QuantityValue::newFromDecimal( '-123', '1', '-123', '-123' ), 3 ),
+			2 => array( QuantityValue::newFromDecimal( '-1.23', '1', '-1.23', '-1.23' ), 4 ),
+
+			10 => array( QuantityValue::newFromDecimal( '-100', '1', '-99', '-101' ), 3 ),
+			11 => array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), 4 ),
+			12 => array( QuantityValue::newFromDecimal( '-117.3', '1', '-117.2', '-117.4' ), 5 ),
+
+			20 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.01', '+99.97' ), 6 ),
+			21 => array( QuantityValue::newFromDecimal( '-0.002', '1', '-0.001', '-0.004' ), 5 ),
+			22 => array( QuantityValue::newFromDecimal( '-0.002', '1', '+0.001', '-0.06' ), 5 ),
+			23 => array( QuantityValue::newFromDecimal( '-21', '1', '+1.1', '-120' ), 1 ),
+			24 => array( QuantityValue::newFromDecimal( '-2', '1', '+1.1', '-120' ), 1 ),
+			25 => array( QuantityValue::newFromDecimal( '+1000', '1', '+1100', '+900.03' ), 3 ),
+			26 => array( QuantityValue::newFromDecimal( '+1000', '1', '+1100', '+900' ), 2 ),
+		);
+	}
 }
