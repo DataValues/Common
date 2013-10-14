@@ -263,6 +263,37 @@ class DecimalValue extends DataValueObject {
 	}
 
 	/**
+	 * Determines whether this DecimalValue is zero.
+	 *
+	 * @return bool
+	 */
+	public function isZero() {
+		return (bool)preg_match( '/^[-+]0+(\.0+)?$/', $this->value );
+	}
+
+	/**
+	 * Returns a new DecimalValue that represents the complement of this DecimalValue.
+	 * That is, it constructs a new DecimalValue with the same digits as this,
+	 * but with the sign inverted.
+	 *
+	 * Note that if isZero() returns true, this method returns this
+	 * DecimalValue itself (because zero is it's own complement).
+	 *
+	 * @return DecimalValue
+	 */
+	public function computeComplement() {
+		if ( $this->isZero() ) {
+			return $this;
+		}
+
+		$sign = $this->getSign();
+		$invertedSign = ( $sign === '+' ? '-' : '+' );
+
+		$inverseDigits = $invertedSign . substr( $this->value, 1 );
+		return new DecimalValue( $inverseDigits );
+	}
+
+	/**
 	 * Returns the integer part of the value, that is, the part before the decimal point,
 	 * without the sign.
 	 *

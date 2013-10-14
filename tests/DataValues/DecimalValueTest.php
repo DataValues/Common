@@ -9,8 +9,6 @@ use DataValues\DecimalValue;
  *
  * @since 0.1
  *
- * @ingroup DataValue
- *
  * @group DataValue
  * @group DataValueExtensions
  *
@@ -245,6 +243,50 @@ class DecimalValueTest extends DataValueTest {
 			array( new DecimalValue( '+10.663' ), '663' ),
 			array( new DecimalValue( '-10.001' ), '001' ),
 			array( new DecimalValue(  '+0.01' ),  '01' ),
+		);
+	}
+
+	/**
+	 * @dataProvider computeComplementProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testInverse( DecimalValue $value, $expected ) {
+		$complement = $value->computeComplement();
+		$this->assertSame( $expected, $complement->getValue() );
+
+		$actual = $complement->computeComplement();
+		$this->assertSame( $value->getValue(), $actual->getValue() );
+	}
+
+	public function computeComplementProvider() {
+		return array(
+			array( new DecimalValue(   '+0' ),       '+0' ),
+			array( new DecimalValue(   '+0.00' ),    '+0.00' ),
+			array( new DecimalValue(   '+1' ),       '-1' ),
+			array( new DecimalValue( '+100.663' ), '-100.663' ),
+			array( new DecimalValue(   '-0.001' ),   '+0.001' ),
+		);
+	}
+
+	/**
+	 * @dataProvider isZeroProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testIsZero( DecimalValue $value, $expected ) {
+		$actual = $value->isZero();
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function isZeroProvider() {
+		return array(
+			array( new DecimalValue(  '+0' ),    true ),
+			array( new DecimalValue(  '-0.00' ), true ),
+
+			array( new DecimalValue( '+1' ),       false ),
+			array( new DecimalValue( '+100.663' ), false ),
+			array( new DecimalValue( '-0.001' ),   false ),
 		);
 	}
 }

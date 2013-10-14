@@ -54,6 +54,7 @@ return array(
 	'DataValues\LatLongValue' => 'src/DataValues/LatLongValue.php',
 	'DataValues\MonolingualTextValue' => 'src/DataValues/MonolingualTextValue.php',
 	'DataValues\MultilingualTextValue' => 'src/DataValues/MultilingualTextValue.php',
+	'DataValues\DecimalMath' => 'src/DataValues/DecimalMath.php',
 	'DataValues\DecimalValue' => 'src/DataValues/DecimalValue.php',
 	'DataValues\QuantityValue' => 'src/DataValues/QuantityValue.php',
 	'DataValues\TimeValue' => 'src/DataValues/TimeValue.php',
