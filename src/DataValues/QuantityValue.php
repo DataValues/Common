@@ -399,6 +399,80 @@ class QuantityValue extends DataValueObject {
 	}
 
 	/**
+	 * Returns a transformed value derived from this QuantityValue by applying
+	 * the given transformation to the amount and the upper and lower bounds.
+	 * The resulting amount and bounds are rounded to the significant number of
+	 * digits. Note that for exact quantities (with at least one bound equal to
+	 * the amount), no rounding is applied (since they are considered to have
+	 * infinite precision).
+	 *
+	 * The transformation is provided as a callback, which must implement a
+	 * monotonously increasing, fully differentiable function mapping a DecimalValue
+	 * to a DecimalValue. Typically, it will be a linear transformation applying a
+	 * factor and an offset.
+	 *
+	 * @param string $newUnit The unit of the transformed quantity.
+	 *
+	 * @param callable $transformation A callback that implements the desired transformation.
+	 *        The transformation will be called three times, once for the amount, once
+	 *        for the lower bound, and once for the upper bound. It must return a DecimalValue.
+	 *        The first parameter passed to $transformation is the DecimalValue to transform
+	 *        In addition, any extra parameters passed to transform() will be passed through
+	 *        to the transformation callback.
+	 *
+	 * @param mixed ... Any extra parameters will be passed to the $transformation function.
+	 *
+	 * @throws \InvalidArgumentException
+	 * @return QuantityValue
+	 */
+	public function transform( $newUnit, $transformation ) {
+		if ( !is_callable( $transformation ) ) {
+			throw new \InvalidArgumentException( '$transformation must be callable.' );
+		}
+
+		if ( !is_string( $newUnit ) ) {
+			throw new \InvalidArgumentException( '$newUnit must be a string. Use "1" as the unit for unit-less quantities.' );
+		}
+
+		if ( $newUnit === '' ) {
+			throw new \InvalidArgumentException( '$newUnit must not be empty. Use "1" as the unit for unit-less quantities.' );
+		}
+
+		$oldUnit = $this->getUnit();
+
+		if ( $newUnit === null ) {
+			$newUnit = $oldUnit;
+		}
+
+		// Apply transformation by calling the $transform callback.
+		// The first argument for the callback is teh DataValue to transform. In addition,
+		// any extra arguments given for transform() are passed through.
+		$args = func_get_args();
+		array_shift( $args );
+
+		$args[0] = $this->getAmount();
+		$amount = call_user_func_array( $transformation, $args );
+
+		$args[0] = $this->getUpperBound();
+		$upperBound = call_user_func_array( $transformation, $args );
+
+		$args[0] = $this->getLowerBound();
+		$lowerBound = call_user_func_array( $transformation, $args );
+
+		// use a preliminary QuantityValue to determine the significant number of digits
+		$transformed = new QuantityValue( $amount, $newUnit, $upperBound, $lowerBound );
+		$digits = $transformed->getSignificantDigits();
+
+		// apply rounding to the significant digits
+		$math = new DecimalMath(  ); //TODO: Perhaps transform() should go into a QuantityTransformer class.
+		$amount = $math->round( $amount,  $digits );
+		$upperBound = $math->round( $upperBound, $digits );
+		$lowerBound = $math->round( $lowerBound, $digits );
+
+		return new QuantityValue( $amount, $newUnit, $upperBound, $lowerBound );
+	}
+
+	/**
 	 * @see DataValue::getArrayValue
 	 *
 	 * @since 0.1

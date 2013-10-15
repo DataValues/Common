@@ -249,4 +249,52 @@ class QuantityValueTest extends DataValueTest {
 			26 => array( QuantityValue::newFromDecimal( '+1000', '1', '+1100', '+900' ), 2 ),
 		);
 	}
+
+	/**
+	 * @dataProvider transformProvider
+	 */
+	public function testTransform( QuantityValue $quantity, $transformation, QuantityValue $expected ) {
+		$args = func_get_args();
+		$extraArgs = array_slice( $args, 3 );
+
+		$call = array( $quantity, 'transform' );
+		$callArgs = array_merge( array( 'x', $transformation ), $extraArgs );
+		$actual = call_user_func_array( $call, $callArgs );
+
+		$this->assertEquals( 'x', $actual->getUnit() );
+		$this->assertEquals( $expected->getAmount()->getValue(), $actual->getAmount()->getValue(), 'value' );
+		$this->assertEquals( $expected->getUpperBound()->getValue(), $actual->getUpperBound()->getValue(), 'upper bound' );
+		$this->assertEquals( $expected->getLowerBound()->getValue(), $actual->getLowerBound()->getValue(), 'lower bound' );
+	}
+
+	public function transformProvider() {
+		$identity = function ( DecimalValue $value ) {
+			return $value;
+		};
+
+		$square = function ( DecimalValue $value ) {
+			$v = $value->getValueFloat();
+			return new DecimalValue( $v * $v * $v );
+		};
+
+		$scale = function ( DecimalValue $value, $factor ) {
+			return new DecimalValue( $value->getValueFloat() * $factor );
+		};
+
+		return array(
+			 0 => array( QuantityValue::newFromDecimal( '+10',   '1', '+11',  '+9' ),   $identity, QuantityValue::newFromDecimal(   '+10',    '?',   '+11',    '+9' ) ),
+			 1 => array( QuantityValue::newFromDecimal(  '-0.5', '1', '-0.4', '-0.6' ), $identity, QuantityValue::newFromDecimal(    '-0.5',  '?',    '-0.4',  '-0.6' ) ),
+			 2 => array( QuantityValue::newFromDecimal(  '+0',   '1', '+1',   '-1' ),   $square,   QuantityValue::newFromDecimal(    '+0',    '?',    '+1',    '-1' ) ),
+			 3 => array( QuantityValue::newFromDecimal( '+10',   '1', '+11',  '+9' ),   $square,   QuantityValue::newFromDecimal( '+1000',    '?', '+1300',  '+730' ) ), // note how rounding applies to bounds
+			 4 => array( QuantityValue::newFromDecimal(  '+0.5', '1', '+0.6', '+0.4' ), $scale,    QuantityValue::newFromDecimal(    '+0.25', '?',    '+0.3',  '+0.2' ), 0.5 ),
+
+			// note: absolutely exact values require conversion with infinite precision!
+			10 => array( QuantityValue::newFromDecimal( '+100', '1', '+100',   '+100' ),    $scale, QuantityValue::newFromDecimal( '+12825.0', '?', '+12825.0', '+12825.0' ), 128.25 ),
+
+			11 => array( QuantityValue::newFromDecimal( '+100', '1', '+110',    '+90' ),    $scale, QuantityValue::newFromDecimal( '+330',    '?', '+370',    '+300' ), 3.3333 ),
+			12 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.1',  '+99.9' ),  $scale, QuantityValue::newFromDecimal( '+333.3',  '?', '+333.7',  '+333.0' ), 3.3333 ),
+			13 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.01', '+99.99' ), $scale, QuantityValue::newFromDecimal( '+333.33', '?', '+333.36', '+333.30' ), 3.3333 ),
+		);
+	}
+
 }
