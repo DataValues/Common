@@ -251,7 +251,7 @@ class DecimalValueTest extends DataValueTest {
 	 *
 	 * @since 0.1
 	 */
-	public function testInverse( DecimalValue $value, $expected ) {
+	public function testComputeComplement( DecimalValue $value, $expected ) {
 		$complement = $value->computeComplement();
 		$this->assertSame( $expected, $complement->getValue() );
 
@@ -265,6 +265,31 @@ class DecimalValueTest extends DataValueTest {
 			array( new DecimalValue(   '+0.00' ),    '+0.00' ),
 			array( new DecimalValue(   '+1' ),       '-1' ),
 			array( new DecimalValue( '+100.663' ), '-100.663' ),
+			array( new DecimalValue(   '-0.001' ),   '+0.001' ),
+		);
+	}
+
+	/**
+	 * @dataProvider computeComputeAbsolute
+	 *
+	 * @since 0.1
+	 */
+	public function testComputeAbsolute( DecimalValue $value, $expected ) {
+		$absolute = $value->computeAbsolute();
+		$this->assertSame( $expected, $absolute->getValue() );
+
+		$actual = $absolute->computeAbsolute();
+		$this->assertSame( $absolute->getValue(), $actual->getValue() );
+	}
+
+	public function computeComputeAbsolute() {
+		return array(
+			array( new DecimalValue(   '+0' ),       '+0' ),
+			array( new DecimalValue(   '+1' ),       '+1' ),
+			array( new DecimalValue(   '-1' ),       '+1' ),
+			array( new DecimalValue( '+100.663' ), '+100.663' ),
+			array( new DecimalValue( '-100.663' ), '+100.663' ),
+			array( new DecimalValue(   '+0.001' ),   '+0.001' ),
 			array( new DecimalValue(   '-0.001' ),   '+0.001' ),
 		);
 	}

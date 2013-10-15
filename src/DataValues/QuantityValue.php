@@ -59,15 +59,15 @@ class QuantityValue extends DataValueObject {
 	 */
 	public function __construct( DecimalValue $amount, $unit, DecimalValue $upperBound, DecimalValue $lowerBound ) {
 		if ( $lowerBound->compare( $amount ) > 0 ) {
-			throw new IllegalValueException( '$lowerBound must be <= $amount' );
+			throw new IllegalValueException( '$lowerBound ' . $lowerBound->getValue() . ' must be <= $amount ' . $amount->getValue() );
 		}
 
 		if ( $upperBound->compare( $amount ) < 0 ) {
-			throw new IllegalValueException( '$upperBound must be >= $amount' );
+			throw new IllegalValueException( '$upperBound ' . $upperBound->getValue() . ' must be >= $amount ' . $amount->getValue() );
 		}
 
 		if ( !is_string( $unit ) ) {
-			throw new IllegalValueException( '$unit needs to be a string' );
+			throw new IllegalValueException( '$unit needs to be a string, not ' . gettype( $unit ) );
 		}
 
 		if ( $unit === '' ) {
@@ -82,116 +82,80 @@ class QuantityValue extends DataValueObject {
 
 	/**
 	 * Returns a QuantityValue representing the given amount.
-	 * If no upper or lower bound is given, the amount is assumed to be exact.
+	 * If no upper or lower bound is given, the amount is assumed to be absolutely exact,
+	 * that is, the amount itself will be used as the upper and lower bound.
+	 *
+	 * This is a convenience wrapper around the constructor that accepts native values
+	 * instead of DecimalValue objects.
+	 *
+	 * @note: if the amount or a bound is given as a string, the string must conform
+	 * to the rules defined by @see DecimalValue.
 	 *
 	 * @since 0.1
 	 *
-	 * @param int|float $amount
-	 * @param string $unit
-	 * @param int|float|null $upperBound
-	 * @param int|float|null $lowerBound
+	 * @param string|int|float|DecimalValue $amount
+	 * @param string $unit A unit identifier. Must not be empty, use "1" for unit-less quantities.
+	 * @param string|int|float|DecimalValue|null $upperBound
+	 * @param string|int|float|DecimalValue|null $lowerBound
 	 *
 	 * @return QuantityValue
 	 * @throws IllegalValueException
 	 */
 	public static function newFromNumber( $amount, $unit = '1', $upperBound = null, $lowerBound = null ) {
-		if ( !is_int( $amount ) && !is_float( $amount ) ) {
-			throw new IllegalValueException( '$amount must be an int or float' );
-		}
-
-		if ( !is_null( $upperBound ) && !is_int( $upperBound ) && !is_float( $upperBound ) ) {
-			throw new IllegalValueException( '$upperBound must be an int or float (or null)' );
-		}
-
-		if ( !is_null( $lowerBound ) && !is_int( $lowerBound ) && !is_float( $lowerBound ) ) {
-			throw new IllegalValueException( '$lowerBound must be an int or float (or null)' );
-		}
-
-		$amount = new DecimalValue( $amount );
-
-		if ( $upperBound === null ) {
-			$upperBound = $amount;
-		} else {
-			$upperBound = new DecimalValue( $upperBound );
-		}
-
-		if ( $lowerBound === null ) {
-			$lowerBound = $amount;
-		} else {
-			$lowerBound = new DecimalValue( $lowerBound );
-		}
+		$amount = self::asDecimalValue( 'amount', $amount );
+		$upperBound = self::asDecimalValue( 'upperBound', $upperBound, $amount );
+		$lowerBound = self::asDecimalValue( 'lowerBound', $lowerBound, $amount );
 
 		return new QuantityValue( $amount, $unit, $upperBound, $lowerBound );
 	}
 
-
 	/**
-	 * Returns a QuantityValue representing the given amount.
-	 * If no upper or lower bound is given, the amount is assumed to be exact.
+	 * @see self::newFromNumber()
 	 *
-	 * @since 0.1
-	 *
-	 * @param string $amount
-	 * @param string $unit
-	 * @param string|null $upperBound
-	 * @param string|null $lowerBound
+	 * @deprecated use newFromNumber() instead
 	 *
 	 * @return QuantityValue
-	 * @throws IllegalValueException
 	 */
 	public static function newFromDecimal( $amount, $unit = '1', $upperBound = null, $lowerBound = null ) {
-		if ( !is_string( $amount ) ) {
-			throw new IllegalValueException( '$amount must be a string' );
-		}
-
-		if ( !is_null( $upperBound ) && !is_string( $upperBound ) ) {
-			throw new IllegalValueException( '$upperBound must be a string' );
-		}
-
-		if ( !is_null( $lowerBound ) && !is_string( $lowerBound ) ) {
-			throw new IllegalValueException( '$lowerBound must be a string' );
-		}
-
-		$amount = new DecimalValue( self::normalizeDecimal( $amount ) );
-
-
-		if ( $upperBound === null ) {
-			$upperBound = $amount;
-		} else {
-			$upperBound = new DecimalValue( self::normalizeDecimal( $upperBound ) );
-		}
-
-		if ( $lowerBound === null ) {
-			$lowerBound = $amount;
-		} else {
-			$lowerBound = new DecimalValue( self::normalizeDecimal( $lowerBound ) );
-		}
-
-		return new QuantityValue( $amount, $unit, $upperBound, $lowerBound );
+		return self::newFromNumber( $amount, $unit, $upperBound, $lowerBound );
 	}
 
 	/**
-	 * @param string $amount
+	 * Converts $number to a DecimalValue if possible and necessary.
 	 *
-	 * @return string
+	 * @note: if the $number is given as a string, it must conform to the rules
+	 *        defined by @see DecimalValue.
+	 *
+	 * @param string $name The variable name to use in exception messages
+	 * @param string|int|float|DecimalValue|null $number
+	 * @param DecimalValue|null $default
+	 *
+	 * @throws IllegalValueException
+	 * @throws \InvalidArgumentException
+	 * @return DecimalValue
 	 */
-	private static function normalizeDecimal( $amount ) {
-		$amount = preg_replace( '/^0+([^0])/', '\1', $amount );
-		$amount = preg_replace( '/^0+([^0])/', '\1', $amount );
-
-		if ( preg_match( '/^\./', $amount ) ) {
-			$amount = '0' . $amount;
+	private static function asDecimalValue( $name, $number, DecimalValue $default = null ) {
+		if ( !is_string( $name ) ) {
+			throw new \InvalidArgumentException( '$name must be a string' );
 		}
 
-		if ( preg_match( '/\.$/', $amount ) ) {
-			$amount = $amount . '0';
+		if ( $number === null ) {
+			if ( $default === null ) {
+				throw new \InvalidArgumentException( '$' . $name . ' must not be null' );
+			}
+
+			$number = $default;
 		}
 
-		if ( preg_match( '/^[0-9]/', $amount ) ) {
-			$amount = '+' . $amount;
+		if ( $number instanceof DecimalValue ) {
+			// nothing to do
+		} elseif ( is_int( $number ) || is_float( $number ) || is_string( $number ) ) {
+			$number = new DecimalValue( $number );
+		} else {
+			throw new IllegalValueException( '$' . $name . '  must be a string, int, or float' );
 		}
 
-		return $amount;
+		return $number;
 	}
 
 	/**
@@ -445,7 +409,7 @@ class QuantityValue extends DataValueObject {
 		}
 
 		// Apply transformation by calling the $transform callback.
-		// The first argument for the callback is teh DataValue to transform. In addition,
+		// The first argument for the callback is the DataValue to transform. In addition,
 		// any extra arguments given for transform() are passed through.
 		$args = func_get_args();
 		array_shift( $args );
@@ -508,5 +472,34 @@ class QuantityValue extends DataValueObject {
 			DecimalValue::newFromArray( $data['upperBound'] ),
 			DecimalValue::newFromArray( $data['lowerBound'] )
 		);
+	}
+
+	/**
+	 * @see Comparable::equals
+	 *
+	 * @since 0.1
+	 *
+	 * @param mixed $that
+	 *
+	 * @return boolean
+	 */
+	public function equals( $that ) {
+		if ( $that === $this ) {
+			return true;
+		}
+
+		if ( !is_object( $that ) ) {
+			return false;
+		}
+
+		if ( !( $that instanceof QuantityValue ) ) {
+			return false;
+		}
+
+		if ( $this->toArray() == $that->toArray() ) {
+			return true;
+		}
+
+		return false;
 	}
 }

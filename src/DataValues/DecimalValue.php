@@ -294,6 +294,24 @@ class DecimalValue extends DataValueObject {
 	}
 
 	/**
+	 * Returns a new DecimalValue that represents the absolute (positive) value
+	 * of this DecimalValue. That is, it constructs a new DecimalValue with the
+	 * same digits as this, but with the positive sign.
+	 *
+	 * Note that if getSign() returns "+", this method returns this
+	 * DecimalValue itself (because a positive value is its own absolute value).
+	 *
+	 * @return DecimalValue
+	 */
+	public function computeAbsolute() {
+		if ( $this->getSign() === '+' ) {
+			return $this;
+		} else {
+			return $this->computeComplement();
+		}
+	}
+
+	/**
 	 * Returns the integer part of the value, that is, the part before the decimal point,
 	 * without the sign.
 	 *

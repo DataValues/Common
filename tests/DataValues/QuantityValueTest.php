@@ -8,10 +8,7 @@ use DataValues\QuantityValue;
 /**
  * @covers DataValues\QuantityValue
  *
- * @file
  * @since 0.1
- *
- * @ingroup DataValue
  *
  * @group DataValue
  * @group DataValueExtensions
@@ -128,31 +125,9 @@ class QuantityValueTest extends DataValueTest {
 				new QuantityValue( new DecimalValue( '-0.05' ), '1', new DecimalValue( '-0.05' ), new DecimalValue( '-0.05' ) )
 			),
 			array(
-				0.0, 'm', 0.5, -0.5,
+				0, 'm', 0.5, -0.5,
 				new QuantityValue( new DecimalValue( '+0' ), 'm', new DecimalValue( '+0.5' ), new DecimalValue( '-0.5' ) )
 			),
-		);
-	}
-
-	/**
-	 * @dataProvider newFromDecimalProvider
-	 *
-	 * @param $amount
-	 * @param $unit
-	 * @param $upperBound
-	 * @param $lowerBound
-	 * @param QuantityValue $expected
-	 */
-	public function testNewFromDecimal( $amount, $unit, $upperBound, $lowerBound, QuantityValue $expected ) {
-		$quantity = QuantityValue::newFromDecimal( $amount, $unit, $upperBound, $lowerBound );
-
-		$this->assertEquals( $expected->getAmount()->getValue(), $quantity->getAmount()->getValue() );
-		$this->assertEquals( $expected->getUpperBound()->getValue(), $quantity->getUpperBound()->getValue() );
-		$this->assertEquals( $expected->getLowerBound()->getValue(), $quantity->getLowerBound()->getValue() );
-	}
-
-	public function newFromDecimalProvider() {
-		return array(
 			array(
 				'+23', '1', null, null,
 				new QuantityValue( new DecimalValue( '+23' ), '1', new DecimalValue( '+23' ), new DecimalValue( '+23' ) )
@@ -164,6 +139,10 @@ class QuantityValueTest extends DataValueTest {
 			array(
 				'-0.05', 'm', '-0.04', '-0.06',
 				new QuantityValue( new DecimalValue( '-0.05' ), 'm', new DecimalValue( '-0.04' ), new DecimalValue( '-0.06' ) )
+			),
+			array(
+				new DecimalValue( '+42' ), '1', new DecimalValue( 43 ), new DecimalValue( 41.0 ),
+				new QuantityValue( new DecimalValue( '+42' ), '1', new DecimalValue( 43 ), new DecimalValue( 41.0 ) )
 			),
 		);
 	}
@@ -187,16 +166,16 @@ class QuantityValueTest extends DataValueTest {
 
 	public function getUncertaintyProvider() {
 		return array(
-			array( QuantityValue::newFromDecimal( '+0', '1', '+0', '+0' ), 0 ),
+			array( QuantityValue::newFromNumber( '+0', '1', '+0', '+0' ), 0 ),
 
-			array( QuantityValue::newFromDecimal( '+0', '1', '+1', '-1' ), 2 ),
-			array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), 0.02 ),
-			array( QuantityValue::newFromDecimal( '+100', '1', '+101', '+99' ), 2 ),
-			array( QuantityValue::newFromDecimal( '+100.0', '1', '+100.1', '+99.9' ), 0.2 ),
-			array( QuantityValue::newFromDecimal( '+12.34', '1', '+12.35', '+12.33' ), 0.02 ),
+			array( QuantityValue::newFromNumber( '+0', '1', '+1', '-1' ), 2 ),
+			array( QuantityValue::newFromNumber( '+0.00', '1', '+0.01', '-0.01' ), 0.02 ),
+			array( QuantityValue::newFromNumber( '+100', '1', '+101', '+99' ), 2 ),
+			array( QuantityValue::newFromNumber( '+100.0', '1', '+100.1', '+99.9' ), 0.2 ),
+			array( QuantityValue::newFromNumber( '+12.34', '1', '+12.35', '+12.33' ), 0.02 ),
 
-			array( QuantityValue::newFromDecimal( '+0', '1', '+0.2', '-0.6' ), 0.8 ),
-			array( QuantityValue::newFromDecimal( '+7.3', '1', '+7.7', '+5.2' ), 2.5 ),
+			array( QuantityValue::newFromNumber( '+0', '1', '+0.2', '-0.6' ), 0.8 ),
+			array( QuantityValue::newFromNumber( '+7.3', '1', '+7.7', '+5.2' ), 2.5 ),
 		);
 	}
 
@@ -211,12 +190,14 @@ class QuantityValueTest extends DataValueTest {
 
 	public function getUncertaintyMarginProvider() {
 		return array(
-			array( QuantityValue::newFromDecimal( '+0', '1', '+1', '-1' ), '+1' ),
-			array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), '+0.01' ),
+			array( QuantityValue::newFromNumber( '+0', '1', '+1', '-1' ), '+1' ),
+			array( QuantityValue::newFromNumber( '+0.00', '1', '+0.01', '-0.01' ), '+0.01' ),
 
-			array( QuantityValue::newFromDecimal( '+0', '1', '+0.2', '-0.6' ), '+0.6' ),
-			array( QuantityValue::newFromDecimal( '+7.5', '1', '+7.5', '+5.5' ), '+2' ),
-			array( QuantityValue::newFromDecimal( '+11.5', '1', '+15', '+10.5' ), '+3.5' ),
+			array( QuantityValue::newFromNumber( '-1', '1', '-1', '-1' ), '+0' ),
+
+			array( QuantityValue::newFromNumber( '+0', '1', '+0.2', '-0.6' ), '+0.6' ),
+			array( QuantityValue::newFromNumber( '+7.5', '1', '+7.5', '+5.5' ), '+2' ),
+			array( QuantityValue::newFromNumber( '+11.5', '1', '+15', '+10.5' ), '+3.5' ),
 		);
 	}
 
@@ -232,21 +213,21 @@ class QuantityValueTest extends DataValueTest {
 
 	public function getSignificantDigitsProvider() {
 		return array(
-			0 => array( QuantityValue::newFromDecimal( '+0' ), 1 ),
-			1 => array( QuantityValue::newFromDecimal( '-123', '1', '-123', '-123' ), 3 ),
-			2 => array( QuantityValue::newFromDecimal( '-1.23', '1', '-1.23', '-1.23' ), 4 ),
+			0 => array( QuantityValue::newFromNumber( '+0' ), 1 ),
+			1 => array( QuantityValue::newFromNumber( '-123' ), 3 ),
+			2 => array( QuantityValue::newFromNumber( '-1.23' ), 4 ),
 
-			10 => array( QuantityValue::newFromDecimal( '-100', '1', '-99', '-101' ), 3 ),
-			11 => array( QuantityValue::newFromDecimal( '+0.00', '1', '+0.01', '-0.01' ), 4 ),
-			12 => array( QuantityValue::newFromDecimal( '-117.3', '1', '-117.2', '-117.4' ), 5 ),
+			10 => array( QuantityValue::newFromNumber( '-100', '1', '-99', '-101' ), 3 ),
+			11 => array( QuantityValue::newFromNumber( '+0.00', '1', '+0.01', '-0.01' ), 4 ),
+			12 => array( QuantityValue::newFromNumber( '-117.3', '1', '-117.2', '-117.4' ), 5 ),
 
-			20 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.01', '+99.97' ), 6 ),
-			21 => array( QuantityValue::newFromDecimal( '-0.002', '1', '-0.001', '-0.004' ), 5 ),
-			22 => array( QuantityValue::newFromDecimal( '-0.002', '1', '+0.001', '-0.06' ), 5 ),
-			23 => array( QuantityValue::newFromDecimal( '-21', '1', '+1.1', '-120' ), 1 ),
-			24 => array( QuantityValue::newFromDecimal( '-2', '1', '+1.1', '-120' ), 1 ),
-			25 => array( QuantityValue::newFromDecimal( '+1000', '1', '+1100', '+900.03' ), 3 ),
-			26 => array( QuantityValue::newFromDecimal( '+1000', '1', '+1100', '+900' ), 2 ),
+			20 => array( QuantityValue::newFromNumber( '+100', '1', '+100.01', '+99.97' ), 6 ),
+			21 => array( QuantityValue::newFromNumber( '-0.002', '1', '-0.001', '-0.004' ), 5 ),
+			22 => array( QuantityValue::newFromNumber( '-0.002', '1', '+0.001', '-0.06' ), 5 ),
+			23 => array( QuantityValue::newFromNumber( '-21', '1', '+1.1', '-120' ), 1 ),
+			24 => array( QuantityValue::newFromNumber( '-2', '1', '+1.1', '-120' ), 1 ),
+			25 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900.03' ), 3 ),
+			26 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900' ), 2 ),
 		);
 	}
 
@@ -282,18 +263,18 @@ class QuantityValueTest extends DataValueTest {
 		};
 
 		return array(
-			 0 => array( QuantityValue::newFromDecimal( '+10',   '1', '+11',  '+9' ),   $identity, QuantityValue::newFromDecimal(   '+10',    '?',   '+11',    '+9' ) ),
-			 1 => array( QuantityValue::newFromDecimal(  '-0.5', '1', '-0.4', '-0.6' ), $identity, QuantityValue::newFromDecimal(    '-0.5',  '?',    '-0.4',  '-0.6' ) ),
-			 2 => array( QuantityValue::newFromDecimal(  '+0',   '1', '+1',   '-1' ),   $square,   QuantityValue::newFromDecimal(    '+0',    '?',    '+1',    '-1' ) ),
-			 3 => array( QuantityValue::newFromDecimal( '+10',   '1', '+11',  '+9' ),   $square,   QuantityValue::newFromDecimal( '+1000',    '?', '+1300',  '+730' ) ), // note how rounding applies to bounds
-			 4 => array( QuantityValue::newFromDecimal(  '+0.5', '1', '+0.6', '+0.4' ), $scale,    QuantityValue::newFromDecimal(    '+0.25', '?',    '+0.3',  '+0.2' ), 0.5 ),
+			 0 => array( QuantityValue::newFromNumber( '+10',   '1', '+11',  '+9' ),   $identity, QuantityValue::newFromNumber(   '+10',    '?',   '+11',    '+9' ) ),
+			 1 => array( QuantityValue::newFromNumber(  '-0.5', '1', '-0.4', '-0.6' ), $identity, QuantityValue::newFromNumber(    '-0.5',  '?',    '-0.4',  '-0.6' ) ),
+			 2 => array( QuantityValue::newFromNumber(  '+0',   '1', '+1',   '-1' ),   $square,   QuantityValue::newFromNumber(    '+0',    '?',    '+1',    '-1' ) ),
+			 3 => array( QuantityValue::newFromNumber( '+10',   '1', '+11',  '+9' ),   $square,   QuantityValue::newFromNumber( '+1000',    '?', '+1300',  '+730' ) ), // note how rounding applies to bounds
+			 4 => array( QuantityValue::newFromNumber(  '+0.5', '1', '+0.6', '+0.4' ), $scale,    QuantityValue::newFromNumber(    '+0.25', '?',    '+0.3',  '+0.2' ), 0.5 ),
 
 			// note: absolutely exact values require conversion with infinite precision!
-			10 => array( QuantityValue::newFromDecimal( '+100', '1', '+100',   '+100' ),    $scale, QuantityValue::newFromDecimal( '+12825.0', '?', '+12825.0', '+12825.0' ), 128.25 ),
+			10 => array( QuantityValue::newFromNumber( '+100', '1', '+100',   '+100' ),    $scale, QuantityValue::newFromNumber( '+12825.0', '?', '+12825.0', '+12825.0' ), 128.25 ),
 
-			11 => array( QuantityValue::newFromDecimal( '+100', '1', '+110',    '+90' ),    $scale, QuantityValue::newFromDecimal( '+330',    '?', '+370',    '+300' ), 3.3333 ),
-			12 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.1',  '+99.9' ),  $scale, QuantityValue::newFromDecimal( '+333.3',  '?', '+333.7',  '+333.0' ), 3.3333 ),
-			13 => array( QuantityValue::newFromDecimal( '+100', '1', '+100.01', '+99.99' ), $scale, QuantityValue::newFromDecimal( '+333.33', '?', '+333.36', '+333.30' ), 3.3333 ),
+			11 => array( QuantityValue::newFromNumber( '+100', '1', '+110',    '+90' ),    $scale, QuantityValue::newFromNumber( '+330',    '?', '+370',    '+300' ), 3.3333 ),
+			12 => array( QuantityValue::newFromNumber( '+100', '1', '+100.1',  '+99.9' ),  $scale, QuantityValue::newFromNumber( '+333.3',  '?', '+333.7',  '+333.0' ), 3.3333 ),
+			13 => array( QuantityValue::newFromNumber( '+100', '1', '+100.01', '+99.99' ), $scale, QuantityValue::newFromNumber( '+333.33', '?', '+333.36', '+333.30' ), 3.3333 ),
 		);
 	}
 

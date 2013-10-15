@@ -2,6 +2,7 @@
 
 namespace ValueParsers\Test;
 
+use DataValues\DataValue;
 use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
 
@@ -65,7 +66,15 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	private function assertSmartEquals( $expected, $actual ) {
 		if ( $this->requireDataValue() || $expected instanceof \Comparable ) {
-			$this->assertTrue( $expected->equals( $actual ) );
+			if ( $expected instanceof DataValue && $actual instanceof DataValue ) {
+				$msg = "testing equals():\n"
+					. preg_replace( '/\s+/', ' ', print_r( $actual->toArray(), true ) ) . " should equal\n"
+					. preg_replace( '/\s+/', ' ', print_r( $expected->toArray(), true ) );
+			} else {
+				$msg = 'testing equals()';
+			}
+
+			$this->assertTrue( $expected->equals( $actual ), $msg );
 		}
 		else {
 			$this->assertEquals( $expected, $actual );
