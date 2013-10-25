@@ -1,9 +1,5 @@
 /**
- * @file
- * @ingroup ValueParsers
- *
  * @licence GNU GPL v2+
- *
  * @author Daniel Werner < daniel.a.r.werner@gmail.com >
  */
 ( function( vp, dv ) {

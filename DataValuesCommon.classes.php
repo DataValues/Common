@@ -6,6 +6,7 @@ return array(
 	'ValueFormatters\GeoCoordinateFormatter' => 'src/ValueFormatters/GeoCoordinateFormatter.php',
 	'ValueFormatters\GlobeCoordinateFormatter' => 'src/ValueFormatters/GlobeCoordinateFormatter.php',
 	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',
+	'ValueFormatters\QuantityFormatter' => 'src/ValueFormatters/QuantityFormatter.php',
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
 	'ValueFormatters\TimeIsoFormatter' => 'src/ValueFormatters/TimeIsoFormatter.php',
 	'ValueFormatters\TimeFormatter' => 'src/ValueFormatters/TimeFormatter.php',
@@ -28,6 +29,7 @@ return array(
 	'ValueParsers\FloatParser' => 'src/ValueParsers/FloatParser.php',
 	'ValueParsers\IntParser' => 'src/ValueParsers/IntParser.php',
 	'ValueParsers\NullParser' => 'src/ValueParsers/NullParser.php',
+	'ValueParsers\QuantityParser' => 'src/ValueParsers/QuantityParser.php',
 	'ValueParsers\StringValueParser' => 'src/ValueParsers/StringValueParser.php',
 
 	'ValueParsers\Test\StringValueParserTest' => 'tests/ValueParsers/StringValueParserTest.php',

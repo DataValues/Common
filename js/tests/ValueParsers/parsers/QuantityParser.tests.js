@@ -7,7 +7,7 @@
  * @since 0.1
  */
 valueParsers.tests.QuantityParserTest = ( function(
-	inherit, ValueParserTest, QuantityValue, QuantityParser, $
+	inherit, ValueParserTest, DecimalValue, QuantityValue, QuantityParser, $
 ) {
 	'use strict';
 
@@ -26,11 +26,45 @@ valueParsers.tests.QuantityParserTest = ( function(
 		getParseArguments: function() {
 			return [
 				[
-					'1.5, 1.25',
-					new QuantityValue( {} )
+					'+0',
+					new QuantityValue(
+						new DecimalValue( 0 ),
+						'1',
+						new DecimalValue( 0 ),
+						new DecimalValue( 0 )
+					)
 				], [
-					'-50, -20',
-					new QuantityValue( {} )
+					'+1',
+					new QuantityValue(
+						new DecimalValue( 1 ),
+						'1',
+						new DecimalValue( 1 ),
+						new DecimalValue( 1 )
+					)
+				], [
+					'+1.5',
+					new QuantityValue(
+						new DecimalValue( 1.5 ),
+						'1',
+						new DecimalValue( 1.5 ),
+						new DecimalValue( 1.5 )
+					)
+				], [
+					'-2',
+					new QuantityValue(
+						new DecimalValue( -2 ),
+						'1',
+						new DecimalValue( -2 ),
+						new DecimalValue( -2 )
+					)
+				], [
+					'+100000000000000000000000000000',
+					new QuantityValue(
+						new DecimalValue( 100000000000000000000000000000 ),
+						'1',
+						new DecimalValue( 100000000000000000000000000000 ),
+						new DecimalValue( 100000000000000000000000000000 )
+					)
 				]
 			];
 		}
@@ -45,6 +79,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 }(
 	valueParsers.util.inherit,
 	valueParsers.tests.ValueParserTest,
+	dataValues.DecimalValue,
 	dataValues.QuantityValue,
 	valueParsers.QuantityParser,
 	jQuery
