@@ -52,6 +52,11 @@ class DecimalMath {
 	 *
 	 * @since 0.1
 	 *
+	 * @todo: change this (or provide an alternative) to work based on the exponent
+	 * of the least significant digit, instead of its position. E.g. -1 would
+	 * mean "the first digit after the decimal point", 0 would mean "the first
+	 * digit before the decimal point", and so on.
+	 *
 	 * @param DecimalValue $decimal
 	 * @param int $significantDigits
 	 *

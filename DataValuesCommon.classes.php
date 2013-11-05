@@ -3,6 +3,7 @@
 return array(
 	'ValueFormatters\ValueFormatterFactory' => 'src/ValueFormatters/ValueFormatterFactory.php',
 
+	'ValueFormatters\DecimalFormatter' => 'src/ValueFormatters/DecimalFormatter.php',
 	'ValueFormatters\GeoCoordinateFormatter' => 'src/ValueFormatters/GeoCoordinateFormatter.php',
 	'ValueFormatters\GlobeCoordinateFormatter' => 'src/ValueFormatters/GlobeCoordinateFormatter.php',
 	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',

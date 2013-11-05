@@ -232,6 +232,27 @@ class QuantityValueTest extends DataValueTest {
 	}
 
 	/**
+	 * @dataProvider getSignificantDigitsProviderOf
+	 */
+	public function testGetSignificantDigitsOf( QuantityValue $quantity, DecimalValue $value, $expected ) {
+		$actual = $quantity->getSignificantDigitsOf( $value );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function getSignificantDigitsProviderOf() {
+		return array(
+			array( QuantityValue::newFromNumber( '+0' ), new DecimalValue( '+0' ), 1 ),
+			array( QuantityValue::newFromNumber( '-123', '1', '-123', '-123' ), new DecimalValue( '+10' ), 2 ),
+			array( QuantityValue::newFromNumber( '-123', '1', '-123', '-123' ), new DecimalValue( '+10.03' ), 2 ),
+			array( QuantityValue::newFromNumber( '+123', '1', '+143', '+103' ), new DecimalValue( '+13.44' ), 1 ),
+			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+13.03' ), 5 ),
+			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+13' ), 2 ),
+			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+2213' ), 4 ),
+		);
+	}
+
+	/**
 	 * @dataProvider transformProvider
 	 */
 	public function testTransform( QuantityValue $quantity, $transformation, QuantityValue $expected ) {

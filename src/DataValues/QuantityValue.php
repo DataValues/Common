@@ -297,7 +297,11 @@ class QuantityValue extends DataValueObject {
 		$lowerBound = $this->getLowerBound()->getValueFloat();
 
 		$offset = max( $amount - $lowerBound, $upperBound - $amount );
-		return new DecimalValue( $offset );
+
+		$margin = new DecimalValue( $offset );
+		//TODO: round the margin using getSignificantDigitsOf()
+
+		return $margin;
 	}
 
 	/**
@@ -307,6 +311,9 @@ class QuantityValue extends DataValueObject {
 	 * Note that this calculation assumes a symmetric uncertainty interval, and can be misleading
 	 *
 	 * @since 0.1
+	 *
+	 * @todo: implement getSignificantExponent, which can be interpreted without knowing the
+	 *        length of the integral and fractional parts of the number.
 	 *
 	 * @return int
 	 */
@@ -348,6 +355,55 @@ class QuantityValue extends DataValueObject {
 		}
 
 		return $significantDigits;
+	}
+
+	/**
+	 * Returns the number of significant digits of the given value in the context
+	 * of this quantity's amount. This can be used to determine the appropriate
+	 * rounding for auxiliary values associated with this quantity, such as the
+	 * uncertainty margin or the upper and lower bounds.
+	 *
+	 * @example: if the amount is 1200, with 2 significant digits and a margin
+	 * of +/-222, this method would return 1 for the significant digits
+	 * of the value "222", causing it to be rounded to "200".
+	 *
+	 * @example: if the amount is 2.375, with 4 significant digits (counting the
+	 * decimal point) and a margin of +/-0.036, this method would return 4 for
+	 * the significant digits of the value "0.036", causing it to be rounded to "0.04".
+	 *
+	 * @param DecimalValue $value
+	 *
+	 * @return int
+	 */
+	public function getSignificantDigitsOf( DecimalValue $value ) {
+		$signDigits = $this->getSignificantDigits();
+
+		// difference in the length of the integer part, to be subtracted
+		// (even if negative)
+		$intDigitDifference =
+			strlen( $this->amount->getIntegerPart() )
+			- strlen( $value->getIntegerPart() );
+
+		// get the length of the fractional parts, accounting for any decimal point
+		$amountFractLength = strlen( $this->amount->getFractionalPart() );
+		$valueFractLength = strlen( $value->getFractionalPart() );
+
+		if ( $amountFractLength > 0 ) {
+			$amountFractLength++;
+		}
+
+		if ( $valueFractLength > 0 ) {
+			$valueFractLength++;
+		}
+
+		// difference in the length of the factional part, to be subtracted
+		// if greater than 0.
+		$fractDigitDifference = max( 0, $amountFractLength - $valueFractLength );
+
+		// subtract the length differences, to apply rounding at the same order of magnitude
+		// as for the amount.
+		$signDigits = max( 1, $signDigits - $intDigitDifference - $fractDigitDifference );
+		return $signDigits;
 	}
 
 	/**
@@ -429,11 +485,22 @@ class QuantityValue extends DataValueObject {
 
 		// apply rounding to the significant digits
 		$math = new DecimalMath(  ); //TODO: Perhaps transform() should go into a QuantityTransformer class.
-		$amount = $math->round( $amount,  $digits );
+
+		//TODO: rounding should be done based on an exponent (needs getSignificantExponent).
+		$amount = $math->round( $amount, $digits );
 		$upperBound = $math->round( $upperBound, $digits );
 		$lowerBound = $math->round( $lowerBound, $digits );
 
 		return new QuantityValue( $amount, $newUnit, $upperBound, $lowerBound );
+	}
+
+	public function __toString() {
+		$unit = $this->getUnit();
+		return $this->amount->getValue()
+			. '[' . $this->lowerBound->getValue()
+			. '..' . $this->upperBound->getValue()
+			. ']'
+			. ( $unit === '1' ? '' : $unit );
 	}
 
 	/**
