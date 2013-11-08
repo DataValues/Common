@@ -26,7 +26,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 		getParseArguments: function() {
 			return [
 				[
-					'+0',
+					'+0!',
 					new QuantityValue(
 						new DecimalValue( 0 ),
 						'1',
@@ -34,7 +34,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 						new DecimalValue( 0 )
 					)
 				], [
-					'+1',
+					'+1!',
 					new QuantityValue(
 						new DecimalValue( 1 ),
 						'1',
@@ -42,7 +42,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 						new DecimalValue( 1 )
 					)
 				], [
-					'+1.5',
+					'+1.5!',
 					new QuantityValue(
 						new DecimalValue( 1.5 ),
 						'1',
@@ -50,7 +50,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 						new DecimalValue( 1.5 )
 					)
 				], [
-					'-2',
+					'-2!',
 					new QuantityValue(
 						new DecimalValue( -2 ),
 						'1',
@@ -58,7 +58,7 @@ valueParsers.tests.QuantityParserTest = ( function(
 						new DecimalValue( -2 )
 					)
 				], [
-					'+100000000000000000000000000000',
+					'+100000000000000000000000000000!',
 					new QuantityValue(
 						new DecimalValue( 100000000000000000000000000000 ),
 						'1',
@@ -66,6 +66,25 @@ valueParsers.tests.QuantityParserTest = ( function(
 						new DecimalValue( 100000000000000000000000000000 )
 					)
 				]
+/* TODO: Activate after bug #56682 has been fixed
+				, [
+					'0+-1',
+					new QuantityValue(
+						new DecimalValue( 0 ),
+						'1',
+						new DecimalValue( -1 ),
+						new DecimalValue( 1 )
+					)
+				], [
+					'0±1',
+					new QuantityValue(
+						new DecimalValue( 0 ),
+						'1',
+						new DecimalValue( -1 ),
+						new DecimalValue( 1 )
+					)
+				]
+*/
 			];
 		}
 
