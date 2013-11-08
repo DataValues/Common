@@ -305,105 +305,66 @@ class QuantityValue extends DataValueObject {
 	}
 
 	/**
-	 * Returns the number of significant digits in the amount-string,
-	 * counting the decimal point, but not counting the leading sign.
+	 * Returns the order of magnitude of the uncertainty as the exponent of
+	 * last significant digit in the amount-string. The value returned by this
+	 * is suitable for use with @see DecimalMath::roundToExponent().
 	 *
-	 * Note that this calculation assumes a symmetric uncertainty interval, and can be misleading
+	 * @example: if two digits after the decimal point are significant, this
+	 * returns -2.
+	 *
+	 * @example: if the last two digits before the decimal point are insignificant,
+	 * this returns 2.
+	 *
+	 * Note that this calculation assumes a symmetric uncertainty interval,
+	 * and can be misleading.
 	 *
 	 * @since 0.1
 	 *
-	 * @todo: implement getSignificantExponent, which can be interpreted without knowing the
-	 *        length of the integral and fractional parts of the number.
-	 *
 	 * @return int
 	 */
-	public function getSignificantDigits() {
+	public function getOrderOfUncertainty() {
 		// the desired precision is given by the distance between the amount and
-		// whatever is close, the uppoer or lower bound.
-		//TODO: use bcmath if available
+		// whatever is closer, the upper or lower bound.
+		//TODO: use DecimalMath to avoid floating point errors!
 		$amount = $this->getAmount()->getValueFloat();
 		$upperBound = $this->getUpperBound()->getValueFloat();
 		$lowerBound = $this->getLowerBound()->getValueFloat();
 		$precision = min( $amount - $lowerBound, $upperBound - $amount );
 
 		if ( $precision === 0.0 ) {
-			// include the decimal point, but not the sign
-			$significantDigits = strlen( $this->amount->getValue() ) -1;
-			return $significantDigits;
+			// If there is no uncertainty, the order of uncertainty is a bit more than what we have digits for.
+			return -strlen( $this->amount->getFractionalPart() );
 		}
 
 		// e.g. +/- 200 -> 2; +/- 0.02 -> -2
-		// note: we really want floor( $orderOfPrecision ), but have to account for
-		// small errors made in the floating point operations above
-		$orderOfPrecision = floor( log10( $precision + 0.0000000005 ) );
+		// note: we really want floor( log10( $precision ) ), but have to account for
+		// small errors made in the floating point operations above.
+		// @todo: use bcmath (via DecimalMath) to avoid this if possible
+		$orderOfUncertainty = floor( log10( $precision + 0.0000000005 ) );
 
-		// the length of the integer part is the reference point
-		$significantDigits = strlen( $this->amount->getIntegerPart() );
-
-		if ( $orderOfPrecision >= 0 ) {
-			// e.g. 3000 +/- 100 -> 2 digits
-			$significantDigits -= (int)$orderOfPrecision;
-		} else {
-			// e.g. 56.78 +/- 0.01 -> 5 digits
-			$significantDigits += (int)(-$orderOfPrecision);
-			$significantDigits += 1; // for the '.'
-		}
-
-		// assert sane value
-		if ( $significantDigits <= 0 ) {
-			throw new LogicException( 'Invalid calculation of significant digits' );
-		}
-
-		return $significantDigits;
+		return (int)$orderOfUncertainty;
 	}
 
 	/**
-	 * Returns the number of significant digits of the given value in the context
-	 * of this quantity's amount. This can be used to determine the appropriate
-	 * rounding for auxiliary values associated with this quantity, such as the
-	 * uncertainty margin or the upper and lower bounds.
+	 * Returns the number of significant figures in the amount-string,
+	 * counting the decimal point, but not counting the leading sign.
 	 *
-	 * @example: if the amount is 1200, with 2 significant digits and a margin
-	 * of +/-222, this method would return 1 for the significant digits
-	 * of the value "222", causing it to be rounded to "200".
+	 * Note that this calculation assumes a symmetric uncertainty interval, and can be misleading
 	 *
-	 * @example: if the amount is 2.375, with 4 significant digits (counting the
-	 * decimal point) and a margin of +/-0.036, this method would return 4 for
-	 * the significant digits of the value "0.036", causing it to be rounded to "0.04".
-	 *
-	 * @param DecimalValue $value
+	 * @since 0.1
 	 *
 	 * @return int
 	 */
-	public function getSignificantDigitsOf( DecimalValue $value ) {
-		$signDigits = $this->getSignificantDigits();
+	public function getSignificantFigures() {
+		$math = new DecimalMath();
 
-		// difference in the length of the integer part, to be subtracted
-		// (even if negative)
-		$intDigitDifference =
-			strlen( $this->amount->getIntegerPart() )
-			- strlen( $value->getIntegerPart() );
+		// $orderOfUncertainty is +/- 200 -> 2; +/- 0.02 -> -2
+		$orderOfUncertainty = $this->getOrderOfUncertainty();
 
-		// get the length of the fractional parts, accounting for any decimal point
-		$amountFractLength = strlen( $this->amount->getFractionalPart() );
-		$valueFractLength = strlen( $value->getFractionalPart() );
+		// the number of digits (without the sign) is the same as the position (with the sign).
+		$significantDigits = $math->getPositionForExponent( $orderOfUncertainty, $this->amount );
 
-		if ( $amountFractLength > 0 ) {
-			$amountFractLength++;
-		}
-
-		if ( $valueFractLength > 0 ) {
-			$valueFractLength++;
-		}
-
-		// difference in the length of the factional part, to be subtracted
-		// if greater than 0.
-		$fractDigitDifference = max( 0, $amountFractLength - $valueFractLength );
-
-		// subtract the length differences, to apply rounding at the same order of magnitude
-		// as for the amount.
-		$signDigits = max( 1, $signDigits - $intDigitDifference - $fractDigitDifference );
-		return $signDigits;
+		return $significantDigits;
 	}
 
 	/**
@@ -481,15 +442,14 @@ class QuantityValue extends DataValueObject {
 
 		// use a preliminary QuantityValue to determine the significant number of digits
 		$transformed = new QuantityValue( $amount, $newUnit, $upperBound, $lowerBound );
-		$digits = $transformed->getSignificantDigits();
+		$roundingExponent = $transformed->getOrderOfUncertainty();
 
 		// apply rounding to the significant digits
-		$math = new DecimalMath(  ); //TODO: Perhaps transform() should go into a QuantityTransformer class.
+		$math = new DecimalMath();
 
-		//TODO: rounding should be done based on an exponent (needs getSignificantExponent).
-		$amount = $math->round( $amount, $digits );
-		$upperBound = $math->round( $upperBound, $digits );
-		$lowerBound = $math->round( $lowerBound, $digits );
+		$amount = $math->roundToExponent( $amount, $roundingExponent );
+		$upperBound = $math->roundToExponent( $upperBound, $roundingExponent );
+		$lowerBound = $math->roundToExponent( $lowerBound, $roundingExponent );
 
 		return new QuantityValue( $amount, $newUnit, $upperBound, $lowerBound );
 	}

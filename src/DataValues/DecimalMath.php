@@ -47,23 +47,20 @@ class DecimalMath {
 
 	/**
 	 * Returns the given value, with any insignificant digits removed or zeroed.
+	 *
 	 * Rounding is applied  using the "round half away from zero" rule (that is, +0.5 is
 	 * rounded to +1 and -0.5 is rounded to -1).
 	 *
 	 * @since 0.1
 	 *
-	 * @todo: change this (or provide an alternative) to work based on the exponent
-	 * of the least significant digit, instead of its position. E.g. -1 would
-	 * mean "the first digit after the decimal point", 0 would mean "the first
-	 * digit before the decimal point", and so on.
-	 *
 	 * @param DecimalValue $decimal
-	 * @param int $significantDigits
+	 * @param int $significantDigits The number of digits to retain, counting the decimal point,
+	 *        but not counting the leading sign.
 	 *
 	 * @throws \InvalidArgumentException
 	 * @return DecimalValue
 	 */
-	public function round( DecimalValue $decimal, $significantDigits ) {
+	public function roundToDigit( DecimalValue $decimal, $significantDigits ) {
 		$value = $decimal->getValue();
 		$rounded = $this->roundDigits( $value, $significantDigits );
 		return new DecimalValue( $rounded );
@@ -71,6 +68,63 @@ class DecimalMath {
 
 	/**
 	 * Returns the given value, with any insignificant digits removed or zeroed.
+	 *
+	 * Rounding is applied  using the "round half away from zero" rule (that is, +0.5 is
+	 * rounded to +1 and -0.5 is rounded to -1).
+	 *
+	 * @since 0.1
+	 *
+	 * @param DecimalValue $decimal
+	 * @param int $significantExponent 	 The exponent of the last significant digit,
+	 *        e.g. -1 for "keep the first digit after the decimal point", or 2 for
+	 *        "zero the last two digits before the decimal point".
+	 *
+	 * @throws \InvalidArgumentException
+	 * @return DecimalValue
+	 */
+	public function roundToExponent( DecimalValue $decimal, $significantExponent ) {
+		//NOTE: the number of digits to keep (without the leading sign)
+		//      is the same as the exponent's offset (with the leaqding sign).
+		$digits = $this->getPositionForExponent( $significantExponent, $decimal );
+		return $this->roundToDigit( $decimal, $digits );
+	}
+
+	/**
+	 * Returns the (zero based) position for the given exponent in
+	 * the given decimal string, counting the decimal point and the leading sign.
+	 *
+	 * @example: the position of exponent 0 in "+10.03" is 2.
+	 * @example: the position of exponent 1 in "+210.03" is 2.
+	 * @example: the position of exponent -2 in "+1.037" is 4.
+	 *
+	 * @param int $exponent
+	 * @param string $decimal
+	 */
+	public function getPositionForExponent( $exponent, DecimalValue $decimal ) {
+		$decimal = $decimal->getValue();
+
+		$pointPos = strpos( $decimal, '.' );
+		if ( $pointPos === false ) {
+			$pointPos = strlen( $decimal );
+		}
+
+		// account for leading sign
+		$pointPos--;
+
+		if ( $exponent < 0 ) {
+			// account for decimal point
+			$position = $pointPos +1 - $exponent;
+		} else {
+			// make sure we don't remove more digits than are there
+			$position = max( 0, $pointPos - $exponent );
+		}
+
+		return $position;
+	}
+
+	/**
+	 * Returns the given value, with any insignificant digits removed or zeroed.
+	 *
 	 * Rounding is applied using the "round half away from zero" rule (that is, +0.5 is
 	 * rounded to +1 and -0.5 is rounded to -1).
 	 *
@@ -79,7 +133,7 @@ class DecimalMath {
 	 * @param string $value
 	 * @param int $significantDigits
 	 *
-	 * @throws \InvalidArgumentException
+	 * @throws \InvalidArgumentException if $significantDigits is smaller than 0
 	 * @return string
 	 */
 	protected function roundDigits( $value, $significantDigits ) {
@@ -87,7 +141,12 @@ class DecimalMath {
 			throw new \InvalidArgumentException( '$significantDigits must be an integer' );
 		}
 
-		if ( $significantDigits <= 0 ) {
+		// keeping no digits results in zero.
+		if ( $significantDigits === 0 ) {
+			return '+0';
+		}
+
+		if ( $significantDigits < 0 ) {
 			throw new \InvalidArgumentException( '$significantDigits must be larger than zero.' );
 		}
 

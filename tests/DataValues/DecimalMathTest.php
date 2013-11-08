@@ -154,21 +154,23 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider roundProvider
+	 * @dataProvider roundToDigitProvider
 	 *
 	 * @since 0.1
 	 */
-	public function testRound( DecimalValue $value, $digits, $expected ) {
+	public function testRoundToDigit( DecimalValue $value, $digits, $expected ) {
 		$math = new DecimalMath();
 
-		$actual = $math->round( $value, $digits );
+		$actual = $math->roundToDigit( $value, $digits );
 		$this->assertSame( $expected, $actual->getValue() );
 	}
 
-	public function roundProvider() {
+	public function roundToDigitProvider() {
 		$argLists = array();
 
 		//NOTE: Rounding is applied using the "round half away from zero" logic.
+
+		$argLists[] = array( new DecimalValue( '-2' ), 0, '+0' ); // no digits left
 
 		$argLists[] = array( new DecimalValue( '+0' ), 1, '+0' );
 		$argLists[] = array( new DecimalValue( '+0' ), 2, '+0' );
@@ -224,6 +226,102 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 		$argLists[] = array( new DecimalValue( '-9.87' ), 3, '-9.9' ); // rounding ripples down
 		$argLists[] = array( new DecimalValue( '-99' ), 1, '-100' ); // rounding ripples down
 		$argLists[] = array( new DecimalValue( '-99' ), 2, '-99' ); // rounding ripples down
+
+		return $argLists;
+	}
+
+	/**
+	 * @dataProvider getPositionForExponentProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testGetPositionForExponent( $exponent, DecimalValue $decimal, $expected ) {
+		$math = new DecimalMath();
+
+		$actual = $math->getPositionForExponent( $exponent, $decimal );
+		$this->assertSame( $expected, $actual );
+	}
+
+	public function getPositionForExponentProvider() {
+		$argLists = array();
+
+		$argLists[] = array(  0, new DecimalValue( '+0' ), 1 );
+		$argLists[] = array(  1, new DecimalValue( '+10.25' ), 1 );
+		$argLists[] = array(  1, new DecimalValue( '-100.25' ), 2 );
+		$argLists[] = array(  2, new DecimalValue( '+100.25' ), 1 );
+		$argLists[] = array( -2, new DecimalValue( '+0.234' ), 4 );
+		$argLists[] = array( -2, new DecimalValue( '+11.234' ), 5 );
+
+		return $argLists;
+	}
+		/**
+	 * @dataProvider roundToExponentProvider
+	 *
+	 * @since 0.1
+	 */
+	public function testRoundToExponent( DecimalValue $value, $digits, $expected ) {
+		$math = new DecimalMath();
+
+		$actual = $math->roundToExponent( $value, $digits );
+		$this->assertSame( $expected, $actual->getValue() );
+	}
+
+	public function roundToExponentProvider() {
+		$argLists = array();
+
+		//NOTE: Rounding is applied using the "round half away from zero" logic.
+
+		$argLists[] = array( new DecimalValue( '+0' ), 0, '+0' );
+		$argLists[] = array( new DecimalValue( '+0' ), 1, '+0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), 0, '+0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), 2, '+0' );
+		$argLists[] = array( new DecimalValue( '+0.0' ), -5, '+0.0' );
+
+		$argLists[] = array( new DecimalValue( '-2' ), 0, '-2' );
+		$argLists[] = array( new DecimalValue( '-2' ), -1, '-2' );
+		$argLists[] = array( new DecimalValue( '-2' ), 1, '+0' );
+
+		$argLists[] = array( new DecimalValue( '+23' ), 0, '+23' );
+		$argLists[] = array( new DecimalValue( '+23' ), 1, '+20' );
+		$argLists[] = array( new DecimalValue( '+23' ), 2, '+0' );
+
+		$argLists[] = array( new DecimalValue( '-234' ), 2, '-200' );
+		$argLists[] = array( new DecimalValue( '-234' ), 1, '-230' );
+		$argLists[] = array( new DecimalValue( '-234' ), 0, '-234' );
+
+		$argLists[] = array( new DecimalValue( '-2.0' ), 0, '-2' );
+		$argLists[] = array( new DecimalValue( '-2.0' ), -1, '-2.0' );
+		$argLists[] = array( new DecimalValue( '-2.0' ), -2, '-2.0' ); // edge case, may change
+
+		$argLists[] = array( new DecimalValue( '-2.000' ), 0, '-2' );
+		$argLists[] = array( new DecimalValue( '-2.000' ), -1, '-2.0' );
+		$argLists[] = array( new DecimalValue( '-2.000' ), -2, '-2.00' );
+
+		$argLists[] = array( new DecimalValue( '+2.5' ), 0, '+3' ); // rounded up
+		$argLists[] = array( new DecimalValue( '+2.5' ), -1, '+2.5' );
+		$argLists[] = array( new DecimalValue( '+2.5' ), -2, '+2.5' );
+
+		$argLists[] = array( new DecimalValue( '+2.05' ), 0, '+2' );
+		$argLists[] = array( new DecimalValue( '+2.05' ), -1, '+2.1' ); // rounded up
+		$argLists[] = array( new DecimalValue( '+2.05' ), -2, '+2.05' );
+
+		$argLists[] = array( new DecimalValue( '-23.05' ), 1, '-20' );
+		$argLists[] = array( new DecimalValue( '-23.05' ), 0, '-23' );
+
+		$argLists[] = array( new DecimalValue( '-23.05' ), -1, '-23.1' ); // rounded down
+		$argLists[] = array( new DecimalValue( '-23.05' ), -2, '-23.05' );
+
+		$argLists[] = array( new DecimalValue( '+9.33' ), 0, '+9' ); // no rounding
+		$argLists[] = array( new DecimalValue( '+9.87' ), 0, '+10' ); // rounding ripples up
+		$argLists[] = array( new DecimalValue( '+9.87' ), -1, '+9.9' ); // rounding ripples up
+		$argLists[] = array( new DecimalValue( '+99' ), 1, '+100' ); // rounding ripples up
+		$argLists[] = array( new DecimalValue( '+99' ), 0, '+99' ); // rounding ripples up
+
+		$argLists[] = array( new DecimalValue( '-9.33' ), 0, '-9' ); // no rounding
+		$argLists[] = array( new DecimalValue( '-9.87' ), 0, '-10' ); // rounding ripples down
+		$argLists[] = array( new DecimalValue( '-9.87' ), -1, '-9.9' ); // rounding ripples down
+		$argLists[] = array( new DecimalValue( '-99' ), 1, '-100' ); // rounding ripples down
+		$argLists[] = array( new DecimalValue( '-99' ), 0, '-99' ); // rounding ripples down
 
 		return $argLists;
 	}

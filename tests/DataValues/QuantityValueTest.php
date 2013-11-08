@@ -203,15 +203,45 @@ class QuantityValueTest extends DataValueTest {
 
 
 	/**
-	 * @dataProvider getSignificantDigitsProvider
+	 * @dataProvider getOrderOfUncertaintyProvider
 	 */
-	public function testGetSignificantDigits( QuantityValue $quantity, $expected ) {
-		$actual = $quantity->getSignificantDigits();
+	public function testGetOrderOfUncertainty( QuantityValue $quantity, $expected ) {
+		$actual = $quantity->getOrderOfUncertainty();
 
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function getSignificantDigitsProvider() {
+	public function getOrderOfUncertaintyProvider() {
+		return array(
+			0 => array( QuantityValue::newFromNumber( '+0' ), 0 ),
+			1 => array( QuantityValue::newFromNumber( '-123' ), 0 ),
+			2 => array( QuantityValue::newFromNumber( '-1.23' ), -2 ),
+
+			10 => array( QuantityValue::newFromNumber( '-100', '1', '-99', '-101' ), 0 ),
+			11 => array( QuantityValue::newFromNumber( '+0.00', '1', '+0.01', '-0.01' ), -2 ),
+			12 => array( QuantityValue::newFromNumber( '-117.3', '1', '-117.2', '-117.4' ), -1 ),
+
+			20 => array( QuantityValue::newFromNumber( '+100', '1', '+100.01', '+99.97' ), -2 ),
+			21 => array( QuantityValue::newFromNumber( '-0.002', '1', '-0.001', '-0.004' ), -3 ),
+			22 => array( QuantityValue::newFromNumber( '-0.002', '1', '+0.001', '-0.06' ), -3 ),
+			23 => array( QuantityValue::newFromNumber( '-21', '1', '+1.1', '-120' ), 1 ),
+			24 => array( QuantityValue::newFromNumber( '-2', '1', '+1.1', '-120' ), 0 ),
+			25 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900.03' ), 1 ),
+			26 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900' ), 2 ),
+		);
+	}
+
+
+	/**
+	 * @dataProvider getSignificantFiguresProvider
+	 */
+	public function testGetSignificantFigures( QuantityValue $quantity, $expected ) {
+		$actual = $quantity->getSignificantFigures();
+
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function getSignificantFiguresProvider() {
 		return array(
 			0 => array( QuantityValue::newFromNumber( '+0' ), 1 ),
 			1 => array( QuantityValue::newFromNumber( '-123' ), 3 ),
@@ -228,27 +258,6 @@ class QuantityValueTest extends DataValueTest {
 			24 => array( QuantityValue::newFromNumber( '-2', '1', '+1.1', '-120' ), 1 ),
 			25 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900.03' ), 3 ),
 			26 => array( QuantityValue::newFromNumber( '+1000', '1', '+1100', '+900' ), 2 ),
-		);
-	}
-
-	/**
-	 * @dataProvider getSignificantDigitsProviderOf
-	 */
-	public function testGetSignificantDigitsOf( QuantityValue $quantity, DecimalValue $value, $expected ) {
-		$actual = $quantity->getSignificantDigitsOf( $value );
-
-		$this->assertEquals( $expected, $actual );
-	}
-
-	public function getSignificantDigitsProviderOf() {
-		return array(
-			array( QuantityValue::newFromNumber( '+0' ), new DecimalValue( '+0' ), 1 ),
-			array( QuantityValue::newFromNumber( '-123', '1', '-123', '-123' ), new DecimalValue( '+10' ), 2 ),
-			array( QuantityValue::newFromNumber( '-123', '1', '-123', '-123' ), new DecimalValue( '+10.03' ), 2 ),
-			array( QuantityValue::newFromNumber( '+123', '1', '+143', '+103' ), new DecimalValue( '+13.44' ), 1 ),
-			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+13.03' ), 5 ),
-			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+13' ), 2 ),
-			array( QuantityValue::newFromNumber( '+12.31', '1', '+12.32', '+12.30' ), new DecimalValue( '+2213' ), 4 ),
 		);
 	}
 
@@ -287,7 +296,7 @@ class QuantityValueTest extends DataValueTest {
 			 0 => array( QuantityValue::newFromNumber( '+10',   '1', '+11',  '+9' ),   $identity, QuantityValue::newFromNumber(   '+10',    '?',   '+11',    '+9' ) ),
 			 1 => array( QuantityValue::newFromNumber(  '-0.5', '1', '-0.4', '-0.6' ), $identity, QuantityValue::newFromNumber(    '-0.5',  '?',    '-0.4',  '-0.6' ) ),
 			 2 => array( QuantityValue::newFromNumber(  '+0',   '1', '+1',   '-1' ),   $square,   QuantityValue::newFromNumber(    '+0',    '?',    '+1',    '-1' ) ),
-			 3 => array( QuantityValue::newFromNumber( '+10',   '1', '+11',  '+9' ),   $square,   QuantityValue::newFromNumber( '+1000',    '?', '+1300',  '+730' ) ), // note how rounding applies to bounds
+			 3 => array( QuantityValue::newFromNumber( '+10',   '1', '+11',  '+9' ),   $square,   QuantityValue::newFromNumber( '+1000',    '?', '+1300',  '+700' ) ), // note how rounding applies to bounds
 			 4 => array( QuantityValue::newFromNumber(  '+0.5', '1', '+0.6', '+0.4' ), $scale,    QuantityValue::newFromNumber(    '+0.25', '?',    '+0.3',  '+0.2' ), 0.5 ),
 
 			// note: absolutely exact values require conversion with infinite precision!

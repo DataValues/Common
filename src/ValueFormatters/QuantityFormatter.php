@@ -57,10 +57,10 @@ class QuantityFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'DataValue is not a QuantityValue.' );
 		}
 
-		$digits = $dataValue->getSignificantDigits();
+		$roundingExponent = $dataValue->getOrderOfUncertainty();
 
 		$amountValue = $dataValue->getAmount();
-		$amountValue = $this->decimalMath->round( $amountValue, $digits );
+		$amountValue = $this->decimalMath->roundToExponent( $amountValue, $roundingExponent );
 		$amount = $this->decimalFormatter->format( $amountValue );
 
 		$unit = $dataValue->getUnit();
@@ -71,8 +71,7 @@ class QuantityFormatter extends ValueFormatterBase {
 			|| $this->options->getOption( self::OPT_SHOW_UNCERTAINTY_MARGIN ) == true ) {
 
 			$marginValue = $dataValue->getUncertaintyMargin();
-			$marginDigits =  $dataValue->getSignificantDigitsOf( $marginValue );
-			$marginValue = $this->decimalMath->round( $marginValue, $marginDigits );
+			$marginValue = $this->decimalMath->roundToExponent( $marginValue, $roundingExponent );
 
 			if ( !$marginValue->isZero() ) {
 				$margin = $this->decimalFormatter->format( $marginValue );
