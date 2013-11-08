@@ -125,6 +125,30 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @dataProvider productWithBCProvider
+	 */
+	public function testProductWithBC( DecimalValue $a, DecimalValue $b, $value ) {
+		$math = new DecimalMath();
+
+		if ( !$math->getUseBC() ) {
+			$this->markTestSkipped( 'bcmath library not available' );
+		}
+
+		$actual = $math->product( $a, $b );
+		$this->assertEquals( $value, $actual->getValue() );
+
+		$actual = $math->product( $b, $a );
+		$this->assertEquals( $value, $actual->getValue() );
+	}
+
+	public function productWithBCProvider() {
+		return array(
+			array( new DecimalValue(  '+0.1'  ), new DecimalValue(  '+0.1'  ), '+0.01' ),
+			array( new DecimalValue(  '-5000000'  ), new DecimalValue(  '-0.1'  ), '+500000.0' ),
+		);
+	}
+
+	/**
 	 * @dataProvider sumProvider
 	 */
 	public function testSum( DecimalValue $a, DecimalValue $b, $value ) {
@@ -150,6 +174,30 @@ class DecimalMathTest extends \PHPUnit_Framework_TestCase {
 			array( new DecimalValue(  '+0.5'  ), new DecimalValue(  '+0'  ),  '+0.5' ),
 			array( new DecimalValue(  '+0.5'  ), new DecimalValue(  '+0.5' ), '+1.0' ),
 			array( new DecimalValue(  '+0.5'  ), new DecimalValue(  '+2'  ),  '+2.5' ),
+		);
+	}
+
+	/**
+	 * @dataProvider sumWithBCProvider
+	 */
+	public function testSumWithBC( DecimalValue $a, DecimalValue $b, $value ) {
+		$math = new DecimalMath();
+
+		if ( !$math->getUseBC() ) {
+			$this->markTestSkipped( 'bcmath library not available' );
+		}
+
+		$actual = $math->sum( $a, $b );
+		$this->assertEquals( $value, $actual->getValue() );
+
+		$actual = $math->sum( $b, $a );
+		$this->assertEquals( $value, $actual->getValue() );
+	}
+
+	public function sumWithBCProvider() {
+		return array(
+			array( new DecimalValue(  '+0.1'  ), new DecimalValue(  '+0.1'  ), '+0.2' ),
+			array( new DecimalValue(  '-5000000000.000000000000001'  ), new DecimalValue(  '-0.01'  ), '-5000000000.010000000000001' ),
 		);
 	}
 

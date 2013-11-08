@@ -6,6 +6,12 @@ namespace DataValues;
  * Class for performing basic arithmetic and other transformations
  * on DecimalValues.
  *
+ * This uses the bcmath library if available. Otherwise, it falls back on
+ * using floating point operations.
+ *
+ * @note: this is not a genuine decimal arithmetics implementation,
+ * and should not be used for financial computations, physical simulations, etc.
+ *
  * @see DecimalValue
  *
  * @since 0.1
@@ -16,6 +22,50 @@ namespace DataValues;
 class DecimalMath {
 
 	/**
+	 * Whether to use the bcmath library.
+	 *
+	 * @var bool
+	 */
+	protected $useBC;
+
+	/**
+	 * @param bool|null $useBC Whether to use the bcmath library. If null,
+	 *        bcmath will automatically be used if available.
+	 */
+	public function __construct( $useBC = null ) {
+		if ( $useBC === null ) {
+			$useBC = function_exists( 'bcscale' );
+		}
+
+		$this->useBC = $useBC;
+	}
+
+	/**
+	 * @param int|float|string $number
+	 *
+	 * @return DecimalValue
+	 */
+	private function makeDecimalValue( $number ) {
+
+		if ( is_string( $number ) && $number !== '' ) {
+			if ( $number[0] !== '-' && $number[0] !== '+' ) {
+				$number = '+' . $number;
+			}
+		}
+
+		return new DecimalValue( $number );
+	}
+
+	/**
+	 * Whether this is using the bcmath library.
+	 *
+	 * @return bool
+	 */
+	public function getUseBC() {
+		return $this->useBC;
+	}
+
+	/**
 	 * Returns the product of the two values.
 	 *
 	 * @param DecimalValue $a
@@ -24,10 +74,14 @@ class DecimalMath {
 	 * @return DecimalValue
 	 */
 	public function product( DecimalValue $a, DecimalValue $b ) {
-		//TODO: use bcmath if available
-		$product = $a->getValueFloat() * $b->getValueFloat();
+		if ( $this->useBC ) {
+			$scale = strlen( $a->getFractionalPart() ) + strlen( $b->getFractionalPart() );
+			$product = bcmul( $a->getValue(), $b->getValue(), $scale );
+		} else {
+			$product = $a->getValueFloat() * $b->getValueFloat();
+		}
 
-		return new DecimalValue( $product );
+		return $this->makeDecimalValue( $product );
 	}
 
 	/**
@@ -39,10 +93,14 @@ class DecimalMath {
 	 * @return DecimalValue
 	 */
 	public function sum( DecimalValue $a, DecimalValue $b ) {
-		//TODO: use bcmath if available
-		$product = $a->getValueFloat() + $b->getValueFloat();
+		if ( $this->useBC ) {
+			$scale = max( strlen( $a->getFractionalPart() ), strlen( $b->getFractionalPart() ) );
+			$sum = bcadd( $a->getValue(), $b->getValue(), $scale );
+		} else {
+			$sum = $a->getValueFloat() + $b->getValueFloat();
+		}
 
-		return new DecimalValue( $product );
+		return $this->makeDecimalValue( $sum );
 	}
 
 	/**
@@ -379,5 +437,4 @@ class DecimalMath {
 
 		return $slumped;
 	}
-
 }
