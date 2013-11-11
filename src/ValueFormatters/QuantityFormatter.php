@@ -16,7 +16,26 @@ use InvalidArgumentException;
  */
 class QuantityFormatter extends ValueFormatterBase {
 
+	/**
+	 * Option key for enabling or disabling output of the uncertainty margin (e.g. "+/-5").
+	 * Per default, the uncertainty margin is included in the output.
+	 * This option must have a boolean value.
+	 */
 	const OPT_SHOW_UNCERTAINTY_MARGIN = 'showQuantityUncertaintyMargin';
+
+	/**
+	 * Option key for determining what level of rounding to apply to the numbers
+	 * included in the output. The value of this option must be an integer or a boolean.
+	 *
+	 * If an integer is given, this is the exponent of the last significant decimal digits
+	 * - that is, -2 would round to two digits after the decimal point, and 1 would round
+	 * to two digits before the decimal point. 0 would indicate rounding to integers.
+	 *
+	 * If the value is a boolean, false means no rounding at all (useful e.g. in diffs),
+	 * and true means automatic rounding based on what $quantity->getOrderOfUncertainty()
+	 * returns.
+	 */
+	const OPT_APPLY_ROUNDING = 'applyRounding';
 
 	/**
 	 * @var DecimalMath
@@ -33,6 +52,10 @@ class QuantityFormatter extends ValueFormatterBase {
 	 * @param FormatterOptions $options
 	 */
 	public function __construct( DecimalFormatter $decimalFormatter, FormatterOptions $options ) {
+		$options = clone $options; // copy, so we don't modify the options that were passed in.
+		$options->defaultOption( self::OPT_SHOW_UNCERTAINTY_MARGIN, true );
+		$options->defaultOption( self::OPT_APPLY_ROUNDING, true );
+
 		parent::__construct( $options );
 
 		$this->decimalFormatter = $decimalFormatter;
@@ -41,6 +64,26 @@ class QuantityFormatter extends ValueFormatterBase {
 		$this->decimalMath = new DecimalMath();
 	}
 
+	/**
+	 * Returns the rounding exponent based on the given $quantity
+	 * and the @see QuantityFormatter::OPT_APPLY_ROUNDING option.
+	 *
+	 * @param QuantityValue $quantity
+	 *
+	 * @return int
+	 */
+	protected function getRoundingExponent( QuantityValue $quantity ) {
+		if ( $this->options->getOption( self::OPT_APPLY_ROUNDING ) === true ) {
+			// round to the order of uncertainty
+			return $quantity->getOrderOfUncertainty();
+		} elseif ( $this->options->getOption( self::OPT_APPLY_ROUNDING ) === false ) {
+			// some number larger than the actual number of digits,
+			// but no where near -PHP_INT_MAX.
+			return -strlen( $quantity->getAmount() ) * 2 - 100;
+		} else {
+			return (int)$this->options->getOption( self::OPT_APPLY_ROUNDING );
+		}
+	}
 
 	/**
 	 * Formats a QuantityValue data value
@@ -57,7 +100,7 @@ class QuantityFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'DataValue is not a QuantityValue.' );
 		}
 
-		$roundingExponent = $dataValue->getOrderOfUncertainty();
+		$roundingExponent = $this->getRoundingExponent( $dataValue );
 
 		$amountValue = $dataValue->getAmount();
 		$amountValue = $this->decimalMath->roundToExponent( $amountValue, $roundingExponent );
@@ -67,9 +110,9 @@ class QuantityFormatter extends ValueFormatterBase {
 
 		$margin = '';
 
-		if ( !$this->options->hasOption( self::OPT_SHOW_UNCERTAINTY_MARGIN )
-			|| $this->options->getOption( self::OPT_SHOW_UNCERTAINTY_MARGIN ) == true ) {
+		if ( $this->options->getOption( self::OPT_SHOW_UNCERTAINTY_MARGIN ) ) {
 
+			// TODO: never round to 0! See bug #56892
 			$marginValue = $dataValue->getUncertaintyMargin();
 			$marginValue = $this->decimalMath->roundToExponent( $marginValue, $roundingExponent );
 
