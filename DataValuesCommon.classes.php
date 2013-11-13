@@ -33,7 +33,6 @@ return array(
 	'ValueParsers\QuantityParser' => 'src/ValueParsers/QuantityParser.php',
 	'ValueParsers\StringValueParser' => 'src/ValueParsers/StringValueParser.php',
 	'ValueParsers\DecimalParser' => 'src/ValueParsers/DecimalParser.php',
-	'ValueParsers\QuantityParser' => 'src/ValueParsers/QuantityParser.php',
 
 	'ValueParsers\Test\StringValueParserTest' => 'tests/ValueParsers/StringValueParserTest.php',
 	'ValueParsers\Test\ValueParserTestBase' => 'tests/ValueParsers/ValueParserTestBase.php',
