@@ -9,7 +9,7 @@
 		"valuevalidators",
 		"wikidata"
 	],
-	"homepage": "https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon",
+	"homepage": "https://github.com/JeroenDeDauw/DataValuesCommon",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
