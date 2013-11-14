@@ -6,7 +6,7 @@ use DataValues\DecimalMath;
 use DataValues\DecimalValue;
 
 /**
- * @covers DataValues\DecimalMathTest
+ * @covers DataValues\DecimalMath
  *
  * @since 0.1
  *
