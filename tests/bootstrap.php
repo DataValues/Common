@@ -13,5 +13,3 @@
  */
 
 require_once( __DIR__ . '/../DataValuesCommon.php' );
-
-require_once( __DIR__ . '/testLoader.php' );
