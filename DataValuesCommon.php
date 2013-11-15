@@ -41,6 +41,8 @@ if ( !defined( 'DATAVALUES_INTERFACES_VERSION' ) ) {
 
 // @codeCoverageIgnoreStart
 spl_autoload_register( function ( $className ) {
+	$className = ltrim( $className, '\\' );
+
 	static $classes = false;
 
 	if ( $classes === false ) {
