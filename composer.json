@@ -40,12 +40,6 @@
 		"data-values/data-values": "dev-master",
 		"data-values/interfaces": "dev-master"
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/JeroenDeDauw/DataValues"
-		}
-	],
 	"autoload": {
 		"files" : [
 			"DataValuesCommon.php"
