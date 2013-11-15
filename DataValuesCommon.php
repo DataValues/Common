@@ -5,7 +5,7 @@ if ( defined( 'DataValuesCommon_VERSION' ) ) {
 	return;
 }
 
-define( 'DATAVALUES_COMMON_VERSION', '0.1 alpha' );
+define( 'DATAVALUES_COMMON_VERSION', '0.1 beta' );
 
 /**
  * @deprecated
