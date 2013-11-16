@@ -3,7 +3,6 @@
 return array(
 	'ValueFormatters\ValueFormatterFactory' => 'src/ValueFormatters/ValueFormatterFactory.php',
 
-	'ValueFormatters\DecimalFormatter' => 'src/ValueFormatters/DecimalFormatter.php',
 	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',
 	'ValueFormatters\QuantityFormatter' => 'src/ValueFormatters/QuantityFormatter.php',
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
@@ -16,12 +15,8 @@ return array(
 	'ValueParsers\ApiParseValue' => 'src/ValueParsers/ApiParseValue.php',
 
 	'ValueParsers\BoolParser' => 'src/ValueParsers/BoolParser.php',
-	'ValueParsers\FloatParser' => 'src/ValueParsers/FloatParser.php',
-	'ValueParsers\IntParser' => 'src/ValueParsers/IntParser.php',
 	'ValueParsers\NullParser' => 'src/ValueParsers/NullParser.php',
-	'ValueParsers\QuantityParser' => 'src/ValueParsers/QuantityParser.php',
 	'ValueParsers\StringValueParser' => 'src/ValueParsers/StringValueParser.php',
-	'ValueParsers\DecimalParser' => 'src/ValueParsers/DecimalParser.php',
 
 	'ValueParsers\Test\StringValueParserTest' => 'tests/ValueParsers/StringValueParserTest.php',
 	'ValueParsers\Test\ValueParserTestBase' => 'tests/ValueParsers/ValueParserTestBase.php',
@@ -42,7 +37,4 @@ return array(
 	'DataValues\IriValue' => 'src/DataValues/IriValue.php',
 	'DataValues\MonolingualTextValue' => 'src/DataValues/MonolingualTextValue.php',
 	'DataValues\MultilingualTextValue' => 'src/DataValues/MultilingualTextValue.php',
-	'DataValues\DecimalMath' => 'src/DataValues/DecimalMath.php',
-	'DataValues\DecimalValue' => 'src/DataValues/DecimalValue.php',
-	'DataValues\QuantityValue' => 'src/DataValues/QuantityValue.php',
 );

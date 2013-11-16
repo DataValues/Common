@@ -32,11 +32,8 @@ global $wgValueParsers;
 $wgValueParsers = array();
 
 $wgValueParsers['bool'] = 'ValueParsers\BoolParser';
-$wgValueParsers['float'] = 'ValueParsers\FloatParser';
 $wgValueParsers['globecoordinate'] = 'ValueParsers\GlobeCoordinateParser';
-$wgValueParsers['int'] = 'ValueParsers\IntParser';
 $wgValueParsers['null'] = 'ValueParsers\NullParser';
-$wgValueParsers['quantity'] = 'ValueParsers\QuantityParser';
 
 global $wgValueValidators;
 
