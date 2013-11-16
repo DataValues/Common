@@ -3,8 +3,6 @@
 DataValues Common is a small library build on top of DataValues that provides common
 implementations of the DataValues, ValueParsers, ValueFormatters and ValueValidators interfaces.
 
-Recent changes can be found in the [release notes](docs/RELEASE-NOTES.md).
-
 [![Build Status](https://secure.travis-ci.org/JeroenDeDauw/DataValuesCommon.png?branch=master)](http://travis-ci.org/JeroenDeDauw/DataValuesCommon)
 
 On [Packagist](https://packagist.org/packages/data-values/common):
