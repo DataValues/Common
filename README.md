@@ -12,8 +12,10 @@ On [Packagist](https://packagist.org/packages/data-values/common):
 ## Requirements
 
 * PHP 5.3 or later
-* DataValues - see composer.json to get the required version
-* DataValues Interfaces - see composer.json to get the required version
+* [DataValues](https://packagist.org/packages/data-values/data-values) -
+see composer.json to get the required version
+* [DataValues Interfaces](https://packagist.org/packages/data-values/interfaces) -
+see composer.json to get the required version
 
 ## Installation
 
@@ -40,3 +42,28 @@ Get the DataValues Common code, either via git, or some other means. Also get al
 You can find a list of the dependencies in the "require" section of the composer.json file.
 Load all dependencies and the load the DataValues Common library by including its entry point:
 DataValuesCommon.php.
+
+## Tests
+
+This library comes with a set up PHPUnit tests that cover all non-trivial code. You can run these
+tests using the PHPUnit configuration file found in the root directory. The tests can also be run
+via TravisCI, as a TravisCI configuration file is also provided in the root directory.
+
+## Authors
+
+DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
+(https://wikimedia.de) employees for the [Wikidata project](https://wikidata.org/).
+
+## Release notes
+
+### 0.1 (dev)
+
+Initial release with these features:
+
+* ValueFormatters\ValueFormatter interface
+* ValueParsers\ValueParser interface
+* ValueValidators\ValueValidator interface
+
+## Links
+
+* [DataValues Common on Packagist](https://packagist.org/packages/data-values/common)
