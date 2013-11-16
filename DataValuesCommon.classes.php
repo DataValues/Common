@@ -4,8 +4,6 @@ return array(
 	'ValueFormatters\ValueFormatterFactory' => 'src/ValueFormatters/ValueFormatterFactory.php',
 
 	'ValueFormatters\DecimalFormatter' => 'src/ValueFormatters/DecimalFormatter.php',
-	'ValueFormatters\GeoCoordinateFormatter' => 'src/ValueFormatters/GeoCoordinateFormatter.php',
-	'ValueFormatters\GlobeCoordinateFormatter' => 'src/ValueFormatters/GlobeCoordinateFormatter.php',
 	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',
 	'ValueFormatters\QuantityFormatter' => 'src/ValueFormatters/QuantityFormatter.php',
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
@@ -20,13 +18,6 @@ return array(
 	'ValueParsers\ApiParseValue' => 'src/ValueParsers/ApiParseValue.php',
 
 	'ValueParsers\BoolParser' => 'src/ValueParsers/BoolParser.php',
-	'ValueParsers\DdCoordinateParser' => 'src/ValueParsers/DdCoordinateParser.php',
-	'ValueParsers\DmCoordinateParser' => 'src/ValueParsers/DmCoordinateParser.php',
-	'ValueParsers\DmsCoordinateParser' => 'src/ValueParsers/DmsCoordinateParser.php',
-	'ValueParsers\FloatCoordinateParser' => 'src/ValueParsers/FloatCoordinateParser.php',
-	'ValueParsers\GeoCoordinateParser' => 'src/ValueParsers/GeoCoordinateParser.php',
-	'ValueParsers\GeoCoordinateParserBase' => 'src/ValueParsers/GeoCoordinateParserBase.php',
-	'ValueParsers\GlobeCoordinateParser' => 'src/ValueParsers/GlobeCoordinateParser.php',
 	'ValueParsers\FloatParser' => 'src/ValueParsers/FloatParser.php',
 	'ValueParsers\IntParser' => 'src/ValueParsers/IntParser.php',
 	'ValueParsers\NullParser' => 'src/ValueParsers/NullParser.php',
@@ -50,10 +41,7 @@ return array(
 
 
 
-	'DataValues\GeoCoordinateValue' => 'src/DataValues/GeoCoordinateValue.php',
-	'DataValues\GlobeCoordinateValue' => 'src/DataValues/GlobeCoordinateValue.php',
 	'DataValues\IriValue' => 'src/DataValues/IriValue.php',
-	'DataValues\LatLongValue' => 'src/DataValues/LatLongValue.php',
 	'DataValues\MonolingualTextValue' => 'src/DataValues/MonolingualTextValue.php',
 	'DataValues\MultilingualTextValue' => 'src/DataValues/MultilingualTextValue.php',
 	'DataValues\DecimalMath' => 'src/DataValues/DecimalMath.php',
