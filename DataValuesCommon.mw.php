@@ -63,10 +63,6 @@ $wgExtensionCredits['datavalues'][] = array(
 	'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',
 );
 
-if ( defined( 'MW_PHPUNIT_TEST' ) ) {
-	require_once __DIR__ . '/tests/testLoader.php';
-}
-
 // API module registration
 $wgAPIModules['parsevalue'] = 'ValueParsers\ApiParseValue';
 
