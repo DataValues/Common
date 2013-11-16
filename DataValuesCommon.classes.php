@@ -50,8 +50,6 @@ return array(
 
 
 
-	'DataValues\DataValueFactory' => 'src/DataValues/DataValueFactory.php',
-
 	'DataValues\GeoCoordinateValue' => 'src/DataValues/GeoCoordinateValue.php',
 	'DataValues\GlobeCoordinateValue' => 'src/DataValues/GlobeCoordinateValue.php',
 	'DataValues\IriValue' => 'src/DataValues/IriValue.php',
