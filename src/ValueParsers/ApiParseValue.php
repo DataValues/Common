@@ -5,15 +5,11 @@ namespace ValueParsers;
 use ApiBase;
 use DataValues\DataValue;
 use LogicException;
-use MWException;
 
 /**
  * API module for using value parsers.
  *
  * @since 0.1
- *
- * @file
- * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

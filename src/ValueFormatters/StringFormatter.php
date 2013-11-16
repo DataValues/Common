@@ -10,9 +10,6 @@ use InvalidArgumentException;
  *
  * @since 0.1
  *
- * @file
- * @ingroup ValueFormatters
- *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */

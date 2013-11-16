@@ -4,7 +4,6 @@ namespace ValueParsers\Test;
 
 use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
-use ValueParsers\GeoCoordinateParser;
 use ValueParsers\ParserOptions;
 
 /**

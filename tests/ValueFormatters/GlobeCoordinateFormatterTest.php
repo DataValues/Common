@@ -5,7 +5,6 @@ namespace ValueFormatters\Test;
 use DataValues\GlobeCoordinateValue;
 use DataValues\LatLongValue;
 use ValueFormatters\GeoCoordinateFormatter;
-use ValueFormatters\GlobeCoordinateFormatter;
 
 /**
  * @covers ValueFormatters\GlobeCoordinateFormatter

@@ -3,7 +3,6 @@
 namespace ValueParsers\Test;
 
 use DataValues\DecimalValue;
-use ValueParsers\DecimalParser;
 
 /**
  * @covers ValueParsers\DecimalParser

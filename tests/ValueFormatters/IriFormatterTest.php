@@ -3,7 +3,6 @@
 namespace ValueFormatters\Test;
 
 use DataValues\IriValue;
-use ValueFormatters\GeoCoordinateFormatter;
 
 /**
  * Unit tests for the ValueFormatters\GeoCoordinateFormatter class.

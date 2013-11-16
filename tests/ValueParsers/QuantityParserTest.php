@@ -2,10 +2,7 @@
 
 namespace ValueParsers\Test;
 
-use DataValues\DecimalValue;
 use DataValues\QuantityValue;
-use ValueParsers\QuantityParser;
-use ValueParsers\Test\StringValueParserTest;
 
 /**
  * @covers ValueParsers\QuantityParser

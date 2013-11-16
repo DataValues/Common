@@ -3,7 +3,6 @@
 namespace ValueFormatters;
 
 use DataValues\GlobeCoordinateValue;
-use DataValues\LatLongValue;
 use InvalidArgumentException;
 
 /**
@@ -16,9 +15,6 @@ use InvalidArgumentException;
  * TODO: add formatting of globe and precision
  *
  * @since 0.1
- *
- * @file
- * @ingroup ValueFormatters
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

@@ -2,15 +2,10 @@
 
 namespace ValueParsers;
 
-use DataValues\GlobeCoordinateValue;
-
 /**
  * Parser for geographical coordinates in Degree Minute Second notation.
  *
  * @since 0.1
- *
- * @file
- * @ingroup ValueParsers
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
