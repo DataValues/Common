@@ -3,7 +3,7 @@
 DataValues Common is a small library build on top of DataValues that provides common
 implementations of the DataValues, ValueParsers, ValueFormatters and ValueValidators interfaces.
 
-[![Build Status](https://secure.travis-ci.org/JeroenDeDauw/DataValuesCommon.png?branch=master)](http://travis-ci.org/JeroenDeDauw/DataValuesCommon)
+[![Build Status](https://secure.travis-ci.org/DataValues/Common.png?branch=master)](http://travis-ci.org/DataValues/Common)
 
 On [Packagist](https://packagist.org/packages/data-values/common):
 [![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
@@ -12,9 +12,9 @@ On [Packagist](https://packagist.org/packages/data-values/common):
 ## Requirements
 
 * PHP 5.3 or later
-* [DataValues](https://packagist.org/packages/data-values/data-values) -
+* [DataValues](https://github.com/DataValues/DataValues) -
 see composer.json to get the required version
-* [DataValues Interfaces](https://packagist.org/packages/data-values/interfaces) -
+* [DataValues Interfaces](https://github.com/DataValues/Interfaces) -
 see composer.json to get the required version
 
 ## Installation
