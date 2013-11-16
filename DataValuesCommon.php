@@ -76,12 +76,10 @@ $wgDataValues['string'] = 'DataValues\StringValue';
 $wgDataValues['unknown'] = 'DataValues\UnknownValue';
 
 // Defined in DataValuesCommon
-$wgDataValues['globecoordinate'] = 'DataValues\GlobeCoordinateValue';
 $wgDataValues['iri'] = 'DataValues\IriValue';
 $wgDataValues['monolingualtext'] = 'DataValues\MonolingualTextValue';
 $wgDataValues['multilingualtext'] = 'DataValues\MultilingualTextValue';
 $wgDataValues['quantity'] = 'DataValues\QuantityValue';
-$wgDataValues['time'] = 'DataValues\TimeValue';
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	call_user_func( function() {

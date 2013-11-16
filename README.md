@@ -66,14 +66,11 @@ Initial release with these features:
 	* MonolingualTextValue
 	* MultilingualTextValue
 	* QuantityValue
-	* TimeValue
 * Several ValueFormatter implementations
 	* DecimalFormatter
 	* IriFormatter
 	* QuantityFormatter
 	* StringFormatter
-	* TimeFormatter
-	* TimeIsoFormatter
 * Several ValueParser implementations
 	* BoolParser
 	* DecimalParser

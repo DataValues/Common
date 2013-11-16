@@ -7,8 +7,6 @@ return array(
 	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',
 	'ValueFormatters\QuantityFormatter' => 'src/ValueFormatters/QuantityFormatter.php',
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
-	'ValueFormatters\TimeIsoFormatter' => 'src/ValueFormatters/TimeIsoFormatter.php',
-	'ValueFormatters\TimeFormatter' => 'src/ValueFormatters/TimeFormatter.php',
 
 	'ValueFormatters\Test\ValueFormatterFactoryTest' => 'tests/ValueFormatters/ValueFormatterFactoryTest.php',
 
@@ -47,5 +45,4 @@ return array(
 	'DataValues\DecimalMath' => 'src/DataValues/DecimalMath.php',
 	'DataValues\DecimalValue' => 'src/DataValues/DecimalValue.php',
 	'DataValues\QuantityValue' => 'src/DataValues/QuantityValue.php',
-	'DataValues\TimeValue' => 'src/DataValues/TimeValue.php',
 );

@@ -21,8 +21,6 @@ global $wgValueFormatters;
  * @deprecated since 0.1 This is a global registry that provides no control over object lifecycle
  */
 $wgValueFormatters = array(
-	'globecoordinate' => 'ValueFormatters\GlobeCoordinateFormatter',
-	'time' => 'ValueFormatters\TimeFormatter',
 	'string' => 'ValueFormatters\StringFormatter',
 );
 
