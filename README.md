@@ -60,7 +60,44 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 Initial release with these features:
 
-*
+* Several DataValue implementations
+	* GeoCoordinateValue
+	* GlobeCoordinateValue
+	* IriValue
+	* LatLongValue
+	* MonolingualTextValue
+	* MultilingualTextValue
+	* QuantityValue
+	* TimeValue
+* Several ValueFormatter implementations
+	* DecimalFormatter
+	* GeoCoordinateFormatter
+	* GlobeCoordinateFormatter
+	* IriFormatter
+	* QuantityFormatter
+	* StringFormatter
+	* TimeFormatter
+	* TimeIsoFormatter
+* Several ValueParser implementations
+	* BoolParser
+	* DdCoordinateParser
+	* DecimalParser
+	* DmCoordinateParser
+	* DmsCoordinateParser
+	* FloatCoordinateParser
+	* FloatParser
+	* GeoCoordinateParser
+	* GlobeCoordinateParser
+	* IntParser
+	* NullParser
+	* QuantityParser
+* Several ValueValidator implementations
+	* DimensionValidator
+	* ListValidator
+	* NullValidator
+	* RangeValidator
+	* StringValidator
+	* TitleValidator
 
 ## Links
 

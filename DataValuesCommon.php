@@ -49,7 +49,6 @@ if ( !defined( 'DATAVALUES_INTERFACES_VERSION' ) ) {
 	throw new Exception( 'You need to have the DataValuesInterfaces library loaded in order to use DataValuesCommon' );
 }
 
-// @codeCoverageIgnoreStart
 spl_autoload_register( function ( $className ) {
 	$className = ltrim( $className, '\\' );
 
@@ -89,4 +88,3 @@ if ( defined( 'MEDIAWIKI' ) ) {
 		require_once __DIR__ . '/DataValuesCommon.mw.php';
 	} );
 }
-// @codeCoverageIgnoreEnd
