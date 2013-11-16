@@ -57,8 +57,7 @@ $wgExtensionCredits['datavalues'][] = array(
 	'version' => DATAVALUES_COMMON_VERSION,
 	'author' => array(
 		'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]',
-		'[https://www.mediawiki.org/wiki/User:Danwe Daniel Werner]',
-		'[http://www.snater.com H. Snater]',
+		'The Wikidata team',
 	),
 	'url' => 'https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon',
 	'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',

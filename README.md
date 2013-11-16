@@ -60,9 +60,7 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 Initial release with these features:
 
-* ValueFormatters\ValueFormatter interface
-* ValueParsers\ValueParser interface
-* ValueValidators\ValueValidator interface
+*
 
 ## Links
 
