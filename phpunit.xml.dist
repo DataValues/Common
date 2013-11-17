@@ -15,7 +15,6 @@
     <testsuites>
         <testsuite name="DataValuesCommon">
             <directory>tests</directory>
-            <exclude>tests/ValueParsers/api</exclude>
         </testsuite>
     </testsuites>
     <filter>

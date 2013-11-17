@@ -11,26 +11,16 @@ On [Packagist](https://packagist.org/packages/data-values/common):
 [![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
 [![Download count](https://poser.pugx.org/data-values/common/d/total.png)](https://packagist.org/packages/data-values/common)
 
-## Requirements
-
-* PHP 5.3 or later
-* [DataValues](https://github.com/DataValues/DataValues) -
-see composer.json to get the required version
-* [DataValues Interfaces](https://github.com/DataValues/Interfaces) -
-see composer.json to get the required version
-
 ## Installation
 
-You can use [Composer](http://getcomposer.org/) to download and install
-this package as well as its dependencies. Alternatively you can simply clone
-the git repository and take care of loading yourself.
+The recommended way to use this library is via [Composer](http://getcomposer.org/).
 
 ### Composer
 
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `data-values/common` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-DataValues Common 1.0:
+version 1.0 of this package:
 
     {
         "require": {
@@ -40,10 +30,9 @@ DataValues Common 1.0:
 
 ### Manual
 
-Get the DataValues Common code, either via git, or some other means. Also get all dependencies.
+Get the code of this package, either via git, or some other means. Also get all dependencies.
 You can find a list of the dependencies in the "require" section of the composer.json file.
-Load all dependencies and the load the DataValues Common library by including its entry point:
-DataValuesCommon.php.
+Then take care of autoloading the classes defined in the src directory.
 
 ## Tests
 
@@ -75,3 +64,4 @@ Initial release with these features:
 ## Links
 
 * [DataValues Common on Packagist](https://packagist.org/packages/data-values/common)
+* [DataValues Common on TravisCI](https://travis-ci.org/DataValues/Common)
