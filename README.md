@@ -6,6 +6,7 @@ implementations of the DataValues, ValueParsers, ValueFormatters and ValueValida
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
 [![Build Status](https://secure.travis-ci.org/DataValues/Common.png?branch=master)](http://travis-ci.org/DataValues/Common)
+[![Coverage Status](https://coveralls.io/repos/DataValues/Common/badge.png?branch=master)](https://coveralls.io/r/DataValues/Common?branch=master)
 
 On [Packagist](https://packagist.org/packages/data-values/common):
 [![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
