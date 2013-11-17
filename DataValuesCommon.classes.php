@@ -22,18 +22,6 @@ return array(
 	'ValueParsers\Test\ValueParserTestBase' => 'tests/ValueParsers/ValueParserTestBase.php',
 
 
-
-	'ValueValidators\ValueValidatorFactory' => 'src/ValueValidators/ValueValidatorFactory.php',
-
-	'ValueValidators\DimensionValidator' => 'src/ValueValidators/DimensionValidator.php',
-	'ValueValidators\ListValidator' => 'src/ValueValidators/ListValidator.php',
-	'ValueValidators\NullValidator' => 'src/ValueValidators/NullValidator.php',
-	'ValueValidators\RangeValidator' => 'src/ValueValidators/RangeValidator.php',
-	'ValueValidators\StringValidator' => 'src/ValueValidators/StringValidator.php',
-	'ValueValidators\TitleValidator' => 'src/ValueValidators/TitleValidator.php',
-
-
-
 	'DataValues\IriValue' => 'src/DataValues/IriValue.php',
 	'DataValues\MonolingualTextValue' => 'src/DataValues/MonolingualTextValue.php',
 	'DataValues\MultilingualTextValue' => 'src/DataValues/MultilingualTextValue.php',
