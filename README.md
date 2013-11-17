@@ -12,14 +12,6 @@ On [Packagist](https://packagist.org/packages/data-values/common):
 [![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
 [![Download count](https://poser.pugx.org/data-values/common/d/total.png)](https://packagist.org/packages/data-values/common)
 
-## Requirements
-
-* PHP 5.3 or later
-* [DataValues](https://github.com/DataValues/DataValues) -
-see composer.json to get the required version
-* [DataValues Interfaces](https://github.com/DataValues/Interfaces) -
-see composer.json to get the required version
-
 ## Installation
 
 You can use [Composer](http://getcomposer.org/) to download and install
