@@ -61,30 +61,14 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 Initial release with these features:
 
 * Several DataValue implementations
-	* IriValue
-	* LatLongValue
 	* MonolingualTextValue
 	* MultilingualTextValue
-	* QuantityValue
 * Several ValueFormatter implementations
-	* DecimalFormatter
-	* IriFormatter
-	* QuantityFormatter
 	* StringFormatter
 * Several ValueParser implementations
 	* BoolParser
 	* DecimalParser
-	* FloatParser
-	* IntParser
 	* NullParser
-	* QuantityParser
-* Several ValueValidator implementations
-	* DimensionValidator
-	* ListValidator
-	* NullValidator
-	* RangeValidator
-	* StringValidator
-	* TitleValidator
 
 ## Links
 
