@@ -3,7 +3,6 @@
 return array(
 	'ValueFormatters\ValueFormatterFactory' => 'src/ValueFormatters/ValueFormatterFactory.php',
 
-	'ValueFormatters\IriFormatter' => 'src/ValueFormatters/IriFormatter.php',
 	'ValueFormatters\QuantityFormatter' => 'src/ValueFormatters/QuantityFormatter.php',
 	'ValueFormatters\StringFormatter' => 'src/ValueFormatters/StringFormatter.php',
 
@@ -22,7 +21,6 @@ return array(
 	'ValueParsers\Test\ValueParserTestBase' => 'tests/ValueParsers/ValueParserTestBase.php',
 
 
-	'DataValues\IriValue' => 'src/DataValues/IriValue.php',
 	'DataValues\MonolingualTextValue' => 'src/DataValues/MonolingualTextValue.php',
 	'DataValues\MultilingualTextValue' => 'src/DataValues/MultilingualTextValue.php',
 );
