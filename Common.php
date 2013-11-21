@@ -15,7 +15,7 @@ if ( defined( 'DataValuesCommon_VERSION' ) ) {
 	return 1;
 }
 
-define( 'DATAVALUES_COMMON_VERSION', '0.1' );
+define( 'DATAVALUES_COMMON_VERSION', '0.1.1' );
 
 /**
  * @deprecated
@@ -31,7 +31,7 @@ if ( defined( 'MEDIAWIKI' ) ) {
 			'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]',
 			'The Wikidata team',
 		),
-		'url' => 'https://github.com/wikimedia/mediawiki-extensions-DataValuesCommon',
+		'url' => 'https://github.com/DataValues/Common',
 		'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',
 	);
 }
