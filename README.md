@@ -49,6 +49,11 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
+### 0.2 (2013-12-16)
+
+* Added FloatParser (moved from data-values/number)
+* Added IntParser (moved from data-values/number)
+
 ### 0.1.1 (2013-11-22)
 
 * Fixed link in the MediaWiki credits
