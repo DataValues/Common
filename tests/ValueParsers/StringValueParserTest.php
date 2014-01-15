@@ -7,10 +7,7 @@ use ValueParsers\StringValueParser;
 /**
  * Unit test StringValueParser class.
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions

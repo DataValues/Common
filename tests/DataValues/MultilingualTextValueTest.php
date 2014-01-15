@@ -8,10 +8,7 @@ use DataValues\MultilingualTextValue;
 /**
  * @covers DataValues\MultilingualTextValue
  *
- * @file
  * @since 0.1
- *
- * @ingroup DataValue
  *
  * @group DataValue
  * @group DataValueExtensions

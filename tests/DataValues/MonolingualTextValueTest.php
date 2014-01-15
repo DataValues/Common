@@ -7,10 +7,7 @@ use DataValues\MonolingualTextValue;
 /**
  * @covers DataValues\MonolingualTextValue
  *
- * @file
  * @since 0.1
- *
- * @ingroup DataValue
  *
  * @group DataValue
  * @group DataValueExtensions
