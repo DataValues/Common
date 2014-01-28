@@ -32,6 +32,8 @@ class StringFormatterTest extends ValueFormatterTestBase {
 			'ice cream',
 			'cake',
 			'',
+			' a ',
+			'  ',
 		);
 
 		$argLists = array();
