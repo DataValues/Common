@@ -9,10 +9,7 @@ use ValueParsers\ValueParser;
 /**
  * Base for unit tests for ValueParser implementing classes.
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions

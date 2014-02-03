@@ -8,10 +8,7 @@ use ValueParsers\ValueParser;
 /**
  * Unit test NullParser class.
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions

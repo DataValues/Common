@@ -7,10 +7,7 @@ use DataValues\BooleanValue;
 /**
  * Unit test BoolParser class.
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions

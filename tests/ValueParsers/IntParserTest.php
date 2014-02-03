@@ -7,10 +7,7 @@ use DataValues\NumberValue;
 /**
  * Unit test IntParser class.
  *
- * @file
  * @since 0.1
- *
- * @ingroup ValueParsersTest
  *
  * @group ValueParsers
  * @group DataValueExtensions
