@@ -30,7 +30,7 @@ class StringFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'DataValue is not a StringValue.' );
 		}
 
-		return $dataValue->getValue();
+		return trim( $dataValue->getValue() );
 	}
 
 }
