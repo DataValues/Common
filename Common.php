@@ -11,11 +11,11 @@
  */
 
 if ( defined( 'DataValuesCommon_VERSION' ) ) {
-	// Do not initialize more then once.
+	// Do not initialize more than once.
 	return 1;
 }
 
-define( 'DATAVALUES_COMMON_VERSION', '0.2' );
+define( 'DATAVALUES_COMMON_VERSION', '0.2.1' );
 
 /**
  * @deprecated
