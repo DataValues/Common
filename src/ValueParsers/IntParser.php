@@ -31,7 +31,7 @@ class IntParser extends StringValueParser {
 			return new NumberValue( (int)$value );
 		}
 
-		throw new ParseException( 'Not an integer' );
+		throw new LocalizableParseException( 'Not an integer', 'not-int' );
 	}
 
 }

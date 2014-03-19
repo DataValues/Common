@@ -15,7 +15,7 @@ if ( defined( 'DataValuesCommon_VERSION' ) ) {
 	return 1;
 }
 
-define( 'DATAVALUES_COMMON_VERSION', '0.2.1' );
+define( 'DATAVALUES_COMMON_VERSION', '0.2.2' );
 
 /**
  * @deprecated

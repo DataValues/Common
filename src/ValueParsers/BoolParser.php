@@ -42,7 +42,7 @@ class BoolParser extends StringValueParser {
 			return new BooleanValue( $this->values[$value] );
 		}
 
-		throw new ParseException( 'Not a boolean' );
+		throw new LocalizableParseException( 'Not a boolean', 'not-bool' );
 	}
 
 }

@@ -31,7 +31,7 @@ class FloatParser extends StringValueParser {
 			return new NumberValue( (float)$value );
 		}
 
-		throw new ParseException( 'Not a float' );
+		throw new LocalizableParseException( 'Not a float', 'not-float' );
 	}
 
 }

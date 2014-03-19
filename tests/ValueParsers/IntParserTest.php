@@ -70,7 +70,7 @@ class IntParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = array( $value, null, 'not-int' );
 		}
 
 		return $argLists;

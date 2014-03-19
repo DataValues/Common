@@ -81,7 +81,7 @@ class FloatParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = array( $value, null, 'not-float' );
 		}
 
 		return $argLists;

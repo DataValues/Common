@@ -30,7 +30,7 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = array( $value, null, 'not-string' );
 		}
 
 		return $argLists;
