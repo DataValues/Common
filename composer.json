@@ -27,6 +27,11 @@
 		"data-values/data-values": "~0.1",
 		"data-values/interfaces": "~0.1.2"
 	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.2.x-dev"
+		}
+	},
 	"autoload": {
 		"files" : [
 			"Common.php"
