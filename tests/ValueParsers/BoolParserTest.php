@@ -60,7 +60,7 @@ class BoolParserTest extends StringValueParserTest {
 		);
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = array( $value, null, 'not-bool' );
 		}
 
 		return $argLists;

@@ -51,7 +51,7 @@ abstract class StringValueParser implements ValueParser {
 			return $this->stringParse( $value );
 		}
 
-		throw new ParseException( 'Not a string' );
+		throw new LocalizableParseException( 'Not a string', 'not-string' );
 	}
 
 	/**

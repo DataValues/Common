@@ -3,6 +3,7 @@
 namespace ValueParsers\Test;
 
 use DataValues\DataValue;
+use ValueParsers\ParseException;
 use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
 
@@ -81,17 +82,25 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider invalidInputProvider
 	 * @since 0.1
+	 *
 	 * @param $value
 	 * @param ValueParser|null $parser
+	 * @param string|null $cause expected cause
 	 */
-	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
+	public function testParseWithInvalidInputs( $value, ValueParser $parser = null, $cause = null ) {
 		if ( is_null( $parser ) ) {
 			$parser = $this->getInstance();
 		}
 
-		$this->setExpectedException( 'ValueParsers\ParseException' );
-
-		$parser->parse( $value );
+		try {
+			$parser->parse( $value );
+			$this->fail( 'Failed to throw ParseException!' );
+		} catch ( ParseException $ex ) {
+			if ( $cause !== null ) {
+				$this->assertInstanceOf( 'ValueParsers\LocalizableParseException', $ex );
+				$this->assertEquals( $cause, $ex->getLocalizationCode(), 'error localization code' );
+			}
+		}
 	}
 
 	/**
