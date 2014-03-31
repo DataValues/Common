@@ -2,13 +2,15 @@
 
 namespace ValueFormatters\Exceptions;
 
+use ValueFormatters\FormattingException;
+
 /**
  * @since 0.2.1
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class DataValueMismatchException extends \InvalidArgumentException {
+class DataValueMismatchException extends FormattingException {
 
 	/**
 	 * @var string
@@ -25,8 +27,6 @@ class DataValueMismatchException extends \InvalidArgumentException {
 	 * @param string $dataValueType
 	 * @param string $message
 	 * @param \Exception $previous
-	 *
-	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( $expectedValueType, $dataValueType, $message = '',
 		\Exception $previous = null
