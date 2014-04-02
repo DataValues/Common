@@ -2,10 +2,10 @@
 
 namespace ValueFormatters\Tests\Exceptions;
 
-use ValueFormatters\Exceptions\DataValueMismatchException;
+use ValueFormatters\Exceptions\DataValueTypeMismatchException;
 
 /**
- * @covers ValueFormatters\Exceptions\DataValueMismatchException
+ * @covers ValueFormatters\Exceptions\DataValueTypeMismatchException
  *
  * @group ValueFormatters
  * @group DataValueExtensions
@@ -13,13 +13,13 @@ use ValueFormatters\Exceptions\DataValueMismatchException;
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class DataValueMismatchExceptionTest extends \PHPUnit_Framework_TestCase {
+class DataValueTypeMismatchExceptionTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider constructorProvider
 	 */
 	public function testConstructorWithRequiredArguments( $expectedType, $actualType ) {
-		$exception = new DataValueMismatchException( $expectedType, $actualType );
+		$exception = new DataValueTypeMismatchException( $expectedType, $actualType );
 
 		$this->assertEquals( $actualType, $exception->getDataValueType() );
 		$this->assertEquals( $expectedType, $exception->getExpectedValueType() );
@@ -32,11 +32,16 @@ class DataValueMismatchExceptionTest extends \PHPUnit_Framework_TestCase {
 		$message = 'Onoez! an error!';
 		$previous = new \Exception( 'Onoez!' );
 
-		$exception = new DataValueMismatchException( $expectedType, $actualType, $message, $previous );
+		$exception = new DataValueTypeMismatchException(
+			$expectedType,
+			$actualType,
+			$message,
+			$previous
+		);
 
 		$this->assertEquals( $actualType, $exception->getDataValueType() );
 		$this->assertEquals( $expectedType, $exception->getExpectedValueType() );
-		$this->assertEquals( $message, $exception->getMessage() );
+		$this->assertContains( $message, $exception->getMessage() );
 		$this->assertEquals( $previous, $exception->getPrevious() );
 	}
 
