@@ -14,6 +14,8 @@ use DataValues\BooleanValue;
  */
 class BoolParser extends StringValueParser {
 
+	const FORMAT_NAME = 'bool';
+
 	protected $values = array(
 		'yes' => true,
 		'on' => true,
@@ -36,13 +38,15 @@ class BoolParser extends StringValueParser {
 	 * @throws ParseException
 	 */
 	protected function stringParse( $value ) {
+		$rawValue = $value;
+
 		$value = strtolower( $value );
 
 		if ( array_key_exists( $value, $this->values ) ) {
 			return new BooleanValue( $this->values[$value] );
 		}
 
-		throw new ParseException( 'Not a boolean' );
+		throw new ParseException( 'Not a boolean', $rawValue, self::FORMAT_NAME );
 	}
 
 }
