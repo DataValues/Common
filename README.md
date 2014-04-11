@@ -49,7 +49,7 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
-### 0.2.2 (dev)
+### 0.2.2 (2014-04-11)
 
 * Introduce DataValueMismatchException
 
