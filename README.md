@@ -52,6 +52,10 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 ### 0.2.2 (2014-04-11)
 
 * Introduce DataValueMismatchException
+* Introduce FORMAT_NAME class constants on ValueParsers in order to use them as
+	expectedFormat
+* Change ValueParsers to pass rawValue and expectedFormat arguments when constructing
+	a ParseException
 
 ### 0.2.1 (2014-03-12)
 

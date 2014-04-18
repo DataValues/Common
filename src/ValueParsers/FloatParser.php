@@ -14,6 +14,8 @@ use DataValues\NumberValue;
  */
 class FloatParser extends StringValueParser {
 
+	const FORMAT_NAME = 'float';
+
 	/**
 	 * @see StringValueParser::stringParse
 	 *
@@ -31,7 +33,7 @@ class FloatParser extends StringValueParser {
 			return new NumberValue( (float)$value );
 		}
 
-		throw new ParseException( 'Not a float' );
+		throw new ParseException( 'Not a float', $value, self::FORMAT_NAME );
 	}
 
 }
