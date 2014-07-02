@@ -21,8 +21,6 @@ class FloatParser extends StringValueParser {
 	 *
 	 * TODO: add options for different group and decimal separators.
 	 *
-	 * @since 0.1
-	 *
 	 * @param string $value
 	 *
 	 * @return NumberValue

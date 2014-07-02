@@ -20,9 +20,7 @@ class IntParserTest extends StringValueParserTest {
 	/**
 	 * @see ValueParserTestBase::validInputProvider
 	 *
-	 * @since 0.1
-	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function validInputProvider() {
 		$argLists = array();
@@ -78,7 +76,7 @@ class IntParserTest extends StringValueParserTest {
 
 	/**
 	 * @see ValueParserTestBase::getParserClass
-	 * @since 0.1
+	 *
 	 * @return string
 	 */
 	protected function getParserClass() {

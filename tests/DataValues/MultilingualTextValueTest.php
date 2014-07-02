@@ -21,8 +21,6 @@ class MultilingualTextTest extends DataValueTest {
 	/**
 	 * @see DataValueTest::getClass
 	 *
-	 * @since 0.1
-	 *
 	 * @return string
 	 */
 	public function getClass() {
@@ -86,14 +84,7 @@ class MultilingualTextTest extends DataValueTest {
 		$actual = $texts->getTexts();
 
 		$this->assertInternalType( 'array', $actual );
-
-		/**
-		 * @var MonolingualTextValue $monolingualValue
-		 */
-		foreach ( $actual as $monolingualValue ) {
-			$this->assertInstanceOf( '\DataValues\MonolingualTextValue', $monolingualValue );
-		}
-
+		$this->assertContainsOnlyInstancesOf( '\DataValues\MonolingualTextValue', $actual );
 		$this->assertEquals( $arguments[0], array_values( $actual ) );
 	}
 

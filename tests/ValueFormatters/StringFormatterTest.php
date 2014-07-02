@@ -20,9 +20,7 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	/**
 	 * @see ValueFormatterTestBase::validProvider
 	 *
-	 * @since 0.1
-	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function validProvider() {
 		$strings = array(
@@ -44,8 +42,6 @@ class StringFormatterTest extends ValueFormatterTestBase {
 
 	/**
 	 * @see ValueFormatterTestBase::getFormatterClass
-	 *
-	 * @since 0.1
 	 *
 	 * @return string
 	 */

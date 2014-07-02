@@ -19,8 +19,6 @@ class IntParser extends StringValueParser {
 	/**
 	 * @see StringValueParser::stringParse
 	 *
-	 * @since 0.1
-	 *
 	 * @param string $value
 	 *
 	 * @return NumberValue

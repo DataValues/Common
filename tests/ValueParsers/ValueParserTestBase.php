@@ -2,6 +2,7 @@
 
 namespace ValueParsers\Test;
 
+use Comparable;
 use DataValues\DataValue;
 use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
@@ -20,25 +21,23 @@ use ValueParsers\ValueParser;
 abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * @since 0.1
 	 * @return string
 	 */
 	protected abstract function getParserClass();
 
 	/**
-	 * @since 0.1
+	 * @return array[]
 	 */
 	public abstract function validInputProvider();
 
 	/**
-	 * @since 0.1
+	 * @return array[]
 	 */
 	public function invalidInputProvider() {
 		return array();
 	}
 
 	/**
-	 * @since 0.1
 	 * @return ValueParser
 	 */
 	protected function getInstance() {
@@ -48,8 +47,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider validInputProvider
-	 * @since 0.1
-	 * @param $value
+	 * @param mixed $value
 	 * @param mixed $expected
 	 * @param ValueParser|null $parser
 	 */
@@ -61,8 +59,12 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 		$this->assertSmartEquals( $expected, $parser->parse( $value ) );
 	}
 
+	/**
+	 * @param DataValue|mixed $expected
+	 * @param DataValue|mixed $actual
+	 */
 	private function assertSmartEquals( $expected, $actual ) {
-		if ( $this->requireDataValue() || $expected instanceof \Comparable ) {
+		if ( $this->requireDataValue() || $expected instanceof Comparable ) {
 			if ( $expected instanceof DataValue && $actual instanceof DataValue ) {
 				$msg = "testing equals():\n"
 					. preg_replace( '/\s+/', ' ', print_r( $actual->toArray(), true ) ) . " should equal\n"
@@ -80,8 +82,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider invalidInputProvider
-	 * @since 0.1
-	 * @param $value
+	 * @param mixed $value
 	 * @param ValueParser|null $parser
 	 */
 	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
@@ -97,9 +98,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Returns if the result of the parsing process should be checked to be a DataValue.
 	 *
-	 * @since 0.1
-	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	protected function requireDataValue() {
 		return true;
@@ -107,8 +106,6 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns some parser options object with all required options for the parser under test set.
-	 *
-	 * @since 0.1
 	 *
 	 * @return ParserOptions
 	 */

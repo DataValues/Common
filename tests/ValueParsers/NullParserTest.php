@@ -21,9 +21,7 @@ class NullParserTest extends ValueParserTestBase {
 	/**
 	 * @see ValueParserTestBase::validInputProvider
 	 *
-	 * @since 0.1
-	 *
-	 * @return array
+	 * @return array[]
 	 */
 	public function validInputProvider() {
 		$argLists = array();
@@ -48,9 +46,6 @@ class NullParserTest extends ValueParserTestBase {
 		return $argLists;
 	}
 
-	/**
-	 * @since 0.1
-	 */
 	public function invalidInputProvider() {
 		return array( array(
 			'This sucks; this parser has no invalid inputs, so this test should be skipped.' .
@@ -69,7 +64,7 @@ class NullParserTest extends ValueParserTestBase {
 
 	/**
 	 * @see ValueParserTestBase::getParserClass
-	 * @since 0.1
+	 *
 	 * @return string
 	 */
 	protected function getParserClass() {
