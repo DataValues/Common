@@ -40,14 +40,14 @@ class MonolingualTextValue extends DataValueObject {
 	 */
 	public function __construct( $languageCode, $value ) {
 		if ( !is_string( $languageCode ) ) {
-			throw new IllegalValueException( 'Can only construct MonolingualTextValue with a string language code' );
+			throw new IllegalValueException( 'Can only construct MonolingualTextValue with a string language code.' );
 		}
 		elseif ( $languageCode === '' ) {
-			throw new IllegalValueException( 'Can only construct MonolingualTextValue with a language code of non-zero length' );
+			throw new IllegalValueException( 'Can not construct a MonolingualTextValue with an empty language code.' );
 		}
 
 		if ( !is_string( $value ) ) {
-			throw new IllegalValueException( 'Can only construct MonolingualTextValue with a string value' );
+			throw new IllegalValueException( 'Can only construct a MonolingualTextValue with a string value.' );
 		}
 
 		$this->value = $value;
