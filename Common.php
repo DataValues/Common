@@ -25,7 +25,7 @@ define( 'DataValuesCommon_VERSION', DATAVALUES_COMMON_VERSION );
 if ( defined( 'MEDIAWIKI' ) ) {
 	$GLOBALS['wgExtensionCredits']['datavalues'][] = array(
 		'path' => __DIR__,
-		'name' => 'DataValuesCommon',
+		'name' => 'DataValues Common',
 		'version' => DATAVALUES_COMMON_VERSION,
 		'author' => array(
 			'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]'
