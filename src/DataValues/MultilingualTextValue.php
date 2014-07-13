@@ -15,11 +15,15 @@ class MultilingualTextValue extends DataValueObject {
 	/**
 	 * Array with language codes pointing to their associated texts.
 	 *
+	 * @since 0.1
+	 *
 	 * @var MonolingualTextValue[]
 	 */
 	protected $texts = array();
 
 	/**
+	 * @since 0.1
+	 *
 	 * @param MonolingualTextValue[] $monolingualValues
 	 *
 	 * @throws IllegalValueException
@@ -81,6 +85,8 @@ class MultilingualTextValue extends DataValueObject {
 	/**
 	 * Returns the texts as an array of monolingual text values.
 	 *
+	 * @since 0.1
+	 *
 	 * @return MonolingualTextValue[]
 	 */
 	public function getTexts() {
@@ -119,6 +125,8 @@ class MultilingualTextValue extends DataValueObject {
 	 * Constructs a new instance of the DataValue from the provided data.
 	 * This can round-trip with
 	 * @see   getArrayValue
+	 *
+	 * @since 0.1
 	 *
 	 * @param mixed $data
 	 *

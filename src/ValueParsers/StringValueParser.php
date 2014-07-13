@@ -15,11 +15,15 @@ use RuntimeException;
 abstract class StringValueParser implements ValueParser {
 
 	/**
+	 * @since 0.1
+	 *
 	 * @var ParserOptions
 	 */
 	protected $options;
 
 	/**
+	 * @since 0.1
+	 *
 	 * @param ParserOptions|null $options
 	 */
 	public function __construct( ParserOptions $options = null ) {
@@ -51,6 +55,8 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * Parses the provided string and returns the result.
 	 *
+	 * @since 0.1
+	 *
 	 * @param string $value
 	 *
 	 * @return mixed
@@ -59,6 +65,8 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * @see ValueParser::setOptions
+	 *
+	 * @since 0.1
 	 *
 	 * @param ParserOptions $options
 	 */
@@ -69,6 +77,8 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * @see ValueParser::getOptions
 	 *
+	 * @since 0.1
+	 *
 	 * @return ParserOptions
 	 */
 	public function getOptions() {
@@ -77,6 +87,8 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * Shortcut to $this->options->getOption.
+	 *
+	 * @since 0.1
 	 *
 	 * @param string $option
 	 */
@@ -97,6 +109,8 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * Shortcut to $this->options->defaultOption.
+	 *
+	 * @since 0.1
 	 *
 	 * @param string $option
 	 * @param mixed $default

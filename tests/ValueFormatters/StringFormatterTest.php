@@ -19,8 +19,6 @@ class StringFormatterTest extends ValueFormatterTestBase {
 
 	/**
 	 * @see ValueFormatterTestBase::validProvider
-	 *
-	 * @return array[]
 	 */
 	public function validProvider() {
 		$strings = array(

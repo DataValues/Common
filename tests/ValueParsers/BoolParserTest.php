@@ -19,8 +19,6 @@ class BoolParserTest extends StringValueParserTest {
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
-	 *
-	 * @return array[]
 	 */
 	public function validInputProvider() {
 		$argLists = array();

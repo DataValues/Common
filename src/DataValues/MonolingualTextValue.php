@@ -22,11 +22,15 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * Language code.
 	 *
+	 * @since 0.1
+	 *
 	 * @var string
 	 */
 	protected $language;
 
 	/**
+	 * @since 0.1
+	 *
 	 * @param string $languageCode
 	 * @param string $value
 	 *
@@ -100,6 +104,8 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * Returns the text.
 	 *
+	 * @since 0.1
+	 *
 	 * @return string
 	 */
 	public function getText() {
@@ -108,6 +114,8 @@ class MonolingualTextValue extends DataValueObject {
 
 	/**
 	 * Returns the language code.
+	 *
+	 * @since 0.1
 	 *
 	 * @return string
 	 */
@@ -130,6 +138,8 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * Constructs a new instance of the DataValue from the provided data.
 	 * This can round-trip with @see getArrayValue
+	 *
+	 * @since 0.1
 	 *
 	 * @param string[] $data
 	 *

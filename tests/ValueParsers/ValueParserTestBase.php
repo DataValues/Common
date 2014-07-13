@@ -21,16 +21,19 @@ use ValueParsers\ValueParser;
 abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
+	 * @since 0.1
 	 * @return string
 	 */
 	protected abstract function getParserClass();
 
 	/**
+	 * @since 0.1
 	 * @return array[]
 	 */
 	public abstract function validInputProvider();
 
 	/**
+	 * @since 0.1
 	 * @return array[]
 	 */
 	public function invalidInputProvider() {
@@ -38,6 +41,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @since 0.1
 	 * @return ValueParser
 	 */
 	protected function getInstance() {
@@ -47,6 +51,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider validInputProvider
+	 * @since 0.1
 	 * @param mixed $value
 	 * @param mixed $expected
 	 * @param ValueParser|null $parser
@@ -82,6 +87,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider invalidInputProvider
+	 * @since 0.1
 	 * @param mixed $value
 	 * @param ValueParser|null $parser
 	 */
@@ -98,6 +104,8 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Returns if the result of the parsing process should be checked to be a DataValue.
 	 *
+	 * @since 0.1
+	 *
 	 * @return bool
 	 */
 	protected function requireDataValue() {
@@ -106,6 +114,8 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns some parser options object with all required options for the parser under test set.
+	 *
+	 * @since 0.1
 	 *
 	 * @return ParserOptions
 	 */
