@@ -20,10 +20,6 @@ class NullParserTest extends ValueParserTestBase {
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
-	 *
-	 * @since 0.1
-	 *
-	 * @return array
 	 */
 	public function validInputProvider() {
 		$argLists = array();
@@ -49,7 +45,7 @@ class NullParserTest extends ValueParserTestBase {
 	}
 
 	/**
-	 * @since 0.1
+	 * @see ValueParserTestBase::invalidInputProvider
 	 */
 	public function invalidInputProvider() {
 		return array( array(
@@ -69,7 +65,7 @@ class NullParserTest extends ValueParserTestBase {
 
 	/**
 	 * @see ValueParserTestBase::getParserClass
-	 * @since 0.1
+	 *
 	 * @return string
 	 */
 	protected function getParserClass() {

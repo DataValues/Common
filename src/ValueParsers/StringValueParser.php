@@ -39,8 +39,6 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * @see ValueParser::parse
 	 *
-	 * @since 0.1
-	 *
 	 * @param mixed $value
 	 *
 	 * @return mixed

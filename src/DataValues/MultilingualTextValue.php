@@ -47,8 +47,6 @@ class MultilingualTextValue extends DataValueObject {
 	/**
 	 * @see Serializable::serialize
 	 *
-	 * @since 0.1
-	 *
 	 * @return string
 	 */
 	public function serialize() {
@@ -57,8 +55,6 @@ class MultilingualTextValue extends DataValueObject {
 
 	/**
 	 * @see Serializable::unserialize
-	 *
-	 * @since 0.1
 	 *
 	 * @param string $value
 	 *
@@ -71,8 +67,6 @@ class MultilingualTextValue extends DataValueObject {
 	/**
 	 * @see DataValue::getType
 	 *
-	 * @since 0.1
-	 *
 	 * @return string
 	 */
 	public static function getType() {
@@ -81,8 +75,6 @@ class MultilingualTextValue extends DataValueObject {
 
 	/**
 	 * @see DataValue::getSortKey
-	 *
-	 * @since 0.1
 	 *
 	 * @return string|float|int
 	 */
@@ -105,8 +97,6 @@ class MultilingualTextValue extends DataValueObject {
 	 * Returns the multilingual text value
 	 * @see DataValue::getValue
 	 *
-	 * @since 0.1
-	 *
 	 * @return MultilingualTextValue
 	 */
 	public function getValue() {
@@ -115,8 +105,6 @@ class MultilingualTextValue extends DataValueObject {
 
 	/**
 	 * @see DataValue::getArrayValue
-	 *
-	 * @since 0.1
 	 *
 	 * @return mixed
 	 */
@@ -142,8 +130,8 @@ class MultilingualTextValue extends DataValueObject {
 	 *
 	 * @param mixed $data
 	 *
-	 * @throws IllegalValueException
-	 * @return MultilingualTextValue if $data is not an array.
+	 * @throws IllegalValueException if $data is not an array.
+	 * @return MultilingualTextValue
 	 */
 	public static function newFromArray( $data ) {
 		if ( !is_array( $data ) ) {

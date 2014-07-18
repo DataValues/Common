@@ -18,8 +18,6 @@ class StringFormatter extends ValueFormatterBase {
 	/**
 	 * Formats a StringValue data value
 	 *
-	 * @since 0.1
-	 *
 	 * @param mixed $dataValue value to format
 	 *
 	 * @return string
