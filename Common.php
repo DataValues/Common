@@ -32,5 +32,6 @@ if ( defined( 'MEDIAWIKI' ) ) {
 		),
 		'url' => 'https://github.com/DataValues/Common',
 		'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',
+		'license-name' => 'GPL-2.0+'
 	);
 }
