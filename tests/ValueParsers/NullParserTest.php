@@ -6,9 +6,7 @@ use DataValues\UnknownValue;
 use ValueParsers\ValueParser;
 
 /**
- * Unit test NullParser class.
- *
- * @since 0.1
+ * @covers ValueParsers\NullParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
@@ -17,6 +15,15 @@ use ValueParsers\ValueParser;
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class NullParserTest extends ValueParserTestBase {
+
+	/**
+	 * @see ValueParserTestBase::getParserClass
+	 *
+	 * @return string
+	 */
+	protected function getParserClass() {
+		return 'ValueParsers\NullParser';
+	}
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
@@ -48,28 +55,20 @@ class NullParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::invalidInputProvider
 	 */
 	public function invalidInputProvider() {
-		return array( array(
-			'This sucks; this parser has no invalid inputs, so this test should be skipped.' .
-			'Not clear how to do that in a way one does not get a "incomplete test" notice though'
-		) );
+		return array(
+			array( null )
+		);
 	}
 
 	/**
+	 * @see ValueParserTestBase::testParseWithInvalidInputs
+	 *
 	 * @dataProvider invalidInputProvider
-	 * @param $value
-	 * @param ValueParser $parser
+	 * @param mixed $value
+	 * @param ValueParser|null $parser
 	 */
 	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
-		$this->assertTrue( true );
-	}
-
-	/**
-	 * @see ValueParserTestBase::getParserClass
-	 *
-	 * @return string
-	 */
-	protected function getParserClass() {
-		return 'ValueParsers\NullParser';
+		$this->markTestSkipped( 'NullParser has no invalid inputs' );
 	}
 
 }

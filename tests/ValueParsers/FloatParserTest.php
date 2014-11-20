@@ -5,9 +5,7 @@ namespace ValueParsers\Test;
 use DataValues\NumberValue;
 
 /**
- * Unit test FloatParser class.
- *
- * @since 0.1
+ * @covers ValueParsers\FloatParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
@@ -17,6 +15,15 @@ use DataValues\NumberValue;
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class FloatParserTest extends StringValueParserTest {
+
+	/**
+	 * @see ValueParserTestBase::getParserClass
+	 *
+	 * @return string
+	 */
+	protected function getParserClass() {
+		return 'ValueParsers\FloatParser';
+	}
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
@@ -81,15 +88,6 @@ class FloatParserTest extends StringValueParserTest {
 		}
 
 		return $argLists;
-	}
-
-	/**
-	 * @see ValueParserTestBase::getParserClass
-	 *
-	 * @return string
-	 */
-	protected function getParserClass() {
-		return 'ValueParsers\FloatParser';
 	}
 
 }
