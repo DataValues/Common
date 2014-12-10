@@ -65,11 +65,9 @@ class MonolingualTextValue extends DataValueObject {
 	 * @see Serializable::unserialize
 	 *
 	 * @param string $value
-	 *
-	 * @return MonolingualTextValue
 	 */
 	public function unserialize( $value ) {
-		list ( $languageCode, $value ) = unserialize( $value );
+		list( $languageCode, $value ) = unserialize( $value );
 		$this->__construct( $languageCode, $value );
 	}
 

@@ -57,8 +57,6 @@ class MultilingualTextValue extends DataValueObject {
 	 * @see Serializable::unserialize
 	 *
 	 * @param string $value
-	 *
-	 * @return MultilingualTextValue
 	 */
 	public function unserialize( $value ) {
 		$this->__construct( unserialize( $value ) );
