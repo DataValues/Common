@@ -15,11 +15,9 @@ class MultilingualTextValue extends DataValueObject {
 	/**
 	 * Array with language codes pointing to their associated texts.
 	 *
-	 * @since 0.1
-	 *
 	 * @var MonolingualTextValue[]
 	 */
-	protected $texts = array();
+	private $texts = array();
 
 	/**
 	 * @since 0.1
@@ -34,13 +32,13 @@ class MultilingualTextValue extends DataValueObject {
 				throw new IllegalValueException( 'Can only construct MultilingualTextValue from MonolingualTextValue objects' );
 			}
 
-			$langCode = $monolingualValue->getLanguageCode();
+			$languageCode = $monolingualValue->getLanguageCode();
 
-			if ( array_key_exists( $langCode, $this->texts ) ) {
+			if ( array_key_exists( $languageCode, $this->texts ) ) {
 				throw new IllegalValueException( 'Can only add a single MonolingualTextValue per language to a MultilingualTextValue' );
 			}
 
-			$this->texts[$langCode] = $monolingualValue;
+			$this->texts[$languageCode] = $monolingualValue;
 		}
 	}
 
