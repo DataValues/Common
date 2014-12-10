@@ -38,13 +38,11 @@ class MonolingualTextTest extends DataValueTest {
 	public function invalidConstructorArgumentsProvider() {
 		$argLists = array();
 
-		$argLists[] = array( 42 );
-		$argLists[] = array( array() );
-		$argLists[] = array( false );
-		$argLists[] = array( true );
-		$argLists[] = array( null );
-		$argLists[] = array( 'foo' );
-		$argLists[] = array( 'en' );
+		$argLists[] = array( 42, null );
+		$argLists[] = array( array(), null );
+		$argLists[] = array( false, null );
+		$argLists[] = array( true, null );
+		$argLists[] = array( null, null );
 		$argLists[] = array( 'en', 42 );
 		$argLists[] = array( 'en', false );
 		$argLists[] = array( 'en', array() );

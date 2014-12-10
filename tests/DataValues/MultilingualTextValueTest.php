@@ -45,22 +45,13 @@ class MultilingualTextTest extends DataValueTest {
 	public function invalidConstructorArgumentsProvider() {
 		$argLists = array();
 
-		$argLists[] = array( 42 );
-		$argLists[] = array( false );
-		$argLists[] = array( true );
-		$argLists[] = array( null );
-		$argLists[] = array( 'foo' );
-		$argLists[] = array( 'en' );
-		$argLists[] = array( 'en', 42 );
-		$argLists[] = array( 'en', false );
-		$argLists[] = array( 'en', array() );
-		$argLists[] = array( 'en', null );
-		$argLists[] = array( '', 'foo' );
-		$argLists[] = array( 'en', 'foo' );
-		$argLists[] = array( 'en', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' );
-		$argLists[] = array( new MonolingualTextValue( 'en', 'foo' ) );
-
+		$argLists[] = array( array( 42 ) );
+		$argLists[] = array( array( false ) );
+		$argLists[] = array( array( true ) );
+		$argLists[] = array( array( null ) );
+		$argLists[] = array( array( array() ) );
 		$argLists[] = array( array( 'foo' ) );
+
 		$argLists[] = array( array( 42 => 'foo' ) );
 		$argLists[] = array( array( '' => 'foo' ) );
 		$argLists[] = array( array( 'en' => 42 ) );
