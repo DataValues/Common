@@ -22,18 +22,21 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 0.1
+	 *
 	 * @return string
 	 */
 	protected abstract function getParserClass();
 
 	/**
 	 * @since 0.1
+	 *
 	 * @return array[]
 	 */
 	public abstract function validInputProvider();
 
 	/**
 	 * @since 0.1
+	 *
 	 * @return array[]
 	 */
 	public function invalidInputProvider() {
@@ -42,6 +45,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 0.1
+	 *
 	 * @return ValueParser
 	 */
 	protected function getInstance() {
@@ -50,8 +54,9 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider validInputProvider
 	 * @since 0.1
+	 *
+	 * @dataProvider validInputProvider
 	 * @param mixed $value
 	 * @param mixed $expected
 	 * @param ValueParser|null $parser
@@ -86,8 +91,9 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider invalidInputProvider
 	 * @since 0.1
+	 *
+	 * @dataProvider invalidInputProvider
 	 * @param mixed $value
 	 * @param ValueParser|null $parser
 	 */
