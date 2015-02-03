@@ -5,9 +5,7 @@ namespace ValueFormatters\Test;
 use DataValues\StringValue;
 
 /**
- * Unit tests for the ValueFormatters\StringFormatter class.
- *
- * @since 0.1
+ * @covers ValueFormatters\StringFormatter
  *
  * @group ValueFormatters
  * @group DataValueExtensions
@@ -16,6 +14,15 @@ use DataValues\StringValue;
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class StringFormatterTest extends ValueFormatterTestBase {
+
+	/**
+	 * @see ValueFormatterTestBase::getFormatterClass
+	 *
+	 * @return string
+	 */
+	protected function getFormatterClass() {
+		return 'ValueFormatters\StringFormatter';
+	}
 
 	/**
 	 * @see ValueFormatterTestBase::validProvider
@@ -36,15 +43,6 @@ class StringFormatterTest extends ValueFormatterTestBase {
 		}
 
 		return $argLists;
-	}
-
-	/**
-	 * @see ValueFormatterTestBase::getFormatterClass
-	 *
-	 * @return string
-	 */
-	protected function getFormatterClass() {
-		return 'ValueFormatters\StringFormatter';
 	}
 
 }

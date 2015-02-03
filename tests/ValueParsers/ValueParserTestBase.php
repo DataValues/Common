@@ -39,9 +39,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	 *
 	 * @return array[]
 	 */
-	public function invalidInputProvider() {
-		return array();
-	}
+	public abstract function invalidInputProvider();
 
 	/**
 	 * @since 0.1
@@ -62,7 +60,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	 * @param ValueParser|null $parser
 	 */
 	public function testParseWithValidInputs( $value, $expected, ValueParser $parser = null ) {
-		if ( is_null( $parser ) ) {
+		if ( $parser === null ) {
 			$parser = $this->getInstance();
 		}
 
@@ -98,7 +96,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 	 * @param ValueParser|null $parser
 	 */
 	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
-		if ( is_null( $parser ) ) {
+		if ( $parser === null ) {
 			$parser = $this->getInstance();
 		}
 

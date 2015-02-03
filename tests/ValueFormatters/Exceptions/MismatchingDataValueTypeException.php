@@ -17,6 +17,8 @@ class MismatchingDataValueTypeExceptionTest extends \PHPUnit_Framework_TestCase 
 
 	/**
 	 * @dataProvider constructorProvider
+	 * @param string $expectedType
+	 * @param string $actualType
 	 */
 	public function testConstructorWithRequiredArguments( $expectedType, $actualType ) {
 		$exception = new MismatchingDataValueTypeException( $expectedType, $actualType );
@@ -27,6 +29,8 @@ class MismatchingDataValueTypeExceptionTest extends \PHPUnit_Framework_TestCase 
 
 	/**
 	 * @dataProvider constructorProvider
+	 * @param string $expectedType
+	 * @param string $actualType
 	 */
 	public function testConstructorWithAllArguments( $expectedType, $actualType ) {
 		$message = 'Onoez! an error!';

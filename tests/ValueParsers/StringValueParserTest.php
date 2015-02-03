@@ -17,23 +17,20 @@ use ValueParsers\StringValueParser;
  */
 abstract class StringValueParserTest extends ValueParserTestBase {
 
+	/**
+	 * @see ValueParserTestBase::invalidInputProvider
+	 *
+	 * @return array[]
+	 */
 	public function invalidInputProvider() {
-		$argLists = array();
-
-		$invalid = array(
-			true,
-			false,
-			null,
-			4.2,
-			array(),
-			42,
+		return array(
+			array( true ),
+			array( false ),
+			array( null ),
+			array( 4.2 ),
+			array( array() ),
+			array( 42 ),
 		);
-
-		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
-		}
-
-		return $argLists;
 	}
 
 	public function testSetAndGetOptions() {
