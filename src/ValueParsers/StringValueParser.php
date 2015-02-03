@@ -2,6 +2,7 @@
 
 namespace ValueParsers;
 
+use InvalidArgumentException;
 use RuntimeException;
 
 /**
@@ -87,6 +88,9 @@ abstract class StringValueParser implements ValueParser {
 	 * @since 0.1
 	 *
 	 * @param string $option
+	 *
+	 * @throws InvalidArgumentException
+	 * @return mixed
 	 */
 	protected final function getOption( $option ) {
 		return $this->options->getOption( $option );
