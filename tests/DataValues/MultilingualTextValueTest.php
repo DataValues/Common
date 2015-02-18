@@ -16,7 +16,7 @@ use DataValues\MultilingualTextValue;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MultilingualTextTest extends DataValueTest {
+class MultilingualTextValueTest extends DataValueTest {
 
 	/**
 	 * @see DataValueTest::getClass

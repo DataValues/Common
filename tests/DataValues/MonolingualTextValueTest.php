@@ -15,7 +15,7 @@ use DataValues\MonolingualTextValue;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MonolingualTextTest extends DataValueTest {
+class MonolingualTextValueTest extends DataValueTest {
 
 	/**
 	 * @see DataValueTest::getClass
