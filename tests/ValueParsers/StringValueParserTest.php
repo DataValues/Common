@@ -2,6 +2,7 @@
 
 namespace ValueParsers\Test;
 
+use ValueParsers\ParserOptions;
 use ValueParsers\StringValueParser;
 
 /**
@@ -34,18 +35,16 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 	}
 
 	public function testSetAndGetOptions() {
-		$options = $this->newParserOptions();
-
 		/**
 		 * @var StringValueParser $parser
 		 */
 		$parser = $this->getInstance();
 
-		$parser->setOptions( $options );
+		$parser->setOptions( new ParserOptions() );
 
-		$this->assertEquals( $options, $parser->getOptions() );
+		$this->assertEquals( new ParserOptions(), $parser->getOptions() );
 
-		$options = $this->newParserOptions();
+		$options = new ParserOptions();
 		$options->setOption( '~=[,,_,,]:3', '~=[,,_,,]:3' );
 
 		$parser->setOptions( $options );
