@@ -16,7 +16,7 @@ class BoolParser extends StringValueParser {
 
 	const FORMAT_NAME = 'bool';
 
-	protected $values = array(
+	private static $values = array(
 		'yes' => true,
 		'on' => true,
 		'1' => true,
@@ -40,8 +40,8 @@ class BoolParser extends StringValueParser {
 
 		$value = strtolower( $value );
 
-		if ( array_key_exists( $value, $this->values ) ) {
-			return new BooleanValue( $this->values[$value] );
+		if ( array_key_exists( $value, self::$values ) ) {
+			return new BooleanValue( self::$values[$value] );
 		}
 
 		throw new ParseException( 'Not a boolean', $rawValue, self::FORMAT_NAME );
