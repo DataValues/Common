@@ -3,6 +3,8 @@
 namespace ValueFormatters\Test;
 
 use DataValues\StringValue;
+use ValueFormatters\FormatterOptions;
+use ValueFormatters\StringFormatter;
 
 /**
  * @covers ValueFormatters\StringFormatter
@@ -16,12 +18,21 @@ use DataValues\StringValue;
 class StringFormatterTest extends ValueFormatterTestBase {
 
 	/**
-	 * @see ValueFormatterTestBase::getFormatterClass
-	 *
-	 * @return string
+	 * @deprecated since 0.2, just use getInstance.
 	 */
 	protected function getFormatterClass() {
-		return 'ValueFormatters\StringFormatter';
+		throw new \LogicException( 'Should not be called, use getInstance' );
+	}
+
+	/**
+	 * @see ValueFormatterTestBase::getInstance
+	 *
+	 * @param FormatterOptions|null $options
+	 *
+	 * @return StringFormatter
+	 */
+	protected function getInstance( FormatterOptions $options = null ) {
+		return new StringFormatter( $options );
 	}
 
 	/**
