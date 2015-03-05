@@ -16,12 +16,12 @@ class MismatchingDataValueTypeException extends FormattingException {
 	/**
 	 * @var string
 	 */
-	protected $expectedValueType;
+	private $expectedValueType;
 
 	/**
 	 * @var string
 	 */
-	protected $dataValueType;
+	private $dataValueType;
 
 	/**
 	 * @param string $expectedValueType
