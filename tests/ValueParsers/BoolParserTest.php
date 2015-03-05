@@ -3,6 +3,7 @@
 namespace ValueParsers\Test;
 
 use DataValues\BooleanValue;
+use ValueParsers\BoolParser;
 
 /**
  * @covers ValueParsers\BoolParser
@@ -16,12 +17,12 @@ use DataValues\BooleanValue;
 class BoolParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::getParserClass
+	 * @see ValueParserTestBase::getInstance
 	 *
-	 * @return string
+	 * @return BoolParser
 	 */
-	protected function getParserClass() {
-		return 'ValueParsers\BoolParser';
+	protected function getInstance() {
+		return new BoolParser();
 	}
 
 	/**

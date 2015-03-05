@@ -4,6 +4,8 @@ namespace ValueParsers\Test;
 
 use Comparable;
 use DataValues\DataValue;
+use LogicException;
+use PHPUnit_Framework_TestCase;
 use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
 
@@ -18,14 +20,18 @@ use ValueParsers\ValueParser;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
+abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 
 	/**
-	 * @since 0.1
+	 * @deprecated since 0.3, override the getInstance method instead.
 	 *
 	 * @return string
 	 */
-	protected abstract function getParserClass();
+	protected function getParserClass() {
+		throw new LogicException(
+			'ValueParserTestBase subclasses either need to override getParserClass or getInstance'
+		);
+	}
 
 	/**
 	 * @since 0.1
@@ -43,6 +49,7 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @since 0.1
+	 * @todo Should become abstract when getParserClass is removed.
 	 *
 	 * @return ValueParser
 	 */
@@ -101,7 +108,6 @@ abstract class ValueParserTestBase extends \PHPUnit_Framework_TestCase {
 		}
 
 		$this->setExpectedException( 'ValueParsers\ParseException' );
-
 		$parser->parse( $value );
 	}
 
