@@ -22,11 +22,11 @@ The recommended way to use this library is via [Composer](http://getcomposer.org
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `data-values/common` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-version 1.0 of this package:
+version 0.3 of this package:
 
     {
         "require": {
-            "data-values/common": "1.0.*"
+            "data-values/common": "0.3.*"
         }
     }
 
@@ -49,11 +49,15 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
-### 1.0.0 (alpha)
+### 0.3.0 (2015-08-11)
 
 * Added `DispatchingValueParser`
+* Dropped deprecated constant `DataValuesCommon_VERSION`, use `DATAVALUES_COMMON_VERSION` instead
 * Dropped `ValueParserTestBase::getParserClass`
+* Dropped `ValueParserTestBase::newParserOptions`
 * Made `ValueParserTestBase::getInstance` abstract
+* Made `ValueParserTestBase::invalidInputProvider` abstract
+* Lowered visibility of all class fields to private
 
 ### 0.2.3 (2014-10-09)
 

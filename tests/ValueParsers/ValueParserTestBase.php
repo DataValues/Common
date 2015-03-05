@@ -106,13 +106,4 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 		return true;
 	}
 
-	/**
-	 * @deprecated since 0.3, just use a new ParserOptions() object or null.
-	 *
-	 * @return ParserOptions
-	 */
-	protected function newParserOptions() {
-		return new ParserOptions();
-	}
-
 }

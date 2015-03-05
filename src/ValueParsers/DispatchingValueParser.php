@@ -8,7 +8,7 @@ use InvalidArgumentException;
  * A generic value parser that forwards parsing to a list of other value parsers and returns the
  * result of the first parse attempt that succeeded.
  *
- * @since 1.0
+ * @since 0.3
  *
  * @licence GNU GPL v2+
  * @author Thiemo Mättig
