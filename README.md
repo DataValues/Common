@@ -49,6 +49,11 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
+### 0.3.0 (alpha)
+
+* Dropped `ValueParserTestBase::getParserClass`
+* Made `ValueParserTestBase::getInstance` abstract
+
 ### 0.2.3 (2014-10-09)
 
 * Introduced `FORMAT_NAME` class constants on ValueParsers in order to use them as expectedFormat
