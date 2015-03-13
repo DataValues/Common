@@ -3,6 +3,7 @@
 namespace ValueParsers\Test;
 
 use DataValues\NumberValue;
+use ValueParsers\IntParser;
 
 /**
  * @covers ValueParsers\IntParser
@@ -16,12 +17,12 @@ use DataValues\NumberValue;
 class IntParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::getParserClass
+	 * @see ValueParserTestBase::getInstance
 	 *
-	 * @return string
+	 * @return IntParser
 	 */
-	protected function getParserClass() {
-		return 'ValueParsers\IntParser';
+	protected function getInstance() {
+		return new IntParser();
 	}
 
 	/**

@@ -3,6 +3,7 @@
 namespace ValueParsers\Test;
 
 use DataValues\UnknownValue;
+use ValueParsers\NullParser;
 use ValueParsers\ValueParser;
 
 /**
@@ -17,12 +18,12 @@ use ValueParsers\ValueParser;
 class NullParserTest extends ValueParserTestBase {
 
 	/**
-	 * @see ValueParserTestBase::getParserClass
+	 * @see ValueParserTestBase::getInstance
 	 *
-	 * @return string
+	 * @return NullParser
 	 */
-	protected function getParserClass() {
-		return 'ValueParsers\NullParser';
+	protected function getInstance() {
+		return new NullParser();
 	}
 
 	/**

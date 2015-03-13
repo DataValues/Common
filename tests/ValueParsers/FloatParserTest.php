@@ -3,6 +3,7 @@
 namespace ValueParsers\Test;
 
 use DataValues\NumberValue;
+use ValueParsers\FloatParser;
 
 /**
  * @covers ValueParsers\FloatParser
@@ -17,12 +18,12 @@ use DataValues\NumberValue;
 class FloatParserTest extends StringValueParserTest {
 
 	/**
-	 * @see ValueParserTestBase::getParserClass
+	 * @see ValueParserTestBase::getInstance
 	 *
-	 * @return string
+	 * @return FloatParser
 	 */
-	protected function getParserClass() {
-		return 'ValueParsers\FloatParser';
+	protected function getInstance() {
+		return new FloatParser();
 	}
 
 	/**
