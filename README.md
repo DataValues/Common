@@ -49,8 +49,9 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
-### 0.3.0 (alpha)
+### 1.0.0 (alpha)
 
+* Added `DispatchingValueParser`
 * Dropped `ValueParserTestBase::getParserClass`
 * Made `ValueParserTestBase::getInstance` abstract
 
