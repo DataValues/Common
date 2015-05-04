@@ -36,10 +36,10 @@
 		"files" : [
 			"Common.php"
 		],
-		"psr-0": {
-			"DataValues\\": "src",
-			"ValueFormatters\\": "src",
-			"ValueParsers\\": "src"
+		"psr-4": {
+			"DataValues\\": "src/DataValues/",
+			"ValueFormatters\\": "src/ValueFormatters/",
+			"ValueParsers\\": "src/ValueParsers/"
 		},
 		"classmap": [
 			"tests/ValueParsers"
