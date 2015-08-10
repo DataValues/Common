@@ -16,16 +16,16 @@ use InvalidArgumentException;
 class StringFormatter extends ValueFormatterBase {
 
 	/**
-	 * Formats a StringValue data value
+	 * @see ValueFormatter::format
 	 *
-	 * @param mixed $dataValue value to format
+	 * @param StringValue $dataValue
 	 *
-	 * @return string
 	 * @throws InvalidArgumentException
+	 * @return string Text
 	 */
 	public function format( $dataValue ) {
 		if ( !( $dataValue instanceof StringValue ) ) {
-			throw new InvalidArgumentException( 'DataValue is not a StringValue.' );
+			throw new InvalidArgumentException( 'Data value type mismatch. Expected a StringValue.' );
 		}
 
 		return $dataValue->getValue();
