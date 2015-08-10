@@ -2,15 +2,15 @@
 
 namespace ValueParsers;
 
-use InvalidArgumentException;
 use DataValues\StringValue;
+use InvalidArgumentException;
 use ValueParsers\Normalizers\NullStringNormalizer;
 use ValueParsers\Normalizers\StringNormalizer;
 
 /**
  * Implementation of the ValueParser interface for StringValues.
  *
- * @since 0.2.4
+ * @since 0.3
  *
  * @licence GNU GPL v2+
  * @author Daniel Kinzler
@@ -26,11 +26,7 @@ class StringParser implements ValueParser {
 	 * @param StringNormalizer $normalizer
 	 */
 	public function __construct( StringNormalizer $normalizer = null ) {
-		if ( $normalizer === null ) {
-			$normalizer = new NullStringNormalizer();
-		}
-
-		$this->normalizer = $normalizer;
+		$this->normalizer = $normalizer ?: new NullStringNormalizer();
 	}
 
 	/**
@@ -38,9 +34,8 @@ class StringParser implements ValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @return StringValue
-	 *
 	 * @throws InvalidArgumentException if $value is not a string
+	 * @return StringValue
 	 */
 	public function parse( $value ) {
 		if ( !is_string( $value ) ) {

@@ -4,14 +4,11 @@ namespace ValueParsers\Test;
 
 use DataValues\DataValue;
 use DataValues\StringValue;
+use ValueParsers\Normalizers\StringNormalizer;
 use ValueParsers\StringParser;
 
 /**
- * Unit test StringParser class.
- *
- * @covers StringParser
- *
- * @since 0.1
+ * @covers ValueParsers\StringParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
@@ -38,7 +35,7 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideParse
 	 */
-	public function testParse( $input, $normalizer, DataValue $expected ) {
+	public function testParse( $input, StringNormalizer $normalizer = null, DataValue $expected ) {
 		$parser = new StringParser( $normalizer );
 		$value = $parser->parse( $input );
 
@@ -46,7 +43,7 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $expected->toArray(), $value->toArray() );
 	}
 
-	public function provideParse_InvalidArgumentException() {
+	public function nonStringProvider() {
 		return array(
 			'null' => array( null ),
 			'array' => array( array() ),
@@ -55,12 +52,11 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @dataProvider provideParse_InvalidArgumentException
+	 * @dataProvider nonStringProvider
 	 */
-	public function testParse_InvalidArgumentException( $input ) {
-		$this->setExpectedException( 'InvalidArgumentException' );
-
+	public function testGivenNonString_parseThrowsException( $input ) {
 		$parser = new StringParser();
+		$this->setExpectedException( 'InvalidArgumentException' );
 		$parser->parse( $input );
 	}
 

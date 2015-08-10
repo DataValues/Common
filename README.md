@@ -52,6 +52,9 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 ### 0.3.0 (2015-08-11)
 
 * Added `DispatchingValueParser`
+* Added `StringNormalizer` interface
+* Added `NullStringNormalizer`
+* Added `StringParser`
 * Dropped deprecated constant `DataValuesCommon_VERSION`, use `DATAVALUES_COMMON_VERSION` instead
 * Dropped `ValueParserTestBase::getParserClass`
 * Dropped `ValueParserTestBase::newParserOptions`
