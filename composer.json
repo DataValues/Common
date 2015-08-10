@@ -44,5 +44,14 @@
 		"classmap": [
 			"tests/ValueParsers"
 		]
+	},
+	"scripts": {
+		"test": [
+			"composer validate --no-interaction",
+			"phpunit --coverage-text=/dev/null"
+		],
+		"ci": [
+			"composer test"
+		]
 	}
 }
