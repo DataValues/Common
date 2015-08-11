@@ -61,8 +61,6 @@ abstract class StringValueParser implements ValueParser {
 	protected abstract function stringParse( $value );
 
 	/**
-	 * @see ValueParser::setOptions
-	 *
 	 * @since 0.1
 	 *
 	 * @param ParserOptions $options
@@ -72,8 +70,6 @@ abstract class StringValueParser implements ValueParser {
 	}
 
 	/**
-	 * @see ValueParser::getOptions
-	 *
 	 * @since 0.1
 	 *
 	 * @return ParserOptions
@@ -98,6 +94,8 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * Shortcut to $this->options->requireOption.
+	 *
+	 * @since 0.1
 	 *
 	 * @param string $option
 	 *

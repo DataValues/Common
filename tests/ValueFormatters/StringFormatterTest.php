@@ -18,13 +18,6 @@ use ValueFormatters\StringFormatter;
 class StringFormatterTest extends ValueFormatterTestBase {
 
 	/**
-	 * @deprecated since 0.2, just use getInstance.
-	 */
-	protected function getFormatterClass() {
-		throw new \LogicException( 'Should not be called, use getInstance' );
-	}
-
-	/**
 	 * @see ValueFormatterTestBase::getInstance
 	 *
 	 * @param FormatterOptions|null $options
