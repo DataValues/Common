@@ -10,7 +10,7 @@ use ValueParsers\Normalizers\StringNormalizer;
 /**
  * Implementation of the ValueParser interface for StringValues.
  *
- * @since 0.3
+ * @since 1.0
  *
  * @licence GNU GPL v2+
  * @author Daniel Kinzler
