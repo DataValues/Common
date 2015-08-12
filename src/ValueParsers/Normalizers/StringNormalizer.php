@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Interface for string normalization.
  *
- * @since 0.3
+ * @since 1.0
  *
  * @license GPL 2+
  * @author Daniel Kinzler
