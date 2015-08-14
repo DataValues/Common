@@ -81,7 +81,7 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 * Minor code cleanup
 * Improved PHPUnit bootstrap
 
-### 0.2 (2013-12-16)
+### 0.2.0 (2013-12-16)
 
 * Added FloatParser (moved from data-values/number)
 * Added IntParser (moved from data-values/number)
@@ -90,7 +90,7 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 * Fixed link in the MediaWiki credits
 
-### 0.1 (2013-11-17)
+### 0.1.0 (2013-11-17)
 
 Initial release with these features:
 
