@@ -12,9 +12,9 @@ use ValueParsers\ValueParser;
 /**
  * @covers ValueParsers\DispatchingValueParser
  *
+ * @group DataValue
+ * @group DataValueExtensions
  * @group ValueParsers
- * @group WikibaseLib
- * @group Wikibase
  *
  * @licence GNU GPL v2+
  * @author Thiemo Mättig
