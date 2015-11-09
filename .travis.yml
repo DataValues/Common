@@ -13,3 +13,7 @@ before_script:
 
 script:
   - composer ci
+
+cache:
+  directories:
+    - $HOME/.composer/cache
