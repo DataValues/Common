@@ -2,7 +2,6 @@
 
 namespace ValueParsers\Normalizers\Test;
 
-use DataValues\DataValue;
 use DataValues\StringValue;
 use PHPUnit_Framework_TestCase;
 use ValueParsers\Normalizers\NullStringNormalizer;
