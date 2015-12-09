@@ -5,7 +5,6 @@ namespace ValueParsers\Test;
 use Comparable;
 use DataValues\DataValue;
 use PHPUnit_Framework_TestCase;
-use ValueParsers\ParserOptions;
 use ValueParsers\ValueParser;
 
 /**
