@@ -20,8 +20,6 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 
 	/**
 	 * @see ValueParserTestBase::invalidInputProvider
-	 *
-	 * @return array[]
 	 */
 	public function invalidInputProvider() {
 		return array(

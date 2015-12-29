@@ -55,6 +55,9 @@ class BoolParserTest extends StringValueParserTest {
 		return $argLists;
 	}
 
+	/**
+	 * @see StringValueParserTest::invalidInputProvider
+	 */
 	public function invalidInputProvider() {
 		$argLists = parent::invalidInputProvider();
 
