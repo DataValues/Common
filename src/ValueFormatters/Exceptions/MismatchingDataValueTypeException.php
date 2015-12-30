@@ -6,7 +6,7 @@ use Exception;
 use ValueFormatters\FormattingException;
 
 /**
- * @since 0.2.1
+ * @since 0.2.2
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
