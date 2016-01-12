@@ -10,6 +10,7 @@ use ValueFormatters\FormattingException;
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
+ * @author Thiemo Mättig
  */
 class MismatchingDataValueTypeException extends FormattingException {
 
@@ -29,14 +30,19 @@ class MismatchingDataValueTypeException extends FormattingException {
 	 * @param string $message
 	 * @param Exception|null $previous
 	 */
-	public function __construct( $expectedValueType, $dataValueType, $message = '',
+	public function __construct(
+		$expectedValueType,
+		$dataValueType,
+		$message = '',
 		Exception $previous = null
 	) {
 		$this->expectedValueType = $expectedValueType;
 		$this->dataValueType = $dataValueType;
 
-		$message = '$dataValueType "' . $dataValueType . '" does not match $expectedValueType "'
-			. $expectedValueType . '": $message';
+		if ( $message === '' ) {
+			$message = 'Data value type "' . $dataValueType . '" does not match expected "'
+				. $expectedValueType . '"';
+		}
 
 		parent::__construct( $message, 0, $previous );
 	}
