@@ -7,6 +7,7 @@ use ValueParsers\IntParser;
 
 /**
  * @covers ValueParsers\IntParser
+ * @covers ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
@@ -29,27 +30,15 @@ class IntParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = [];
-
-		$valid = [
-			'0' => 0,
-			'1' => 1,
-			'42' => 42,
-			'01' => 01,
-			'9001' => 9001,
-			'-1' => -1,
-			'-42' => -42,
+		return [
+			[ '0', new NumberValue( 0 ) ],
+			[ '1', new NumberValue( 1 ) ],
+			[ '42', new NumberValue( 42 ) ],
+			[ '01', new NumberValue( 01 ) ],
+			[ '9001', new NumberValue( 9001 ) ],
+			[ '-1', new NumberValue( -1 ) ],
+			[ '-42', new NumberValue( -42 ) ],
 		];
-
-		foreach ( $valid as $value => $expected ) {
-			// Because PHP turns them into ints using black magic
-			$value = (string)$value;
-
-			$expected = new NumberValue( $expected );
-			$argLists[] = [ $value, $expected ];
-		}
-
-		return $argLists;
 	}
 
 	/**

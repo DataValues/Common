@@ -27,35 +27,59 @@ class MonolingualTextValueTest extends DataValueTest {
 	}
 
 	public function validConstructorArgumentsProvider() {
-		$argLists = [];
-
-		$argLists[] = [ 'en', 'foo' ];
-		$argLists[] = [ 'en', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' ];
-
-		return $argLists;
+		return [
+			[ 'en', 'foo' ],
+			[ 'en', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' ],
+		];
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		$argLists = [];
+		return [
+			[ 42, null ],
+			[ [], null ],
+			[ false, null ],
+			[ true, null ],
+			[ null, null ],
+			[ 'en', 42 ],
+			[ 'en', false ],
+			[ 'en', [] ],
+			[ 'en', null ],
+			[ '', 'foo' ],
+		];
+	}
 
-		$argLists[] = [ 42, null ];
-		$argLists[] = [ [], null ];
-		$argLists[] = [ false, null ];
-		$argLists[] = [ true, null ];
-		$argLists[] = [ null, null ];
-		$argLists[] = [ 'en', 42 ];
-		$argLists[] = [ 'en', false ];
-		$argLists[] = [ 'en', [] ];
-		$argLists[] = [ 'en', null ];
-		$argLists[] = [ '', 'foo' ];
+	public function testNewFromArray() {
+		$array = [ 'text' => 'foo', 'language' => 'en' ];
+		$value = MonolingualTextValue::newFromArray( $array );
+		$this->assertSame( $array, $value->getArrayValue() );
+	}
 
-		return $argLists;
+	/**
+	 * @dataProvider invalidArrayProvider
+	 */
+	public function testNewFromArrayWithInvalidArray( array $array ) {
+		$this->setExpectedException( 'DataValues\IllegalValueException' );
+		MonolingualTextValue::newFromArray( $array );
+	}
+
+	public function invalidArrayProvider() {
+		return [
+			[ [] ],
+			[ [ null ] ],
+			[ [ '' ] ],
+			[ [ 'en', 'foo' ] ],
+			[ [ 'language' => 'en' ] ],
+			[ [ 'text' => 'foo' ] ],
+		];
+	}
+
+	public function testGetSortKey() {
+		$value = new MonolingualTextValue( 'en', 'foo' );
+		$this->assertSame( 'enfoo', $value->getSortKey() );
 	}
 
 	/**
 	 * @dataProvider instanceProvider
-	 * @param MonolingualTextValue $text
-	 * @param array $arguments
 	 */
 	public function testGetText( MonolingualTextValue $text, array $arguments ) {
 		$this->assertEquals( $arguments[1], $text->getText() );
@@ -63,8 +87,6 @@ class MonolingualTextValueTest extends DataValueTest {
 
 	/**
 	 * @dataProvider instanceProvider
-	 * @param MonolingualTextValue $text
-	 * @param array $arguments
 	 */
 	public function testGetLanguageCode( MonolingualTextValue $text, array $arguments ) {
 		$this->assertEquals( $arguments[0], $text->getLanguageCode() );
