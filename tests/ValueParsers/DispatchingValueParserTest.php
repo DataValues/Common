@@ -27,9 +27,7 @@ class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
 	 * @return ValueParser
 	 */
 	private function getParser( PHPUnit_Framework_MockObject_Matcher_Invocation $invocation ) {
-		$mock = $this->getMockBuilder( 'ValueParsers\ValueParser' )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->getMock( 'ValueParsers\ValueParser' );
 
 		$mock->expects( $invocation )
 			->method( 'parse' )
