@@ -15,12 +15,12 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * @var string
 	 */
-	private $text;
+	private $languageCode;
 
 	/**
 	 * @var string
 	 */
-	private $languageCode;
+	private $text;
 
 	/**
 	 * @since 0.1
@@ -31,19 +31,15 @@ class MonolingualTextValue extends DataValueObject {
 	 * @throws IllegalValueException
 	 */
 	public function __construct( $languageCode, $text ) {
-		if ( !is_string( $languageCode ) ) {
-			throw new IllegalValueException( 'Can only construct MonolingualTextValue with a string language code.' );
+		if ( !is_string( $languageCode ) || $languageCode === '' ) {
+			throw new IllegalValueException( '$languageCode must be a non-empty string' );
 		}
-		elseif ( $languageCode === '' ) {
-			throw new IllegalValueException( 'Can not construct a MonolingualTextValue with an empty language code.' );
-		}
-
 		if ( !is_string( $text ) ) {
-			throw new IllegalValueException( 'Can only construct a MonolingualTextValue with a string value.' );
+			throw new IllegalValueException( '$text must be a string' );
 		}
 
-		$this->text = $text;
 		$this->languageCode = $languageCode;
+		$this->text = $text;
 	}
 
 	/**
