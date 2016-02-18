@@ -83,7 +83,7 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * @see DataValue::getValue
 	 *
-	 * @return MonolingualTextValue
+	 * @return self
 	 */
 	public function getValue() {
 		return $this;
@@ -131,7 +131,7 @@ class MonolingualTextValue extends DataValueObject {
 	 *
 	 * @param string[] $data
 	 *
-	 * @return MonolingualTextValue
+	 * @return static
 	 * @throws IllegalValueException
 	 */
 	public static function newFromArray( $data ) {

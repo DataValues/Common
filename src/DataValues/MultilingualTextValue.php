@@ -93,7 +93,7 @@ class MultilingualTextValue extends DataValueObject {
 	 * Returns the multilingual text value
 	 * @see DataValue::getValue
 	 *
-	 * @return MultilingualTextValue
+	 * @return self
 	 */
 	public function getValue() {
 		return $this;
@@ -127,7 +127,7 @@ class MultilingualTextValue extends DataValueObject {
 	 * @param mixed $data
 	 *
 	 * @throws IllegalValueException if $data is not an array.
-	 * @return MultilingualTextValue
+	 * @return static
 	 */
 	public static function newFromArray( $data ) {
 		if ( !is_array( $data ) ) {
