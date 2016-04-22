@@ -16,7 +16,7 @@ use ValueParsers\ValueParser;
  * @group DataValueExtensions
  * @group ValueParsers
  *
- * @licence GNU GPL v2+
+ * @license GPL-2.0+
  * @author Thiemo Mättig
  */
 class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {

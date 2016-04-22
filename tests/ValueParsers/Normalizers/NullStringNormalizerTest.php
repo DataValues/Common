@@ -12,7 +12,7 @@ use ValueParsers\Normalizers\NullStringNormalizer;
  * @group ValueParsers
  * @group DataValueExtensions
  *
- * @licence GNU GPL v2+
+ * @license GPL-2.0+
  * @author Thiemo Mättig
  */
 class NullStringNormalizerTest extends PHPUnit_Framework_TestCase {
