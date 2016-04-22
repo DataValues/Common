@@ -33,6 +33,9 @@ class FloatParserTest extends StringValueParserTest {
 		$argLists = array();
 
 		$valid = array(
+			// Ignoring a single trailing newline is an intended PCRE feature
+			"0\n" => 0,
+
 			'0' => 0,
 			'1' => 1,
 			'42' => 42,
@@ -71,6 +74,9 @@ class FloatParserTest extends StringValueParserTest {
 		$argLists = parent::invalidInputProvider();
 
 		$invalid = array(
+			// Trimming is currently not supported
+			' 0 ',
+
 			'foo',
 			'',
 			'--1',
