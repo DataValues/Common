@@ -68,8 +68,6 @@ class MultilingualTextValueTest extends DataValueTest {
 
 	/**
 	 * @dataProvider instanceProvider
-	 * @param MultilingualTextValue $texts
-	 * @param array $arguments
 	 */
 	public function testGetTexts( MultilingualTextValue $texts, array $arguments ) {
 		$actual = $texts->getTexts();
@@ -81,8 +79,6 @@ class MultilingualTextValueTest extends DataValueTest {
 
 	/**
 	 * @dataProvider instanceProvider
-	 * @param MultilingualTextValue $texts
-	 * @param array $arguments
 	 */
 	public function testGetValue( MultilingualTextValue $texts, array $arguments ) {
 		$this->assertInstanceOf( $this->getClass(), $texts->getValue() );
