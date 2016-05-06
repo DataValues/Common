@@ -48,7 +48,7 @@
 	"scripts": {
 		"test": [
 			"composer validate --no-interaction",
-			"phpunit --coverage-php /dev/null"
+			"phpunit"
 		],
 		"ci": [
 			"composer test"
