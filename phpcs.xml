@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="DataValuesCommon">
+	<!-- See https://github.com/wikimedia/mediawiki-tools-codesniffer/blob/master/MediaWiki/ruleset.xml -->
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="Generic.Arrays.DisallowLongArraySyntax" />
+		<exclude name="PSR2.Methods.MethodDeclaration" />
+	</rule>
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="124" />
+		</properties>
+	</rule>
+
+	<arg name="extensions" value="php" />
+</ruleset>

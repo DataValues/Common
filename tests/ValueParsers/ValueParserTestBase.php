@@ -72,8 +72,7 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 			}
 
 			$this->assertTrue( $expected->equals( $actual ), $msg );
-		}
-		else {
+		} else {
 			$this->assertEquals( $expected, $actual );
 		}
 	}
