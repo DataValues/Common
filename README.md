@@ -17,8 +17,6 @@ On [Packagist](https://packagist.org/packages/data-values/common):
 
 The recommended way to use this library is via [Composer](http://getcomposer.org/).
 
-### Composer
-
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `data-values/common` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
@@ -30,17 +28,25 @@ version 0.3 of this package:
         }
     }
 
-### Manual
-
-Get the code of this package, either via git, or some other means. Also get all dependencies.
-You can find a list of the dependencies in the "require" section of the composer.json file.
-Then take care of autoloading the classes defined in the src directory.
-
 ## Tests
 
 This library comes with a set up PHPUnit tests that cover all non-trivial code. You can run these
 tests using the PHPUnit configuration file found in the root directory. The tests can also be run
 via TravisCI, as a TravisCI configuration file is also provided in the root directory.
+
+### Running the tests
+
+For tests only
+
+    composer test
+
+For style checks only
+
+	composer cs
+
+For a full CI run
+
+	composer ci
 
 ## Authors
 

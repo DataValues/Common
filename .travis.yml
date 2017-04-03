@@ -6,13 +6,20 @@ php:
   - 5.5
   - 5.6
   - 7
+  - 7.1
   - hhvm
 
-before_script:
-  - travis_retry composer install --prefer-source
+sudo: false
 
-script:
-  - composer ci
+install: travis_retry composer install
+
+script: composer ci
+
+after_success:
+  - if [[ "`phpenv version-name`" != "7.1" ]]; then exit 0; fi
+  - vendor/bin/phpunit --coverage-clover coverage.clover
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 cache:
   directories:
