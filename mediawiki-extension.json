@@ -1,0 +1,13 @@
+{
+	"name": "DataValues Common",
+	"version": "0.3.1",
+	"author": [
+		"[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]"
+	],
+	"url": "https://github.com/DataValues/Common",
+	"description": "Contains common implementations of the interfaces defined by DataValuesInterfaces",
+	"license-name": "GPL-2.0+",
+	"type": "datavalues",
+	"load_composer_autoloader": true,
+	"manifest_version": 1
+}
