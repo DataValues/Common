@@ -90,8 +90,6 @@ class MonolingualTextValue extends DataValueObject {
 	}
 
 	/**
-	 * Returns the text.
-	 *
 	 * @since 0.1
 	 *
 	 * @return string
@@ -101,8 +99,6 @@ class MonolingualTextValue extends DataValueObject {
 	}
 
 	/**
-	 * Returns the language code.
-	 *
 	 * @since 0.1
 	 *
 	 * @return string
