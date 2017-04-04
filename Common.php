@@ -17,16 +17,6 @@ if ( defined( 'DATAVALUES_COMMON_VERSION' ) ) {
 
 define( 'DATAVALUES_COMMON_VERSION', '0.3.1' );
 
-if ( defined( 'MEDIAWIKI' ) ) {
-	$GLOBALS['wgExtensionCredits']['datavalues'][] = array(
-		'path' => __DIR__,
-		'name' => 'DataValues Common',
-		'version' => DATAVALUES_COMMON_VERSION,
-		'author' => array(
-			'[https://www.mediawiki.org/wiki/User:Jeroen_De_Dauw Jeroen De Dauw]'
-		),
-		'url' => 'https://github.com/DataValues/Common',
-		'description' => 'Contains common implementations of the interfaces defined by DataValuesInterfaces',
-		'license-name' => 'GPL-2.0+'
-	);
+if ( defined( 'MEDIAWIKI' ) && function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'DataValuesCommon', __DIR__ . '/mediawiki-extension.json' );
 }
