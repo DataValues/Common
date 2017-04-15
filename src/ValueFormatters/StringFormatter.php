@@ -28,7 +28,7 @@ class StringFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'Data value type mismatch. Expected a StringValue.' );
 		}
 
-		return $dataValue->getValue();
+		return trim( $dataValue->getValue() );
 	}
 
 }

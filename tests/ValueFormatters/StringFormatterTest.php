@@ -40,17 +40,20 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 */
 	public function validProvider() {
 		$strings = array(
-			'ice cream',
-			'cake',
-			'',
-			' a ',
-			'  ',
+			'ice cream' => 'ice cream',
+			'cake' => 'cake',
+			'' => '',
+			' a ' => 'a',
+			' a' => 'a',
+			'a ' => 'a',
+			'         ' => '',
+			' ' => '',
 		);
 
 		$argLists = array();
 
-		foreach ( $strings as $string ) {
-			$argLists[] = array( new StringValue( $string ), $string );
+		foreach ( $strings as $value => $expected ) {
+			$argLists[] = array( new StringValue( $value ), $expected );
 		}
 
 		return $argLists;
