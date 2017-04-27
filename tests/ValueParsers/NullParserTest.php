@@ -30,23 +30,23 @@ class NullParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$values = array(
+		$values = [
 			'42',
 			42,
 			false,
-			array(),
+			[],
 			'ohi there!',
 			null,
 			4.2,
-		);
+		];
 
 		foreach ( $values as $value ) {
-			$argLists[] = array(
+			$argLists[] = [
 				$value,
 				new UnknownValue( $value )
-			);
+			];
 		}
 
 		return $argLists;
@@ -56,9 +56,9 @@ class NullParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::invalidInputProvider
 	 */
 	public function invalidInputProvider() {
-		return array(
-			array( null )
-		);
+		return [
+			[ null ]
+		];
 	}
 
 	/**

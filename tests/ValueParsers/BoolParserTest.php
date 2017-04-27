@@ -29,9 +29,9 @@ class BoolParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$valid = array(
+		$valid = [
 			'yes' => true,
 			'on' => true,
 			'1' => true,
@@ -45,11 +45,11 @@ class BoolParserTest extends StringValueParserTest {
 			'ON' => true,
 			'No' => false,
 			'OfF' => false,
-		);
+		];
 
 		foreach ( $valid as $value => $expected ) {
 			$expected = new BooleanValue( $expected );
-			$argLists[] = array( (string)$value, $expected );
+			$argLists[] = [ (string)$value, $expected ];
 		}
 
 		return $argLists;
@@ -61,13 +61,13 @@ class BoolParserTest extends StringValueParserTest {
 	public function invalidInputProvider() {
 		$argLists = parent::invalidInputProvider();
 
-		$invalid = array(
+		$invalid = [
 			'foo',
 			'2',
-		);
+		];
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = [ $value ];
 		}
 
 		return $argLists;

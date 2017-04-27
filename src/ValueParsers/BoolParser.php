@@ -16,7 +16,7 @@ class BoolParser extends StringValueParser {
 
 	const FORMAT_NAME = 'bool';
 
-	private static $values = array(
+	private static $values = [
 		'yes' => true,
 		'on' => true,
 		'1' => true,
@@ -25,7 +25,7 @@ class BoolParser extends StringValueParser {
 		'off' => false,
 		'0' => false,
 		'false' => false,
-	);
+	];
 
 	/**
 	 * @see StringValueParser::stringParse

@@ -17,7 +17,7 @@ class MultilingualTextValue extends DataValueObject {
 	 *
 	 * @var MonolingualTextValue[]
 	 */
-	private $texts = array();
+	private $texts = [];
 
 	/**
 	 * @since 0.1
@@ -105,7 +105,7 @@ class MultilingualTextValue extends DataValueObject {
 	 * @return mixed
 	 */
 	public function getArrayValue() {
-		$values = array();
+		$values = [];
 
 		/**
 		 * @var MonolingualTextValue $text
@@ -134,7 +134,7 @@ class MultilingualTextValue extends DataValueObject {
 			throw new IllegalValueException( "array expected" );
 		}
 
-		$values = array();
+		$values = [];
 
 		foreach ( $data as $monolingualValue ) {
 			$values[] = MonolingualTextValue::newFromArray( $monolingualValue );

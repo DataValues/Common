@@ -22,14 +22,14 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::invalidInputProvider
 	 */
 	public function invalidInputProvider() {
-		return array(
-			array( true ),
-			array( false ),
-			array( null ),
-			array( 4.2 ),
-			array( array() ),
-			array( 42 ),
-		);
+		return [
+			[ true ],
+			[ false ],
+			[ null ],
+			[ 4.2 ],
+			[ [] ],
+			[ 42 ],
+		];
 	}
 
 	public function testSetAndGetOptions() {

@@ -28,40 +28,40 @@ class MultilingualTextValueTest extends DataValueTest {
 	}
 
 	public function validConstructorArgumentsProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$argLists[] = array( array() );
-		$argLists[] = array( array( new MonolingualTextValue( 'en', 'foo' ) ) );
-		$argLists[] = array( array( new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'foo' ) ) );
-		$argLists[] = array( array( new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'bar' ) ) );
-		$argLists[] = array( array(
+		$argLists[] = [ [] ];
+		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ) ] ];
+		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'foo' ) ] ];
+		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'bar' ) ] ];
+		$argLists[] = [ [
 			new MonolingualTextValue( 'en', 'foo' ),
 			new MonolingualTextValue( 'de', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' )
-		) );
+		] ];
 
 		return $argLists;
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$argLists[] = array( array( 42 ) );
-		$argLists[] = array( array( false ) );
-		$argLists[] = array( array( true ) );
-		$argLists[] = array( array( null ) );
-		$argLists[] = array( array( array() ) );
-		$argLists[] = array( array( 'foo' ) );
+		$argLists[] = [ [ 42 ] ];
+		$argLists[] = [ [ false ] ];
+		$argLists[] = [ [ true ] ];
+		$argLists[] = [ [ null ] ];
+		$argLists[] = [ [ [] ] ];
+		$argLists[] = [ [ 'foo' ] ];
 
-		$argLists[] = array( array( 42 => 'foo' ) );
-		$argLists[] = array( array( '' => 'foo' ) );
-		$argLists[] = array( array( 'en' => 42 ) );
-		$argLists[] = array( array( 'en' => null ) );
-		$argLists[] = array( array( 'en' => true ) );
-		$argLists[] = array( array( 'en' => array() ) );
-		$argLists[] = array( array( 'en' => 4.2 ) );
+		$argLists[] = [ [ 42 => 'foo' ] ];
+		$argLists[] = [ [ '' => 'foo' ] ];
+		$argLists[] = [ [ 'en' => 42 ] ];
+		$argLists[] = [ [ 'en' => null ] ];
+		$argLists[] = [ [ 'en' => true ] ];
+		$argLists[] = [ [ 'en' => [] ] ];
+		$argLists[] = [ [ 'en' => 4.2 ] ];
 
-		$argLists[] = array( array( new MonolingualTextValue( 'en', 'foo' ), false ) );
-		$argLists[] = array( array( new MonolingualTextValue( 'en', 'foo' ), 'foobar' ) );
+		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), false ] ];
+		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), 'foobar' ] ];
 
 		return $argLists;
 	}

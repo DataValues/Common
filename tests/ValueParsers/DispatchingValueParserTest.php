@@ -50,23 +50,23 @@ class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		$parsers = array(
+		$parsers = [
 			$this->getParser( $this->never() ),
-		);
+		];
 
-		return array(
-			array( array(), 'format' ),
-			array( $parsers, null ),
-			array( $parsers, '' ),
-		);
+		return [
+			[ [], 'format' ],
+			[ $parsers, null ],
+			[ $parsers, '' ],
+		];
 	}
 
 	public function testParse() {
 		$parser = new DispatchingValueParser(
-			array(
+			[
 				$this->getParser( $this->once() ),
 				$this->getParser( $this->never() ),
-			),
+			],
 			'format'
 		);
 
@@ -75,9 +75,9 @@ class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
 
 	public function testParseThrowsException() {
 		$parser = new DispatchingValueParser(
-			array(
+			[
 				$this->getParser( $this->once() ),
-			),
+			],
 			'format'
 		);
 

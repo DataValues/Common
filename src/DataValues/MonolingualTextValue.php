@@ -48,7 +48,7 @@ class MonolingualTextValue extends DataValueObject {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( array( $this->languageCode, $this->text ) );
+		return serialize( [ $this->languageCode, $this->text ] );
 	}
 
 	/**
@@ -113,10 +113,10 @@ class MonolingualTextValue extends DataValueObject {
 	 * @return string[]
 	 */
 	public function getArrayValue() {
-		return array(
+		return [
 			'text' => $this->text,
 			'language' => $this->languageCode,
-		);
+		];
 	}
 
 	/**
@@ -131,7 +131,7 @@ class MonolingualTextValue extends DataValueObject {
 	 * @throws IllegalValueException
 	 */
 	public static function newFromArray( array $data ) {
-		self::requireArrayFields( $data, array( 'language', 'text' ) );
+		self::requireArrayFields( $data, [ 'language', 'text' ] );
 
 		return new static( $data['language'], $data['text'] );
 	}
