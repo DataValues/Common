@@ -26,10 +26,10 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 				return strtolower( trim( $value ) );
 			} ) );
 
-		return array(
-			'simple' => array( 'hello world', null, new StringValue( 'hello world' ) ),
-			'normalize' => array( '  Hello World  ', $normalizer, new StringValue( 'hello world' ) ),
-		);
+		return [
+			'simple' => [ 'hello world', null, new StringValue( 'hello world' ) ],
+			'normalize' => [ '  Hello World  ', $normalizer, new StringValue( 'hello world' ) ],
+		];
 	}
 
 	/**
@@ -44,11 +44,11 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function nonStringProvider() {
-		return array(
-			'null' => array( null ),
-			'array' => array( array() ),
-			'int' => array( 7 ),
-		);
+		return [
+			'null' => [ null ],
+			'array' => [ [] ],
+			'int' => [ 7 ],
+		];
 	}
 
 	/**

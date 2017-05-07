@@ -54,10 +54,10 @@ class MismatchingDataValueTypeExceptionTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function constructorProvider() {
-		return array(
-			array( 'string', 'time' ),
-			array( 'globecoordinate', 'string' )
-		);
+		return [
+			[ 'string', 'time' ],
+			[ 'globecoordinate', 'string' ]
+		];
 	}
 
 }

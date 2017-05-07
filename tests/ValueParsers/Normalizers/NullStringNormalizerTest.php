@@ -26,11 +26,11 @@ class NullStringNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function stringProvider() {
-		return array(
-			array( '' ),
-			array( 'a' ),
-			array( ' a ' ),
-		);
+		return [
+			[ '' ],
+			[ 'a' ],
+			[ ' a ' ],
+		];
 	}
 
 	/**
@@ -43,12 +43,12 @@ class NullStringNormalizerTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function invalidValueProvider() {
-		return array(
-			array( null ),
-			array( true ),
-			array( 1 ),
-			array( new StringValue( '' ) ),
-		);
+		return [
+			[ null ],
+			[ true ],
+			[ 1 ],
+			[ new StringValue( '' ) ],
+		];
 	}
 
 }

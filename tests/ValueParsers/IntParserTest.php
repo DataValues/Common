@@ -29,9 +29,9 @@ class IntParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$valid = array(
+		$valid = [
 			'0' => 0,
 			'1' => 1,
 			'42' => 42,
@@ -39,14 +39,14 @@ class IntParserTest extends StringValueParserTest {
 			'9001' => 9001,
 			'-1' => -1,
 			'-42' => -42,
-		);
+		];
 
 		foreach ( $valid as $value => $expected ) {
 			// Because PHP turns them into ints using black magic
 			$value = (string)$value;
 
 			$expected = new NumberValue( $expected );
-			$argLists[] = array( $value, $expected );
+			$argLists[] = [ $value, $expected ];
 		}
 
 		return $argLists;
@@ -58,7 +58,7 @@ class IntParserTest extends StringValueParserTest {
 	public function invalidInputProvider() {
 		$argLists = parent::invalidInputProvider();
 
-		$invalid = array(
+		$invalid = [
 			'foo',
 			'4.2',
 			'',
@@ -74,10 +74,10 @@ class IntParserTest extends StringValueParserTest {
 			'1+1',
 			'1-1',
 			'1.2.3',
-		);
+		];
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = [ $value ];
 		}
 
 		return $argLists;

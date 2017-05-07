@@ -39,18 +39,18 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 * @see ValueFormatterTestBase::validProvider
 	 */
 	public function validProvider() {
-		$strings = array(
+		$strings = [
 			'ice cream',
 			'cake',
 			'',
 			' a ',
 			'  ',
-		);
+		];
 
-		$argLists = array();
+		$argLists = [];
 
 		foreach ( $strings as $string ) {
-			$argLists[] = array( new StringValue( $string ), $string );
+			$argLists[] = [ new StringValue( $string ), $string ];
 		}
 
 		return $argLists;

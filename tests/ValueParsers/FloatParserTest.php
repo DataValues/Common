@@ -29,9 +29,9 @@ class FloatParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$valid = array(
+		$valid = [
 			// Ignoring a single trailing newline is an intended PCRE feature
 			"0\n" => 0,
 
@@ -50,7 +50,7 @@ class FloatParserTest extends StringValueParserTest {
 			'90.01' => 90.01,
 			'-1.0' => -1,
 			'-4.2' => -4.2,
-		);
+		];
 
 		foreach ( $valid as $value => $expected ) {
 			// Because PHP turns them into ints/floats using black magic
@@ -60,7 +60,7 @@ class FloatParserTest extends StringValueParserTest {
 			$expected = (float)$expected;
 
 			$expected = new NumberValue( $expected );
-			$argLists[] = array( $value, $expected );
+			$argLists[] = [ $value, $expected ];
 		}
 
 		return $argLists;
@@ -72,7 +72,7 @@ class FloatParserTest extends StringValueParserTest {
 	public function invalidInputProvider() {
 		$argLists = parent::invalidInputProvider();
 
-		$invalid = array(
+		$invalid = [
 			// Trimming is currently not supported
 			' 0 ',
 
@@ -90,10 +90,10 @@ class FloatParserTest extends StringValueParserTest {
 			'1+1',
 			'1-1',
 			'1.2.3',
-		);
+		];
 
 		foreach ( $invalid as $value ) {
-			$argLists[] = array( $value );
+			$argLists[] = [ $value ];
 		}
 
 		return $argLists;

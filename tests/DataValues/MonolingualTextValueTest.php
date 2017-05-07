@@ -27,27 +27,27 @@ class MonolingualTextValueTest extends DataValueTest {
 	}
 
 	public function validConstructorArgumentsProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$argLists[] = array( 'en', 'foo' );
-		$argLists[] = array( 'en', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' );
+		$argLists[] = [ 'en', 'foo' ];
+		$argLists[] = [ 'en', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' ];
 
 		return $argLists;
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		$argLists = array();
+		$argLists = [];
 
-		$argLists[] = array( 42, null );
-		$argLists[] = array( array(), null );
-		$argLists[] = array( false, null );
-		$argLists[] = array( true, null );
-		$argLists[] = array( null, null );
-		$argLists[] = array( 'en', 42 );
-		$argLists[] = array( 'en', false );
-		$argLists[] = array( 'en', array() );
-		$argLists[] = array( 'en', null );
-		$argLists[] = array( '', 'foo' );
+		$argLists[] = [ 42, null ];
+		$argLists[] = [ [], null ];
+		$argLists[] = [ false, null ];
+		$argLists[] = [ true, null ];
+		$argLists[] = [ null, null ];
+		$argLists[] = [ 'en', 42 ];
+		$argLists[] = [ 'en', false ];
+		$argLists[] = [ 'en', [] ];
+		$argLists[] = [ 'en', null ];
+		$argLists[] = [ '', 'foo' ];
 
 		return $argLists;
 	}
