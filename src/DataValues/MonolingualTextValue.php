@@ -127,7 +127,7 @@ class MonolingualTextValue extends DataValueObject {
 	 *
 	 * @param string[] $data
 	 *
-	 * @return static
+	 * @return self
 	 * @throws IllegalValueException
 	 */
 	public static function newFromArray( array $data ) {

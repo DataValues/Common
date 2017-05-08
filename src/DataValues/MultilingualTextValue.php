@@ -124,19 +124,19 @@ class MultilingualTextValue extends DataValueObject {
 	 *
 	 * @since 0.1
 	 *
-	 * @param mixed $data
+	 * @param array[] $data
 	 *
-	 * @throws IllegalValueException if $data is not an array.
-	 * @return static
+	 * @throws IllegalValueException if $data is not an array of arrays.
+	 * @return self
 	 */
-	public static function newFromArray( $data ) {
-		if ( !is_array( $data ) ) {
-			throw new IllegalValueException( "array expected" );
-		}
-
+	public static function newFromArray( array $data ) {
 		$values = [];
 
 		foreach ( $data as $monolingualValue ) {
+			if ( !is_array( $monolingualValue ) ) {
+				throw new IllegalValueException( '$data must be an array of arrays' );
+			}
+
 			$values[] = MonolingualTextValue::newFromArray( $monolingualValue );
 		}
 
