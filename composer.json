@@ -31,7 +31,7 @@
 		"phpunit/phpunit": "~4.8",
 		"ockcyp/covers-validator": "~0.4",
 		"squizlabs/php_codesniffer": "~2.5",
-		"mediawiki/mediawiki-codesniffer": "~0.5"
+		"mediawiki/mediawiki-codesniffer": "0.7.2"
 	},
 	"extra": {
 		"branch-alias": {
@@ -53,12 +53,12 @@
 	},
 	"scripts": {
 		"cs": [
-			"vendor/bin/phpcs src/* tests/* --standard=phpcs.xml -sp"
+			"phpcs src/* tests/* --standard=phpcs.xml -sp"
 		],
 		"test": [
-			"composer validate --no-interaction",
-			"vendor/bin/covers-validator",
-			"vendor/bin/phpunit"
+			"@validate --no-interaction",
+			"covers-validator",
+			"phpunit"
 		],
 		"ci": [
 			"@test",
