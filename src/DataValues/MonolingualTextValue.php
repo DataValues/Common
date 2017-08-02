@@ -81,7 +81,7 @@ class MonolingualTextValue extends DataValueObject {
 	/**
 	 * @see DataValue::getValue
 	 *
-	 * @return self
+	 * @return $this
 	 */
 	public function getValue() {
 		return $this;
@@ -127,7 +127,7 @@ class MonolingualTextValue extends DataValueObject {
 	 *
 	 * @throws IllegalValueException if $data is not in the expected format. Subclasses of
 	 *  InvalidArgumentException are expected and properly handled by @see DataValueDeserializer.
-	 * @return self
+	 * @return static
 	 */
 	public static function newFromArray( $data ) {
 		self::requireArrayFields( $data, [ 'language', 'text' ] );
