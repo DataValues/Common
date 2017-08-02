@@ -20,11 +20,11 @@ The recommended way to use this library is via [Composer](http://getcomposer.org
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `data-values/common` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-version 0.3 of this package:
+version 1.0 of this package:
 
     {
         "require": {
-            "data-values/common": "0.3.*"
+            "data-values/common": "^1.0.0"
         }
     }
 
@@ -55,13 +55,21 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
 
-### 0.4.0 (2017-08-09)
+### 1.0.0 (dev)
 
 * Deprecated `newFromArray` in `MonolingualTextValue` and `MultilingualTextValue`.
 * Changed `MismatchingDataValueTypeException` not amending custom messages any more.
-* Updated inline documentation throughout the code.
-* Updated the MediaWiki entry point to use the extension.json format.
+* Dropped backwards compatibility with DataValues Interfaces 0.1.
 * Updated minimal required PHP version from 5.3 to 5.5.9.
+* Updated inline documentation throughout the code.
+
+### 0.4.1 (2017-08-09)
+
+* Fixed version number not updated before.
+
+### 0.4.0 (2017-08-09)
+
+* Removed MediaWiki integration
 
 ### 0.3.1 (2015-08-14)
 

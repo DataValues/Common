@@ -58,7 +58,7 @@ abstract class StringValueParser implements ValueParser {
 	 *
 	 * @return mixed
 	 */
-	protected abstract function stringParse( $value );
+	abstract protected function stringParse( $value );
 
 	/**
 	 * @since 0.1
@@ -88,7 +88,7 @@ abstract class StringValueParser implements ValueParser {
 	 * @throws InvalidArgumentException
 	 * @return mixed
 	 */
-	protected final function getOption( $option ) {
+	final protected function getOption( $option ) {
 		return $this->options->getOption( $option );
 	}
 
@@ -101,7 +101,7 @@ abstract class StringValueParser implements ValueParser {
 	 *
 	 * @throws RuntimeException
 	 */
-	protected final function requireOption( $option ) {
+	final protected function requireOption( $option ) {
 		$this->options->requireOption( $option );
 	}
 
@@ -113,7 +113,7 @@ abstract class StringValueParser implements ValueParser {
 	 * @param string $option
 	 * @param mixed $default
 	 */
-	protected final function defaultOption( $option, $default ) {
+	final protected function defaultOption( $option, $default ) {
 		$this->options->defaultOption( $option, $default );
 	}
 
