@@ -55,6 +55,11 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
 
+### 1.0.0 (dev)
+
+* Removed `MonolingualTextValue` and `MultilingualTextValue` (moved to the DataValues Text
+  component).
+
 ### 0.3.1 (2015-08-14)
 
 * The component can now be installed together with DataValues Interfaces 0.1.5
