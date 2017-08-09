@@ -16,7 +16,3 @@ if ( defined( 'DATAVALUES_COMMON_VERSION' ) ) {
 }
 
 define( 'DATAVALUES_COMMON_VERSION', '0.3.1' );
-
-if ( defined( 'MEDIAWIKI' ) && function_exists( 'wfLoadExtension' ) ) {
-	wfLoadExtension( 'DataValuesCommon', __DIR__ . '/mediawiki-extension.json' );
-}
