@@ -55,6 +55,14 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
 
+### 0.4.0 (2017-08-09)
+
+* Deprecated `newFromArray` in `MonolingualTextValue` and `MultilingualTextValue`.
+* Changed `MismatchingDataValueTypeException` not amending custom messages any more.
+* Updated inline documentation throughout the code.
+* Updated the MediaWiki entry point to use the extension.json format.
+* Updated minimal required PHP version from 5.3 to 5.5.9.
+
 ### 0.3.1 (2015-08-14)
 
 * The component can now be installed together with DataValues Interfaces 0.1.5
