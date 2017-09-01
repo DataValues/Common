@@ -55,6 +55,11 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
 
+### 0.5.0 (dev)
+
+#### Breaking changes
+* The `StringFormatter` constructor does not accept options any more.
+
 ### 0.4.0 (2017-08-09)
 
 * Deprecated `newFromArray` in `MonolingualTextValue` and `MultilingualTextValue`.
