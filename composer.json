@@ -55,7 +55,7 @@
 			"phpcs src/* tests/* --standard=phpcs.xml -sp"
 		],
 		"test": [
-			"@validate --no-interaction",
+			"composer validate --no-interaction",
 			"covers-validator",
 			"phpunit"
 		],
