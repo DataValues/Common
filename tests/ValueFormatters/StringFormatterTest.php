@@ -3,6 +3,7 @@
 namespace ValueFormatters\Test;
 
 use DataValues\StringValue;
+use InvalidArgumentException;
 use ValueFormatters\FormatterOptions;
 use ValueFormatters\StringFormatter;
 
@@ -46,7 +47,7 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 */
 	public function testInvalidFormat( $value ) {
 		$formatter = new StringFormatter();
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( InvalidArgumentException::class );
 		$formatter->format( $value );
 	}
 

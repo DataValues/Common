@@ -2,6 +2,7 @@
 
 namespace DataValues\Tests;
 
+use DataValues\IllegalValueException;
 use DataValues\MonolingualTextValue;
 use DataValues\MultilingualTextValue;
 
@@ -24,7 +25,7 @@ class MultilingualTextValueTest extends DataValueTest {
 	 * @return string
 	 */
 	public function getClass() {
-		return 'DataValues\MultilingualTextValue';
+		return MultilingualTextValue::class;
 	}
 
 	public function validConstructorArgumentsProvider() {
@@ -90,7 +91,7 @@ class MultilingualTextValueTest extends DataValueTest {
 	 * @dataProvider invalidArrayProvider
 	 */
 	public function testNewFromArrayWithInvalidArray( array $array ) {
-		$this->setExpectedException( 'DataValues\IllegalValueException' );
+		$this->setExpectedException( IllegalValueException::class );
 		MultilingualTextValue::newFromArray( $array );
 	}
 
@@ -131,7 +132,7 @@ class MultilingualTextValueTest extends DataValueTest {
 		$actual = $texts->getTexts();
 
 		$this->assertInternalType( 'array', $actual );
-		$this->assertContainsOnlyInstancesOf( '\DataValues\MonolingualTextValue', $actual );
+		$this->assertContainsOnlyInstancesOf( MonolingualTextValue::class, $actual );
 		$this->assertEquals( $arguments[0], array_values( $actual ) );
 	}
 

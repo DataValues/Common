@@ -5,6 +5,7 @@ namespace ValueParsers\Test;
 use Comparable;
 use DataValues\DataValue;
 use PHPUnit_Framework_TestCase;
+use ValueParsers\ParseException;
 use ValueParsers\ValueParser;
 
 /**
@@ -89,7 +90,7 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 			$parser = $this->getInstance();
 		}
 
-		$this->setExpectedException( 'ValueParsers\ParseException' );
+		$this->setExpectedException( ParseException::class );
 		$parser->parse( $value );
 	}
 
