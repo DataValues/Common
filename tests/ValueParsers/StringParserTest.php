@@ -5,6 +5,7 @@ namespace ValueParsers\Test;
 use DataValues\DataValue;
 use DataValues\StringValue;
 use ValueParsers\Normalizers\StringNormalizer;
+use ValueParsers\ParseException;
 use ValueParsers\StringParser;
 
 /**
@@ -56,7 +57,7 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGivenNonString_parseThrowsException( $input ) {
 		$parser = new StringParser();
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->setExpectedException( ParseException::class );
 		$parser->parse( $input );
 	}
 

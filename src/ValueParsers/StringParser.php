@@ -3,7 +3,6 @@
 namespace ValueParsers;
 
 use DataValues\StringValue;
-use InvalidArgumentException;
 use ValueParsers\Normalizers\NullStringNormalizer;
 use ValueParsers\Normalizers\StringNormalizer;
 
@@ -34,12 +33,12 @@ class StringParser implements ValueParser {
 	 *
 	 * @param string $value
 	 *
-	 * @throws InvalidArgumentException if $value is not a string
+	 * @throws ParseException if the provided value is not a string
 	 * @return StringValue
 	 */
 	public function parse( $value ) {
 		if ( !is_string( $value ) ) {
-			throw new InvalidArgumentException( 'Parameter $value must be a string' );
+			throw new ParseException( 'Parameter $value must be a string' );
 		}
 
 		$value = $this->normalizer->normalize( $value );
