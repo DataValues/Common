@@ -57,7 +57,8 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ### 1.0.0 (dev)
 
-* The `StringFormatter` constructor does not accept options any more.
+* Removed the `DATAVALUES_COMMON_VERSION` constant
+* The `StringFormatter` constructor does not accept options any more
 
 ### 0.4.1 (2017-08-09)
 

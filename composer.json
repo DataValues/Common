@@ -38,9 +38,6 @@
 		}
 	},
 	"autoload": {
-		"files" : [
-			"Common.php"
-		],
 		"psr-4": {
 			"DataValues\\": "src/DataValues/",
 			"ValueFormatters\\": "src/ValueFormatters/",
