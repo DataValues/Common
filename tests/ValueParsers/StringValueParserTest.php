@@ -33,21 +33,11 @@ abstract class StringValueParserTest extends ValueParserTestBase {
 	}
 
 	public function testSetAndGetOptions() {
-		/**
-		 * @var StringValueParser $parser
-		 */
+		/** @var StringValueParser $parser */
 		$parser = $this->getInstance();
-
-		$parser->setOptions( new ParserOptions() );
-
-		$this->assertEquals( new ParserOptions(), $parser->getOptions() );
-
 		$options = new ParserOptions();
-		$options->setOption( '~=[,,_,,]:3', '~=[,,_,,]:3' );
-
 		$parser->setOptions( $options );
-
-		$this->assertEquals( $options, $parser->getOptions() );
+		$this->assertSame( $options, $parser->getOptions() );
 	}
 
 }

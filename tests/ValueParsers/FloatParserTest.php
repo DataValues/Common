@@ -7,6 +7,7 @@ use ValueParsers\FloatParser;
 
 /**
  * @covers ValueParsers\FloatParser
+ * @covers ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
@@ -29,41 +30,26 @@ class FloatParserTest extends StringValueParserTest {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = [];
-
-		$valid = [
+		return [
 			// Ignoring a single trailing newline is an intended PCRE feature
-			"0\n" => 0,
+			[ "0\n", new NumberValue( 0.0 ) ],
 
-			'0' => 0,
-			'1' => 1,
-			'42' => 42,
-			'01' => 01,
-			'9001' => 9001,
-			'-1' => -1,
-			'-42' => -42,
+			[ '0', new NumberValue( 0.0 ) ],
+			[ '1', new NumberValue( 1.0 ) ],
+			[ '42', new NumberValue( 42.0 ) ],
+			[ '01', new NumberValue( 1.0 ) ],
+			[ '9001', new NumberValue( 9001.0 ) ],
+			[ '-1', new NumberValue( -1.0 ) ],
+			[ '-42', new NumberValue( -42.0 ) ],
 
-			'0.0' => 0,
-			'1.0' => 1,
-			'4.2' => 4.2,
-			'0.1' => 0.1,
-			'90.01' => 90.01,
-			'-1.0' => -1,
-			'-4.2' => -4.2,
+			[ '0.0', new NumberValue( 0.0 ) ],
+			[ '1.0', new NumberValue( 1.0 ) ],
+			[ '4.2', new NumberValue( 4.2 ) ],
+			[ '0.1', new NumberValue( 0.1 ) ],
+			[ '90.01', new NumberValue( 90.01 ) ],
+			[ '-1.0', new NumberValue( -1.0 ) ],
+			[ '-4.2', new NumberValue( -4.2 ) ],
 		];
-
-		foreach ( $valid as $value => $expected ) {
-			// Because PHP turns them into ints/floats using black magic
-			$value = (string)$value;
-
-			// Because 1 is an int but will come out as a float
-			$expected = (float)$expected;
-
-			$expected = new NumberValue( $expected );
-			$argLists[] = [ $value, $expected ];
-		}
-
-		return $argLists;
 	}
 
 	/**
