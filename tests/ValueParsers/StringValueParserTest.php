@@ -6,9 +6,7 @@ use ValueParsers\ParserOptions;
 use ValueParsers\StringValueParser;
 
 /**
- * Unit test StringValueParser class.
- *
- * @since 0.1
+ * @covers ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions

@@ -25,21 +25,21 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 	 *
 	 * @return array[]
 	 */
-	public abstract function validInputProvider();
+	abstract public function validInputProvider();
 
 	/**
 	 * @since 0.1
 	 *
 	 * @return array[]
 	 */
-	public abstract function invalidInputProvider();
+	abstract public function invalidInputProvider();
 
 	/**
 	 * @since 0.1
 	 *
 	 * @return ValueParser
 	 */
-	protected abstract function getInstance();
+	abstract protected function getInstance();
 
 	/**
 	 * @since 0.1
