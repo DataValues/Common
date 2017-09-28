@@ -32,21 +32,30 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 * @see ValueFormatterTestBase::validProvider
 	 */
 	public function validProvider() {
-		$strings = [
-			'ice cream',
-			'cake',
-			'',
-			' a ',
-			'  ',
+		return [
+			[ new StringValue( 'ice cream' ), 'ice cream' ],
+			[ new StringValue( 'cake' ), 'cake' ],
+			[ new StringValue( '' ), '' ],
+			[ new StringValue( ' a ' ), ' a ' ],
+			[ new StringValue( '  ' ), '  ' ],
 		];
+	}
 
-		$argLists = [];
+	/**
+	 * @dataProvider invalidProvider
+	 */
+	public function testInvalidFormat( $value ) {
+		$formatter = new StringFormatter();
+		$this->setExpectedException( 'InvalidArgumentException' );
+		$formatter->format( $value );
+	}
 
-		foreach ( $strings as $string ) {
-			$argLists[] = [ new StringValue( $string ), $string ];
-		}
-
-		return $argLists;
+	public function invalidProvider() {
+		return [
+			[ null ],
+			[ 0 ],
+			[ '' ],
+		];
 	}
 
 }

@@ -28,42 +28,100 @@ class MultilingualTextValueTest extends DataValueTest {
 	}
 
 	public function validConstructorArgumentsProvider() {
-		$argLists = [];
-
-		$argLists[] = [ [] ];
-		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ) ] ];
-		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'foo' ) ] ];
-		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), new MonolingualTextValue( 'de', 'bar' ) ] ];
-		$argLists[] = [ [
-			new MonolingualTextValue( 'en', 'foo' ),
-			new MonolingualTextValue( 'de', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' )
-		] ];
-
-		return $argLists;
+		return [
+			[ [] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+			] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				new MonolingualTextValue( 'de', 'foo' ),
+			] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				new MonolingualTextValue( 'de', 'bar' ),
+			] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				new MonolingualTextValue( 'de', ' foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz foo bar baz ' ),
+			] ],
+		];
 	}
 
 	public function invalidConstructorArgumentsProvider() {
-		$argLists = [];
+		return [
+			[ [ 42 ] ],
+			[ [ false ] ],
+			[ [ true ] ],
+			[ [ null ] ],
+			[ [ [] ] ],
+			[ [ 'foo' ] ],
 
-		$argLists[] = [ [ 42 ] ];
-		$argLists[] = [ [ false ] ];
-		$argLists[] = [ [ true ] ];
-		$argLists[] = [ [ null ] ];
-		$argLists[] = [ [ [] ] ];
-		$argLists[] = [ [ 'foo' ] ];
+			[ [ 42 => 'foo' ] ],
+			[ [ '' => 'foo' ] ],
+			[ [ 'en' => 42 ] ],
+			[ [ 'en' => null ] ],
+			[ [ 'en' => true ] ],
+			[ [ 'en' => [] ] ],
+			[ [ 'en' => 4.2 ] ],
 
-		$argLists[] = [ [ 42 => 'foo' ] ];
-		$argLists[] = [ [ '' => 'foo' ] ];
-		$argLists[] = [ [ 'en' => 42 ] ];
-		$argLists[] = [ [ 'en' => null ] ];
-		$argLists[] = [ [ 'en' => true ] ];
-		$argLists[] = [ [ 'en' => [] ] ];
-		$argLists[] = [ [ 'en' => 4.2 ] ];
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				false,
+			] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				'foobar',
+			] ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				new MonolingualTextValue( 'en', 'bar' ),
+			] ],
+		];
+	}
 
-		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), false ] ];
-		$argLists[] = [ [ new MonolingualTextValue( 'en', 'foo' ), 'foobar' ] ];
+	public function testNewFromArray() {
+		$array = [ [ 'text' => 'foo', 'language' => 'en' ] ];
+		$value = MultilingualTextValue::newFromArray( $array );
+		$this->assertSame( $array, $value->getArrayValue() );
+	}
 
-		return $argLists;
+	/**
+	 * @dataProvider invalidArrayProvider
+	 */
+	public function testNewFromArrayWithInvalidArray( array $array ) {
+		$this->setExpectedException( 'DataValues\IllegalValueException' );
+		MultilingualTextValue::newFromArray( $array );
+	}
+
+	public function invalidArrayProvider() {
+		return [
+			[ [ null ] ],
+			[ [ '' ] ],
+			[ [ [] ] ],
+			[ [ [ 'en', 'foo' ] ] ],
+		];
+	}
+
+	/**
+	 * @dataProvider getSortKeyProvider
+	 */
+	public function testGetSortKey( array $monolingualValues, $expected ) {
+		$value = new MultilingualTextValue( $monolingualValues );
+		$this->assertSame( $expected, $value->getSortKey() );
+	}
+
+	public function getSortKeyProvider() {
+		return [
+			[ [], '' ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+			], 'enfoo' ],
+			[ [
+				new MonolingualTextValue( 'en', 'foo' ),
+				new MonolingualTextValue( 'de', 'bar' ),
+			], 'enfoo' ],
+		];
 	}
 
 	/**

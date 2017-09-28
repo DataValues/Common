@@ -57,11 +57,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ### 1.0.0 (dev)
 
-* Deprecated `newFromArray` in `MonolingualTextValue` and `MultilingualTextValue`.
-* Changed `MismatchingDataValueTypeException` not amending custom messages any more.
-* Dropped backwards compatibility with DataValues Interfaces 0.1.
-* Updated minimal required PHP version from 5.3 to 5.5.9.
-* Updated inline documentation throughout the code.
+* The `StringFormatter` constructor does not accept options any more.
 
 ### 0.4.1 (2017-08-09)
 
@@ -69,7 +65,10 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ### 0.4.0 (2017-08-09)
 
-* Removed MediaWiki integration
+* Deprecated `MonolingualTextValue::newFromArray` and `MultilingualTextValue::newFromArray`
+* `MismatchingDataValueTypeException` no longer modifies custom error messages in its constructor
+* Updated minimal required PHP version from 5.3 to 5.5.9
+* Updated the MediaWiki entry point to use the extension.json format
 
 ### 0.3.1 (2015-08-14)
 

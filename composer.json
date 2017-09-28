@@ -55,7 +55,7 @@
 			"phpcs -p -s"
 		],
 		"test": [
-			"@validate --no-interaction",
+			"composer validate --no-interaction",
 			"covers-validator",
 			"phpunit"
 		],

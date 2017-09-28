@@ -30,43 +30,28 @@ class NullParserTest extends ValueParserTestBase {
 	 * @see ValueParserTestBase::validInputProvider
 	 */
 	public function validInputProvider() {
-		$argLists = [];
-
-		$values = [
-			'42',
-			42,
-			false,
-			[],
-			'ohi there!',
-			null,
-			4.2,
+		return [
+			[ '42', new UnknownValue( '42' ) ],
+			[ 42, new UnknownValue( 42 ) ],
+			[ false, new UnknownValue( false ) ],
+			[ [], new UnknownValue( [] ) ],
+			[ 'ohi there!', new UnknownValue( 'ohi there!' ) ],
+			[ null, new UnknownValue( null ) ],
+			[ 4.2, new UnknownValue( 4.2 ) ],
 		];
-
-		foreach ( $values as $value ) {
-			$argLists[] = [
-				$value,
-				new UnknownValue( $value )
-			];
-		}
-
-		return $argLists;
 	}
 
 	/**
 	 * @see ValueParserTestBase::invalidInputProvider
 	 */
 	public function invalidInputProvider() {
-		return [
-			[ null ]
-		];
+		return [ [ null ] ];
 	}
 
 	/**
 	 * @see ValueParserTestBase::testParseWithInvalidInputs
 	 *
 	 * @dataProvider invalidInputProvider
-	 * @param mixed $value
-	 * @param ValueParser|null $parser
 	 */
 	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
 		$this->markTestSkipped( 'NullParser has no invalid inputs' );
