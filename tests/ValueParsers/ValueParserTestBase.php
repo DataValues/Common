@@ -22,29 +22,21 @@ use ValueParsers\ValueParser;
 abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 
 	/**
-	 * @since 0.1
-	 *
 	 * @return array[]
 	 */
 	abstract public function validInputProvider();
 
 	/**
-	 * @since 0.1
-	 *
 	 * @return array[]
 	 */
 	abstract public function invalidInputProvider();
 
 	/**
-	 * @since 0.1
-	 *
 	 * @return ValueParser
 	 */
 	abstract protected function getInstance();
 
 	/**
-	 * @since 0.1
-	 *
 	 * @dataProvider validInputProvider
 	 * @param mixed $value
 	 * @param mixed $expected
@@ -79,8 +71,6 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * @since 0.1
-	 *
 	 * @dataProvider invalidInputProvider
 	 * @param mixed $value
 	 * @param ValueParser|null $parser
@@ -96,8 +86,6 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Returns if the result of the parsing process should be checked to be a DataValue.
-	 *
-	 * @since 0.1
 	 *
 	 * @return bool
 	 */

@@ -6,7 +6,10 @@ use InvalidArgumentException;
 use RuntimeException;
 
 /**
- * ValueParser that parses the string representation of something.
+ * Basic implementation for DataValue parsers that share one or more of the following aspects:
+ * - The provided input must be a string.
+ * - The parser utilizes ParserOptions.
+ * - The parser utilizes a "lang" option, which defaults to "en".
  *
  * @since 0.1
  *
@@ -16,15 +19,11 @@ use RuntimeException;
 abstract class StringValueParser implements ValueParser {
 
 	/**
-	 * @since 0.1
-	 *
 	 * @var ParserOptions
 	 */
 	protected $options;
 
 	/**
-	 * @since 0.1
-	 *
 	 * @param ParserOptions|null $options
 	 */
 	public function __construct( ParserOptions $options = null ) {
@@ -36,10 +35,10 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * @see ValueParser::parse
 	 *
-	 * @param mixed $value
+	 * @param string $value
 	 *
 	 * @return mixed
-	 * @throws ParseException
+	 * @throws ParseException if the provided value is not a string
 	 */
 	public function parse( $value ) {
 		if ( is_string( $value ) ) {
@@ -52,26 +51,17 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * Parses the provided string and returns the result.
 	 *
-	 * @since 0.1
-	 *
 	 * @param string $value
 	 *
 	 * @return mixed
 	 */
 	abstract protected function stringParse( $value );
 
-	/**
-	 * @since 0.1
-	 *
-	 * @param ParserOptions $options
-	 */
 	public function setOptions( ParserOptions $options ) {
 		$this->options = $options;
 	}
 
 	/**
-	 * @since 0.1
-	 *
 	 * @return ParserOptions
 	 */
 	public function getOptions() {
@@ -80,8 +70,6 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * Shortcut to $this->options->getOption.
-	 *
-	 * @since 0.1
 	 *
 	 * @param string $option
 	 *
@@ -95,8 +83,6 @@ abstract class StringValueParser implements ValueParser {
 	/**
 	 * Shortcut to $this->options->requireOption.
 	 *
-	 * @since 0.1
-	 *
 	 * @param string $option
 	 *
 	 * @throws RuntimeException
@@ -107,8 +93,6 @@ abstract class StringValueParser implements ValueParser {
 
 	/**
 	 * Shortcut to $this->options->defaultOption.
-	 *
-	 * @since 0.1
 	 *
 	 * @param string $option
 	 * @param mixed $default
