@@ -19,7 +19,7 @@ use ValueParsers\StringParser;
 class StringParserTest extends \PHPUnit_Framework_TestCase {
 
 	public function provideParse() {
-		$normalizer = $this->getMock( 'ValueParsers\Normalizers\StringNormalizer' );
+		$normalizer = $this->getMock( StringNormalizer::class );
 		$normalizer->expects( $this->once() )
 			->method( 'normalize' )
 			->will( $this->returnCallback( function( $value ) {
@@ -39,7 +39,7 @@ class StringParserTest extends \PHPUnit_Framework_TestCase {
 		$parser = new StringParser( $normalizer );
 		$value = $parser->parse( $input );
 
-		$this->assertInstanceOf( 'DataValues\StringValue', $value );
+		$this->assertInstanceOf( StringValue::class, $value );
 		$this->assertEquals( $expected->toArray(), $value->toArray() );
 	}
 
