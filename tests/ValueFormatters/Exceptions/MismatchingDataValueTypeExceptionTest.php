@@ -14,7 +14,7 @@ use ValueFormatters\Exceptions\MismatchingDataValueTypeException;
  *
  * @license GPL-2.0+
  * @author Katie Filbert < aude.wiki@gmail.com >
- * @author Thiemo Mättig
+ * @author Thiemo Kreuz
  */
 class MismatchingDataValueTypeExceptionTest extends PHPUnit_Framework_TestCase {
 

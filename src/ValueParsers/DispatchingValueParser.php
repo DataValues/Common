@@ -11,7 +11,7 @@ use InvalidArgumentException;
  * @since 0.3
  *
  * @license GPL-2.0+
- * @author Thiemo Mättig
+ * @author Thiemo Kreuz
  */
 class DispatchingValueParser implements ValueParser {
 
