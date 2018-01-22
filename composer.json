@@ -10,7 +10,7 @@
 		"wikidata"
 	],
 	"homepage": "https://github.com/DataValues/Common",
-	"license": "GPL-2.0+",
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Jeroen De Dauw",
