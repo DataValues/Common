@@ -77,7 +77,8 @@ class MultilingualTextValue extends DataValueObject {
 	}
 
 	/**
-	 * Returns the texts as an array of monolingual text values.
+	 * Returns the texts as an array of monolingual text values,
+	 * with the language codes as array keys.
 	 *
 	 * @return MonolingualTextValue[]
 	 */
