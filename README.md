@@ -57,6 +57,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ### 1.0.0 (dev)
 
+* Added `TrimmingStringNormalizer`
 * Removed the `DATAVALUES_COMMON_VERSION` constant
 * The `StringFormatter` constructor does not accept options any more
 
