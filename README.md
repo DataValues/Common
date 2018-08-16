@@ -61,6 +61,10 @@ employees for the [Wikidata project](https://wikidata.org/).
 * Removed the `DATAVALUES_COMMON_VERSION` constant
 * The `StringFormatter` constructor does not accept options any more
 
+### 0.4.2 (2018-08-16)
+
+* The component can now be installed together with DataValues 2.x
+
 ### 0.4.1 (2017-08-09)
 
 * Fixed version number not updated before.
