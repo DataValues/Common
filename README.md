@@ -49,6 +49,18 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany]
 
 ## Release notes
 
+### 0.4.3 (2019-06-28)
+
+* Fixed typo in error message in `DispatchingValueParser`
+
+### 0.4.2 (2018-08-16)
+
+* The component can now be installed together with DataValues 2.x
+
+### 0.4.1 (2018-08-09)
+
+* Fixed version number not updated before.
+
 ### 0.4.0 (2017-08-09)
 
 * Removed MediaWiki integration
