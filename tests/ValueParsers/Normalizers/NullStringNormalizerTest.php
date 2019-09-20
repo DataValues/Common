@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 use ValueParsers\Normalizers\NullStringNormalizer;
 
 /**
- * @covers ValueParsers\Normalizers\NullStringNormalizer
+ * @covers \ValueParsers\Normalizers\NullStringNormalizer
  *
  * @group ValueParsers
  * @group DataValueExtensions

@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 use ValueFormatters\Exceptions\MismatchingDataValueTypeException;
 
 /**
- * @covers ValueFormatters\Exceptions\MismatchingDataValueTypeException
+ * @covers \ValueFormatters\Exceptions\MismatchingDataValueTypeException
  *
  * @group ValueFormatters
  * @group DataValueExtensions
