@@ -42,7 +42,9 @@
 			"DataValues\\": "src/DataValues/",
 			"ValueFormatters\\": "src/ValueFormatters/",
 			"ValueParsers\\": "src/ValueParsers/"
-		},
+		}
+	},
+	"autoload-dev": {
 		"classmap": [
 			"tests/ValueParsers"
 		]
