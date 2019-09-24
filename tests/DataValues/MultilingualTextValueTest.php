@@ -7,7 +7,7 @@ use DataValues\MonolingualTextValue;
 use DataValues\MultilingualTextValue;
 
 /**
- * @covers DataValues\MultilingualTextValue
+ * @covers \DataValues\MultilingualTextValue
  *
  * @since 0.1
  *

@@ -8,7 +8,7 @@ use ValueParsers\Normalizers\StringNormalizer;
 use ValueParsers\StringParser;
 
 /**
- * @covers ValueParsers\StringParser
+ * @covers \ValueParsers\StringParser
  *
  * @group ValueParsers
  * @group DataValueExtensions

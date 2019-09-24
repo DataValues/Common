@@ -10,7 +10,7 @@ use ValueParsers\ParseException;
 use ValueParsers\ValueParser;
 
 /**
- * @covers ValueParsers\DispatchingValueParser
+ * @covers \ValueParsers\DispatchingValueParser
  *
  * @group DataValue
  * @group DataValueExtensions

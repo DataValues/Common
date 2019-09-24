@@ -6,7 +6,7 @@ use DataValues\IllegalValueException;
 use DataValues\MonolingualTextValue;
 
 /**
- * @covers DataValues\MonolingualTextValue
+ * @covers \DataValues\MonolingualTextValue
  *
  * @since 0.1
  *

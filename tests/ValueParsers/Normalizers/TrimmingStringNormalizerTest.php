@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 use ValueParsers\Normalizers\TrimmingStringNormalizer;
 
 /**
- * @covers ValueParsers\Normalizers\TrimmingStringNormalizer
+ * @covers \ValueParsers\Normalizers\TrimmingStringNormalizer
  *
  * @group ValueParsers
  * @group DataValueExtensions

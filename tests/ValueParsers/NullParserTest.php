@@ -7,7 +7,7 @@ use ValueParsers\NullParser;
 use ValueParsers\ValueParser;
 
 /**
- * @covers ValueParsers\NullParser
+ * @covers \ValueParsers\NullParser
  *
  * @group ValueParsers
  * @group DataValueExtensions

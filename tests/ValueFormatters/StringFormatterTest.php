@@ -8,7 +8,7 @@ use ValueFormatters\FormatterOptions;
 use ValueFormatters\StringFormatter;
 
 /**
- * @covers ValueFormatters\StringFormatter
+ * @covers \ValueFormatters\StringFormatter
  *
  * @group ValueFormatters
  * @group DataValueExtensions

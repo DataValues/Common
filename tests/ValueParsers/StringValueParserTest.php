@@ -6,7 +6,7 @@ use ValueParsers\ParserOptions;
 use ValueParsers\StringValueParser;
 
 /**
- * @covers ValueParsers\StringValueParser
+ * @covers \ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions

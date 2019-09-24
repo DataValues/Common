@@ -6,8 +6,8 @@ use DataValues\BooleanValue;
 use ValueParsers\BoolParser;
 
 /**
- * @covers ValueParsers\BoolParser
- * @covers ValueParsers\StringValueParser
+ * @covers \ValueParsers\BoolParser
+ * @covers \ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions

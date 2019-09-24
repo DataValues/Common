@@ -6,8 +6,8 @@ use DataValues\NumberValue;
 use ValueParsers\IntParser;
 
 /**
- * @covers ValueParsers\IntParser
- * @covers ValueParsers\StringValueParser
+ * @covers \ValueParsers\IntParser
+ * @covers \ValueParsers\StringValueParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
