@@ -56,7 +56,7 @@
 		"test": [
 			"composer validate --no-interaction",
 			"covers-validator",
-			"phpunit"
+			"vendor/bin/phpunit"
 		],
 		"ci": [
 			"@cs",
