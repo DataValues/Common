@@ -61,6 +61,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
 * The `StringFormatter` constructor does not accept options any more
 * Added `TrimmingStringNormalizer`
+* Updated minimal required PHP version from 5.5.9 to 7.2
 
 ### 0.4.2 (2018-08-16)
 
