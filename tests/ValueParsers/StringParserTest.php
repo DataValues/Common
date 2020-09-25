@@ -7,6 +7,7 @@ use DataValues\StringValue;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ValueParsers\Normalizers\StringNormalizer;
+use ValueParsers\ParseException;
 use ValueParsers\StringParser;
 
 /**
@@ -58,7 +59,9 @@ class StringParserTest extends TestCase {
 	 */
 	public function testGivenNonString_parseThrowsException( $input ) {
 		$parser = new StringParser();
-		$this->expectException( InvalidArgumentException::class );
+
+		$this->expectException( ParseException::class );
+
 		$parser->parse( $input );
 	}
 

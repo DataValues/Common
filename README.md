@@ -61,6 +61,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 * Removed `getCopy` and `getSortKey` methods from `DataValue` implementations
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
 * The `StringFormatter` constructor does not accept options any more
+* `StringParser::parse` now throws a `ParseException` instead of an `InvalidArgumentException`
 * Added `TrimmingStringNormalizer`
 * Updated minimal required PHP version from 5.5.9 to 7.2
 
