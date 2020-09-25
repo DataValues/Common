@@ -26,7 +26,6 @@ class MultilingualTextValueTest extends TestCase {
 		$monolingualTextValue2 = new MonolingualTextValue( 'de', 'foo' );
 		$value = new MultilingualTextValue( [ $monolingualTextValue1, $monolingualTextValue2 ] );
 		$this->assertSame( 'multilingualtext', $value->getType() );
-		$this->assertSame( 'enfoo', $value->getSortKey() );
 		$this->assertSame(
 			[ 'en' => $monolingualTextValue1, 'de' => $monolingualTextValue2 ],
 			$value->getTexts()
@@ -35,7 +34,6 @@ class MultilingualTextValueTest extends TestCase {
 
 	public function testGetters_empty() {
 		$value = new MultilingualTextValue( [] );
-		$this->assertSame( '', $value->getSortKey() );
 		$this->assertSame( [], $value->getTexts() );
 	}
 
