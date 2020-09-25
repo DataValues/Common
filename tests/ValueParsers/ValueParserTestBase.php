@@ -4,7 +4,7 @@ namespace ValueParsers\Test;
 
 use Comparable;
 use DataValues\DataValue;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ValueParsers\ParseException;
 use ValueParsers\ValueParser;
 
@@ -19,7 +19,7 @@ use ValueParsers\ValueParser;
  * @license GPL-2.0+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
+abstract class ValueParserTestBase extends TestCase {
 
 	/**
 	 * @return array[]
@@ -80,7 +80,7 @@ abstract class ValueParserTestBase extends PHPUnit_Framework_TestCase {
 			$parser = $this->getInstance();
 		}
 
-		$this->setExpectedException( ParseException::class );
+		$this->expectException( ParseException::class );
 		$parser->parse( $value );
 	}
 

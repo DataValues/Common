@@ -3,8 +3,7 @@
 namespace ValueParsers\Test;
 
 use InvalidArgumentException;
-use PHPUnit_Framework_MockObject_Matcher_Invocation;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ValueParsers\DispatchingValueParser;
 use ValueParsers\ParseException;
 use ValueParsers\ValueParser;
@@ -19,15 +18,10 @@ use ValueParsers\ValueParser;
  * @license GPL-2.0+
  * @author Thiemo Kreuz
  */
-class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
+class DispatchingValueParserTest extends TestCase {
 
-	/**
-	 * @param PHPUnit_Framework_MockObject_Matcher_Invocation $invocation
-	 *
-	 * @return ValueParser
-	 */
-	private function getParser( PHPUnit_Framework_MockObject_Matcher_Invocation $invocation ) {
-		$mock = $this->getMock( ValueParser::class );
+	private function getParser( $invocation ) : ValueParser {
+		$mock = $this->createMock( ValueParser::class );
 
 		$mock->expects( $invocation )
 			->method( 'parse' )
@@ -43,9 +37,9 @@ class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider invalidConstructorArgumentsProvider
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testGivenInvalidConstructorArguments_constructorThrowsException( $parsers, $format ) {
+		$this->expectException( InvalidArgumentException::class );
 		new DispatchingValueParser( $parsers, $format );
 	}
 
@@ -81,7 +75,7 @@ class DispatchingValueParserTest extends PHPUnit_Framework_TestCase {
 			'format'
 		);
 
-		$this->setExpectedException( ParseException::class );
+		$this->expectException( ParseException::class );
 		$parser->parse( 'invalid' );
 	}
 

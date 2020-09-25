@@ -3,7 +3,7 @@
 namespace ValueFormatters\Tests\Exceptions;
 
 use Exception;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ValueFormatters\Exceptions\MismatchingDataValueTypeException;
 
 /**
@@ -16,7 +16,7 @@ use ValueFormatters\Exceptions\MismatchingDataValueTypeException;
  * @author Katie Filbert < aude.wiki@gmail.com >
  * @author Thiemo Kreuz
  */
-class MismatchingDataValueTypeExceptionTest extends PHPUnit_Framework_TestCase {
+class MismatchingDataValueTypeExceptionTest extends TestCase {
 
 	/**
 	 * @dataProvider constructorProvider
