@@ -60,6 +60,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 * Removed the `DATAVALUES_COMMON_VERSION` constant
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
 * The `StringFormatter` constructor does not accept options any more
+* `StringParser::parse` now throws a `ParseException` instead of an `InvalidArgumentException`
 * Added `TrimmingStringNormalizer`
 
 ### 0.4.2 (2018-08-16)
