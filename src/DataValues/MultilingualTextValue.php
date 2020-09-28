@@ -68,6 +68,16 @@ class MultilingualTextValue extends DataValueObject {
 	}
 
 	/**
+	 * @deprecated Kept for compatibility with older DataValues versions.
+	 * Do not use.
+	 *
+	 * @return string|float|int
+	 */
+	public function getSortKey() {
+		return empty( $this->texts ) ? '' : reset( $this->texts )->getSortKey();
+	}
+
+	/**
 	 * Returns the texts as an array of monolingual text values,
 	 * with the language codes as array keys.
 	 *

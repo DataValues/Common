@@ -58,7 +58,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 ### 1.0.0 (dev)
 
 * Removed the `DATAVALUES_COMMON_VERSION` constant
-* Removed `getCopy` and `getSortKey` methods from `DataValue` implementations
+* Deprecated `getSortKey` methods from `DataValue` implementations
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
 * The `StringFormatter` constructor does not accept options any more
 * `StringParser::parse` now throws a `ParseException` instead of an `InvalidArgumentException`

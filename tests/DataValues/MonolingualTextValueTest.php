@@ -23,6 +23,7 @@ class MonolingualTextValueTest extends TestCase {
 	public function testGetters() {
 		$value = new MonolingualTextValue( 'en', 'foo' );
 		$this->assertSame( 'monolingualtext', $value->getType() );
+		$this->assertSame( 'enfoo', $value->getSortKey() );
 		$this->assertSame( 'foo', $value->getText() );
 		$this->assertSame( 'en', $value->getLanguageCode() );
 	}
