@@ -23,13 +23,13 @@
 		"irc": "irc://irc.freenode.net/wikidata"
 	},
 	"require": {
-		"php": ">=5.5.9",
-		"data-values/data-values": "~2.0|~1.0|~0.1",
-		"data-values/interfaces": "~0.2.0"
+		"php": ">=7.2.0",
+		"data-values/data-values": "~3.0|~2.0|~1.0|~0.1",
+		"data-values/interfaces": "~1.0|~0.2.0"
 	},
 	"require-dev": {
-		"ockcyp/covers-validator": "~0.4",
-		"phpunit/phpunit": "~4.8",
+		"ockcyp/covers-validator": "~1.2",
+		"phpunit/phpunit": "~8.0",
 		"wikibase/wikibase-codesniffer": "^0.1.0"
 	},
 	"extra": {

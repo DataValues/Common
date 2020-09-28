@@ -4,7 +4,7 @@ namespace ValueParsers\Normalizers\Test;
 
 use DataValues\StringValue;
 use InvalidArgumentException;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ValueParsers\Normalizers\NullStringNormalizer;
 
 /**
@@ -16,7 +16,7 @@ use ValueParsers\Normalizers\NullStringNormalizer;
  * @license GPL-2.0+
  * @author Thiemo Kreuz
  */
-class NullStringNormalizerTest extends PHPUnit_Framework_TestCase {
+class NullStringNormalizerTest extends TestCase {
 
 	/**
 	 * @dataProvider stringProvider
@@ -39,7 +39,7 @@ class NullStringNormalizerTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testNormalizeException( $value ) {
 		$normalizer = new NullStringNormalizer();
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$normalizer->normalize( $value );
 	}
 

@@ -69,7 +69,8 @@ class MonolingualTextValue extends DataValueObject {
 	}
 
 	/**
-	 * @see DataValue::getSortKey
+	 * @deprecated Kept for compatibility with older DataValues versions.
+	 * Do not use.
 	 *
 	 * @return string
 	 */

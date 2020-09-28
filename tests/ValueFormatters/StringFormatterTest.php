@@ -4,7 +4,7 @@ namespace ValueFormatters\Test;
 
 use DataValues\StringValue;
 use InvalidArgumentException;
-use ValueFormatters\FormatterOptions;
+use PHPUnit\Framework\TestCase;
 use ValueFormatters\StringFormatter;
 
 /**
@@ -16,22 +16,14 @@ use ValueFormatters\StringFormatter;
  * @license GPL-2.0+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class StringFormatterTest extends ValueFormatterTestBase {
+class StringFormatterTest extends TestCase {
 
-	/**
-	 * @see ValueFormatterTestBase::getInstance
-	 *
-	 * @param FormatterOptions|null $options
-	 *
-	 * @return StringFormatter
-	 */
-	protected function getInstance( FormatterOptions $options = null ) {
-		return new StringFormatter( $options );
+	/** @dataProvider validProvider */
+	public function testValidFormat( StringValue $value, string $expected ) {
+		$formatter = new StringFormatter();
+		$this->assertSame( $expected, $formatter->format( $value ) );
 	}
 
-	/**
-	 * @see ValueFormatterTestBase::validProvider
-	 */
 	public function validProvider() {
 		return [
 			[ new StringValue( 'ice cream' ), 'ice cream' ],
@@ -47,7 +39,7 @@ class StringFormatterTest extends ValueFormatterTestBase {
 	 */
 	public function testInvalidFormat( $value ) {
 		$formatter = new StringFormatter();
-		$this->setExpectedException( InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$formatter->format( $value );
 	}
 

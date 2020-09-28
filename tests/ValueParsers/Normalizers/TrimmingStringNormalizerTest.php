@@ -3,7 +3,8 @@
 namespace ValueParsers\Normalizers\Test;
 
 use DataValues\StringValue;
-use PHPUnit_Framework_TestCase;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use ValueParsers\Normalizers\TrimmingStringNormalizer;
 
 /**
@@ -15,7 +16,7 @@ use ValueParsers\Normalizers\TrimmingStringNormalizer;
  * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
-class TrimmingStringNormalizerTest extends PHPUnit_Framework_TestCase {
+class TrimmingStringNormalizerTest extends TestCase {
 
 	/**
 	 * @dataProvider stringProvider
@@ -40,7 +41,7 @@ class TrimmingStringNormalizerTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testNormalizeException( $value ) {
 		$normalizer = new TrimmingStringNormalizer();
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->expectException( InvalidArgumentException::class );
 		$normalizer->normalize( $value );
 	}
 
