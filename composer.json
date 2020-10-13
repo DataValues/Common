@@ -30,7 +30,7 @@
 	"require-dev": {
 		"ockcyp/covers-validator": "~1.2",
 		"phpunit/phpunit": "~8.0",
-		"wikibase/wikibase-codesniffer": "^0.1.0"
+		"wikibase/wikibase-codesniffer": "^1.2.0"
 	},
 	"extra": {
 		"branch-alias": {
