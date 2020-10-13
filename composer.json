@@ -50,6 +50,9 @@
 		]
 	},
 	"scripts": {
+		"fix": [
+			"phpcbf"
+		],
 		"cs": [
 			"phpcs -p -s"
 		],
