@@ -4,7 +4,6 @@ namespace ValueParsers\Test;
 
 use DataValues\DataValue;
 use DataValues\StringValue;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ValueParsers\Normalizers\StringNormalizer;
 use ValueParsers\ParseException;
