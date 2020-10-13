@@ -37,7 +37,7 @@ class StringParserTest extends TestCase {
 	/**
 	 * @dataProvider provideParse
 	 */
-	public function testParse( $input, StringNormalizer $normalizer = null, DataValue $expected ) {
+	public function testParse( $input, ?StringNormalizer $normalizer, DataValue $expected ) {
 		$parser = new StringParser( $normalizer );
 		$value = $parser->parse( $input );
 
