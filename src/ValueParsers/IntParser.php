@@ -14,7 +14,7 @@ use DataValues\NumberValue;
  */
 class IntParser extends StringValueParser {
 
-	const FORMAT_NAME = 'int';
+	private const FORMAT_NAME = 'int';
 
 	/**
 	 * @see StringValueParser::stringParse

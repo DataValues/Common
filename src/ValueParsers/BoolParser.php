@@ -14,7 +14,7 @@ use DataValues\BooleanValue;
  */
 class BoolParser extends StringValueParser {
 
-	const FORMAT_NAME = 'bool';
+	private const FORMAT_NAME = 'bool';
 
 	private static $values = [
 		'yes' => true,

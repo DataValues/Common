@@ -14,7 +14,7 @@ use DataValues\NumberValue;
  */
 class FloatParser extends StringValueParser {
 
-	const FORMAT_NAME = 'float';
+	private const FORMAT_NAME = 'float';
 
 	/**
 	 * @see StringValueParser::stringParse
