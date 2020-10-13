@@ -13,7 +13,7 @@ use ValueParsers\Normalizers\NullStringNormalizer;
  * @group ValueParsers
  * @group DataValueExtensions
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
 class NullStringNormalizerTest extends TestCase {

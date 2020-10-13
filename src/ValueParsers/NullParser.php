@@ -9,7 +9,7 @@ use DataValues\UnknownValue;
  *
  * @since 0.1
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class NullParser implements ValueParser {

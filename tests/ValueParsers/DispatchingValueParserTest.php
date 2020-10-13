@@ -15,7 +15,7 @@ use ValueParsers\ValueParser;
  * @group DataValueExtensions
  * @group ValueParsers
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
 class DispatchingValueParserTest extends TestCase {

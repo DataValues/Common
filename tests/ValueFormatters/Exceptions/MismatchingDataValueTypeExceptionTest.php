@@ -12,7 +12,7 @@ use ValueFormatters\Exceptions\MismatchingDataValueTypeException;
  * @group ValueFormatters
  * @group DataValueExtensions
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Katie Filbert < aude.wiki@gmail.com >
  * @author Thiemo Kreuz
  */
