@@ -9,12 +9,12 @@ use DataValues\NumberValue;
  *
  * @since 0.1
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class FloatParser extends StringValueParser {
 
-	const FORMAT_NAME = 'float';
+	private const FORMAT_NAME = 'float';
 
 	/**
 	 * @see StringValueParser::stringParse

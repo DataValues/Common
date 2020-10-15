@@ -10,7 +10,7 @@ use InvalidArgumentException;
  *
  * @since 0.3
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Thiemo Kreuz
  */
 class DispatchingValueParser implements ValueParser {

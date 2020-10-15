@@ -4,7 +4,6 @@ namespace ValueParsers\Test;
 
 use DataValues\DataValue;
 use DataValues\StringValue;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use ValueParsers\Normalizers\StringNormalizer;
 use ValueParsers\ParseException;
@@ -16,7 +15,7 @@ use ValueParsers\StringParser;
  * @group ValueParsers
  * @group DataValueExtensions
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Daniel Kinzler
  */
 class StringParserTest extends TestCase {
@@ -38,7 +37,7 @@ class StringParserTest extends TestCase {
 	/**
 	 * @dataProvider provideParse
 	 */
-	public function testParse( $input, StringNormalizer $normalizer = null, DataValue $expected ) {
+	public function testParse( $input, ?StringNormalizer $normalizer, DataValue $expected ) {
 		$parser = new StringParser( $normalizer );
 		$value = $parser->parse( $input );
 

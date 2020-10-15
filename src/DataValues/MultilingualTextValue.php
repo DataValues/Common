@@ -7,7 +7,7 @@ namespace DataValues;
  *
  * @since 0.1
  *
- * @license GPL-2.0+
+ * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MultilingualTextValue extends DataValueObject {
@@ -27,13 +27,17 @@ class MultilingualTextValue extends DataValueObject {
 	public function __construct( array $monolingualValues ) {
 		foreach ( $monolingualValues as $monolingualValue ) {
 			if ( !( $monolingualValue instanceof MonolingualTextValue ) ) {
-				throw new IllegalValueException( 'Can only construct MultilingualTextValue from MonolingualTextValue objects' );
+				throw new IllegalValueException(
+					'Can only construct MultilingualTextValue from MonolingualTextValue objects'
+				);
 			}
 
 			$languageCode = $monolingualValue->getLanguageCode();
 
 			if ( array_key_exists( $languageCode, $this->texts ) ) {
-				throw new IllegalValueException( 'Can only add a single MonolingualTextValue per language to a MultilingualTextValue' );
+				throw new IllegalValueException(
+					'Can only add a single MonolingualTextValue per language to a MultilingualTextValue'
+				);
 			}
 
 			$this->texts[$languageCode] = $monolingualValue;
