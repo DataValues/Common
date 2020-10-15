@@ -63,6 +63,7 @@ employees for the [Wikidata project](https://wikidata.org/).
 * The `StringFormatter` constructor does not accept options any more
 * `StringParser::parse` now throws a `ParseException` instead of an `InvalidArgumentException`
 * Added `TrimmingStringNormalizer`
+* Made `FORMAT_NAME` constants in the Parser classes private
 * Updated minimum required PHP version from 5.5.9 to 7.2
 
 ### 0.4.2 (2018-08-16)
