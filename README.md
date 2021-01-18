@@ -66,6 +66,10 @@ employees for the [Wikidata project](https://wikidata.org/).
 * Made `FORMAT_NAME` constants in the Parser classes private
 * Updated minimum required PHP version from 5.5.9 to 7.2
 
+### 0.4.3 (2019-06-28)
+
+* Fixed typo in error message in `DispatchingValueParser`
+
 ### 0.4.2 (2018-08-16)
 
 * The component can now be installed together with DataValues 2.x
