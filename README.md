@@ -5,7 +5,6 @@ implementations of the DataValues, ValueParsers, ValueFormatters and ValueValida
 
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
-[![Build Status](https://secure.travis-ci.org/DataValues/Common.png?branch=master)](http://travis-ci.org/DataValues/Common)
 [![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Common/badges/coverage.png?s=728b9287ebdd13fbe15255d4d55575c5b5d47b8f)](https://scrutinizer-ci.com/g/DataValues/Common/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DataValues/Common/badges/quality-score.png?s=3195539d2e929aafaefb4bc006fb0da6c09a4d2a)](https://scrutinizer-ci.com/g/DataValues/Common/)
 
@@ -32,7 +31,7 @@ version 0.4.2 of this package:
 
 This library comes with a set up PHPUnit tests that cover all non-trivial code. You can run these
 tests using the PHPUnit configuration file found in the root directory. The tests can also be run
-via TravisCI, as a TravisCI configuration file is also provided in the root directory.
+via Github Actions.
 
 ### Running the tests
 
@@ -143,4 +142,3 @@ Initial release with these features:
 ## Links
 
 * [DataValues Common on Packagist](https://packagist.org/packages/data-values/common)
-* [DataValues Common on TravisCI](https://travis-ci.org/DataValues/Common)
