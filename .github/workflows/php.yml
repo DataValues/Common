@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version:
-          - '7.2',
+        php:
+          - '7.2'
           - '7.3'
           - '7.4'
 
@@ -23,40 +23,35 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
+        php-version: ${{ matrix.php }}
 
     - name: Composer validate
       run: composer validate
 
-    - name: Cache Composer packages
-      id: composer-cache
+    - name: Cache Composer cache
       uses: actions/cache@v2
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        path: ~/.composer/cache
+        key: composer-cache-php${{ matrix.php }}
 
-    - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
-
+    - name: Composer install
+      run: composer install --no-progress --no-suggest --no-interaction --prefer-dist --optimize-autoloader
     - name: Run test suite
       run: composer ci
 
     - name: Setup PHP for coverage
-      if: matrix.php-version == '7.4'
+      if: matrix.php == '7.4'
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
+        php-version: ${{ matrix.php }}
         coverage: xdebug
 
     - name: Generate coverage
-      if: matrix.php-version == '7.4'
+      if: matrix.php == '7.4'
       run: vendor/bin/phpunit --coverage-clover coverage.clover
 
     - name: Upload Scrutinizer coverage
-      if: matrix.php-version == '7.4'
+      if: matrix.php == '7.4'
       uses: sudo-bot/action-scrutinizer@latest
       with:
         cli-args: "--format=php-clover coverage.clover"
