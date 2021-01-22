@@ -19,11 +19,11 @@ The recommended way to use this library is via [Composer](http://getcomposer.org
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `data-values/common` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-version 0.4.2 of this package:
+version 1.x of this package:
 
     {
         "require": {
-            "data-values/common": "^0.4.2"
+            "data-values/common": "^1.0.0"
         }
     }
 
@@ -54,8 +54,9 @@ employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
 
-### 1.0.0 (dev)
+### 1.0.0 (2021-01-22)
 
+* Updated minimum required PHP version from 5.5.9 to 7.2
 * Removed the `DATAVALUES_COMMON_VERSION` constant
 * Deprecated `getSortKey` methods from `DataValue` implementations
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
@@ -63,7 +64,6 @@ employees for the [Wikidata project](https://wikidata.org/).
 * `StringParser::parse` now throws a `ParseException` instead of an `InvalidArgumentException`
 * Added `TrimmingStringNormalizer`
 * Made `FORMAT_NAME` constants in the Parser classes private
-* Updated minimum required PHP version from 5.5.9 to 7.2
 
 ### 0.4.3 (2019-06-28)
 
