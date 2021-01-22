@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace ValueFormatters\Test;
 
 use DataValues\StringValue;
