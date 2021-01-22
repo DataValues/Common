@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ValueParsers\Normalizers\Test;
+namespace ValueParsers\Tests\Normalizers;
 
 use DataValues\StringValue;
 use InvalidArgumentException;

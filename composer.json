@@ -45,9 +45,11 @@
 		}
 	},
 	"autoload-dev": {
-		"classmap": [
-			"tests/ValueParsers"
-		]
+		"psr-4": {
+			"DataValues\\Tests\\": "tests/DataValues/",
+			"ValueFormatters\\Tests\\": "tests/ValueFormatters/",
+			"ValueParsers\\Tests\\": "tests/ValueParsers/"
+		}
 	},
 	"scripts": {
 		"fix": [
