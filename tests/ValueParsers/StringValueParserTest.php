@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ValueParsers\Test;
+namespace ValueParsers\Tests;
 
 use ValueParsers\ParserOptions;
 use ValueParsers\StringValueParser;

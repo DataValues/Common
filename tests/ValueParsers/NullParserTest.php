@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ValueParsers\Test;
+namespace ValueParsers\Tests;
 
 use DataValues\UnknownValue;
 use ValueParsers\NullParser;

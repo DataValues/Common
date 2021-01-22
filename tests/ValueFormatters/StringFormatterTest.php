@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ValueFormatters\Test;
+namespace ValueFormatters\Tests;
 
 use DataValues\StringValue;
 use InvalidArgumentException;
