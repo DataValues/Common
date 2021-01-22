@@ -57,6 +57,8 @@ employees for the [Wikidata project](https://wikidata.org/).
 ### 1.0.0 (2021-01-22)
 
 * Updated minimum required PHP version from 5.5.9 to 7.2
+* Added compatibility with `data-values/data-values` 3.x
+* Added compatibility with `data-values/interfaces` 1.x
 * Removed the `DATAVALUES_COMMON_VERSION` constant
 * Deprecated `getSortKey` methods from `DataValue` implementations
 * Classes in the `ValueParsers\Test` namespace are now package private. Notably `ValueParserTestBase` and `StringValueParserTest`
