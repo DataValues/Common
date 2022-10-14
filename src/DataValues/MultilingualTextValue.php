@@ -52,7 +52,11 @@ class MultilingualTextValue extends DataValueObject {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( $this->texts );
+		return serialize( $this->__serialize() );
+	}
+
+	public function __serialize(): array {
+		return $this->texts;
 	}
 
 	/**
@@ -61,7 +65,11 @@ class MultilingualTextValue extends DataValueObject {
 	 * @param string $value
 	 */
 	public function unserialize( $value ) {
-		$this->__construct( unserialize( $value ) );
+		$this->__unserialize( unserialize( $value ) );
+	}
+
+	public function __unserialize( array $data ): void {
+		$this->__construct( $data );
 	}
 
 	/**

@@ -48,7 +48,11 @@ class MonolingualTextValue extends DataValueObject {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( [ $this->languageCode, $this->text ] );
+		return serialize( $this->__serialize() );
+	}
+
+	public function __serialize(): array {
+		return [ $this->languageCode, $this->text ];
 	}
 
 	/**
@@ -57,7 +61,11 @@ class MonolingualTextValue extends DataValueObject {
 	 * @param string $value
 	 */
 	public function unserialize( $value ) {
-		list( $languageCode, $text ) = unserialize( $value );
+		$this->__unserialize( unserialize( $value ) );
+	}
+
+	public function __unserialize( array $data ): void {
+		list( $languageCode, $text ) = $data;
 		$this->__construct( $languageCode, $text );
 	}
 
