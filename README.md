@@ -23,7 +23,7 @@ version 1.x of this package:
 
     {
         "require": {
-            "data-values/common": "^1.0.0"
+            "data-values/common": "^1.1.0"
         }
     }
 
@@ -53,6 +53,13 @@ DataValues Common has been written by the Wikidata team, as [Wikimedia Germany](
 employees for the [Wikidata project](https://wikidata.org/).
 
 ## Release notes
+
+### 1.1.0 (2022-10-21)
+
+* Improved compatibility with PHP 8.1;
+  in particular, the new `__serialize`/`__unserialize` methods are implemented now
+  (in addition to the still supported `Serializable` interface).
+  Make sure to also use `data-values/data-values` version 3.1.0 (or later) to keep hashes stable.
 
 ### 1.0.0 (2021-01-22)
 
