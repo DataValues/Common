@@ -5,8 +5,8 @@ implementations of the DataValues, ValueParsers, ValueFormatters and ValueValida
 
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DataValues/Common/PHP%20Composer)](https://github.com/DataValues/Common/actions?query=workflow%3APHP%20Composer)
 [![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Common/badges/coverage.png?s=728b9287ebdd13fbe15255d4d55575c5b5d47b8f)](https://scrutinizer-ci.com/g/DataValues/Common/)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/DataValues/Common/badges/quality-score.png?s=3195539d2e929aafaefb4bc006fb0da6c09a4d2a)](https://scrutinizer-ci.com/g/DataValues/Common/)
 
 On [Packagist](https://packagist.org/packages/data-values/common):
 [![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
