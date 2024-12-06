@@ -26,9 +26,9 @@ class StringParserTest extends TestCase {
 		$normalizer = $this->createMock( StringNormalizer::class );
 		$normalizer->expects( $this->once() )
 			->method( 'normalize' )
-			->will( $this->returnCallback( function( $value ) {
+			->willReturnCallback( static function ( $value ) {
 				return strtolower( trim( $value ) );
-			} ) );
+			} );
 
 		return [
 			'simple' => [ 'hello world', null, new StringValue( 'hello world' ) ],

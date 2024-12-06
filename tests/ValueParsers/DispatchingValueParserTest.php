@@ -22,17 +22,17 @@ use ValueParsers\ValueParser;
  */
 class DispatchingValueParserTest extends TestCase {
 
-	private function getParser( $invocation ) : ValueParser {
+	private function getParser( $invocation ): ValueParser {
 		$mock = $this->createMock( ValueParser::class );
 
 		$mock->expects( $invocation )
 			->method( 'parse' )
-			->will( $this->returnCallback( function( $value ) {
+			->willReturnCallback( static function ( $value ) {
 				if ( $value === 'invalid' ) {
 					throw new ParseException( 'failed' );
 				}
 				return $value;
-			} ) );
+			} );
 
 		return $mock;
 	}

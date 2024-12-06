@@ -36,7 +36,7 @@ class MismatchingDataValueTypeException extends FormattingException {
 		$expectedValueType,
 		$dataValueType,
 		$message = '',
-		Exception $previous = null
+		?Exception $previous = null
 	) {
 		$this->expectedValueType = $expectedValueType;
 		$this->dataValueType = $dataValueType;
