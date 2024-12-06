@@ -18,6 +18,10 @@ class BoolParser extends StringValueParser {
 
 	private const FORMAT_NAME = 'bool';
 
+	/**
+	 * @var Mapping from possible string values to their
+	 *      boolean equivalents
+	 */
 	private static $values = [
 		'yes' => true,
 		'on' => true,

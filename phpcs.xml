@@ -7,4 +7,5 @@
 		<exclude name="Generic.Files.LineLength.TooLong" />
 		<exclude name="Generic.Files.LineLength.MaxExceeded" />
 	</rule>
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki"/>
 </ruleset>

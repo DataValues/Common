@@ -26,7 +26,7 @@ class StringParser implements ValueParser {
 	/**
 	 * @param StringNormalizer|null $normalizer
 	 */
-	public function __construct( StringNormalizer $normalizer = null ) {
+	public function __construct( ?StringNormalizer $normalizer = null ) {
 		$this->normalizer = $normalizer ?: new NullStringNormalizer();
 	}
 

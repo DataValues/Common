@@ -65,7 +65,7 @@ class MonolingualTextValue extends DataValueObject {
 	}
 
 	public function __unserialize( array $data ): void {
-		list( $languageCode, $text ) = $data;
+		[ $languageCode, $text ] = $data;
 		$this->__construct( $languageCode, $text );
 	}
 

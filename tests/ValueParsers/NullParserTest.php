@@ -55,7 +55,7 @@ class NullParserTest extends ValueParserTestBase {
 	 *
 	 * @dataProvider invalidInputProvider
 	 */
-	public function testParseWithInvalidInputs( $value, ValueParser $parser = null ) {
+	public function testParseWithInvalidInputs( $value, ?ValueParser $parser = null ) {
 		$this->markTestSkipped( 'NullParser has no invalid inputs' );
 	}
 
