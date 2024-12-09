@@ -1,16 +1,16 @@
 # DataValues Common
 
-DataValues Common is a small library build on top of DataValues that provides common
-implementations of the DataValues, ValueParsers, ValueFormatters and ValueValidators interfaces.
+DataValues Common is a small library built on top of DataValues that provides common
+implementations of the DataValues, ValueParsers, ValueFormatters, and ValueValidators interfaces.
 
 It is part of the [DataValues set of libraries](https://github.com/DataValues).
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/DataValues/Common/PHP%20Composer)](https://github.com/DataValues/Common/actions?query=workflow%3A"PHP+Composer")
-[![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Common/badges/coverage.png?s=728b9287ebdd13fbe15255d4d55575c5b5d47b8f)](https://scrutinizer-ci.com/g/DataValues/Common/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/DataValues/Common/php.yml?branch=master)](https://github.com/DataValues/Common/actions/workflows/php.yml?query=workflow%3APHP)
+[![Code Coverage](https://scrutinizer-ci.com/g/DataValues/Common/badges/coverage.png?s=6432d29bf3fed068995e66093ad52e053099a916)](https://scrutinizer-ci.com/g/DataValues/Common/)
 
 On [Packagist](https://packagist.org/packages/data-values/common):
-[![Latest Stable Version](https://poser.pugx.org/data-values/common/version.png)](https://packagist.org/packages/data-values/common)
-[![Download count](https://poser.pugx.org/data-values/common/d/total.png)](https://packagist.org/packages/data-values/common)
+[![Latest Stable Version](https://poser.pugx.org/data-values/common/v/stable)](https://packagist.org/packages/data-values/common)
+[![Download count](https://poser.pugx.org/data-values/common/downloads)](https://packagist.org/packages/data-values/common)
 
 ## Installation
 
